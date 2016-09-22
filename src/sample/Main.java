@@ -49,7 +49,6 @@ public class Main extends Application {
             mainScreen.setScene(scene);
             mainScreen.show();
 
-
         } catch (IOException e) {
         }
     }
@@ -64,6 +63,19 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
             Stage primaryStage = new Stage();
             primaryStage.setTitle(" LOGIN");
+            primaryStage.setScene(new Scene(root, 600, 400));
+            primaryStage.show();
+
+        } catch (IOException e) {
+
+        }
+    }
+
+    public void showRegisterScreen() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("register.fxml"));
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle(" Register");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
 
