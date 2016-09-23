@@ -33,6 +33,7 @@ public class RegisterController {
 
     @FXML
     private void cancelPressed() {
+
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
