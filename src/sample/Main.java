@@ -38,7 +38,7 @@ public class Main extends Application {
             rootLayout = loader.load();
 
             // Give the controller access to the main app.
-            WelcomeController controller = loader.getController();
+            welcomeController controller = loader.getController();
             controller.setMainApp(this);
 
             // Set the Main App title
