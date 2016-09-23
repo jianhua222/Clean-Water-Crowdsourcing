@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
  * The controller for the root/main window
  *
  */
-public class WelcomeController {
+public class welcomeController {
 
     /** reference back to mainApplication if needed */
     private Main mainApplication;
