@@ -6,12 +6,12 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.91" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.91" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
    <children>
-      <Button layoutX="143.0" layoutY="337.0" mnemonicParsing="false" text="Login" />
-      <Button layoutX="374.0" layoutY="337.0" mnemonicParsing="false" text="Cancel" />
-      <PasswordField layoutX="188.0" layoutY="200.0" />
-      <PasswordField layoutX="188.0" layoutY="129.0" />
+      <Button layoutX="143.0" layoutY="337.0" mnemonicParsing="false" text="Login" onAction="#showLoggedInScreen"/>
+      <Button layoutX="374.0" layoutY="337.0" mnemonicParsing="false" text="Cancel" fx:id="closeButton" onAction="#cancelHit" />
+      <PasswordField layoutX="188.0" layoutY="200.0" fx:id="second"/>
+      <PasswordField layoutX="188.0" layoutY="129.0" fx:id="first"/>
       <Label layoutX="71.0" layoutY="129.0" prefHeight="39.0" prefWidth="102.0" text="User Name:" />
       <Label layoutX="73.0" layoutY="206.0" prefHeight="27.0" prefWidth="94.0" text="Password:" />
    </children>
