@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 
 /**
  * The controller for the root/main window
@@ -10,6 +11,9 @@ public class RegisterController {
 
     /** reference back to mainApplication if needed */
     private Main mainApplication;
+
+    @FXML
+    private javafx.scene.control.Button closeButton;
 
     /**
      * allow for calling back to the main application code if necessary
@@ -29,7 +33,8 @@ public class RegisterController {
 
     @FXML
     private void cancelPressed() {
-        System.exit(0);
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
 
 }
