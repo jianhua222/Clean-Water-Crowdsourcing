@@ -24,7 +24,7 @@ public class LoginController {
 
     @FXML
     private void showLoggedInScreen() {
-        if (first.getText().equals("user") && second.getText().equals("password")) {
+        if (first.getText().equals("user") && second.getText().equals("pass")) {
 
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("mainScreen.fxml"));
