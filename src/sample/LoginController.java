@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.io.IOException;
  */
 public class LoginController {
     @FXML
-    private PasswordField first;
+    private TextField first;
 
     @FXML
     private PasswordField second;
@@ -23,8 +24,8 @@ public class LoginController {
     private javafx.scene.control.Button closeButton;
 
     @FXML
-    private void showLoggedInScreen() {
-        if (first.getText().equals("user") && second.getText().equals("pass")) {
+    private void showLoggedInScreen() throws IOException {
+        if (UserManagement.verify(first.getText(), second.getText())) {
 
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("mainScreen.fxml"));
