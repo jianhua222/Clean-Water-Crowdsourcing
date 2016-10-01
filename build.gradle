@@ -1,0 +1,17 @@
+defaultTasks  'jar'
+apply plugin: 'java'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                'Implementation-Version': 3.0 ,
+               'Main-Class' : 'sample.Main',
+                'Class-Path': '../../libs/firebase-client-android-2.5.2.jar'
+    }
+}
+sourceSets.main.java.srcDirs=['src']
+dependencies {
+    compile 'com.firebase:firebase-client-android:2.5.2+'
+}
+repositories{
+    mavenCentral()
+}

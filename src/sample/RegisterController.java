@@ -51,13 +51,11 @@ public class RegisterController {
     }
 
     @FXML
-    private void registerpressed() throws IOException {
-        try {
+    private void registerpressed()  {
+
             UserManagement.register(userfx.getText(), passfx.getText(), usertype);
             cancelPressed();
-        } catch (IOException e) {
-            throw new IOException("new IO!!");
-        }
+
     }
 
     @FXML

@@ -35,7 +35,7 @@ public class Main extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("../sample/welcome.fxml"));
+            loader.setLocation(Main.class.getResource("welcome.fxml"));
             rootLayout = loader.load();
 
             // Give the controller access to the main app.
