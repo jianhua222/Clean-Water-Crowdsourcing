@@ -12,9 +12,9 @@ public class User {
     private String email;
     private String address;
     private String title;
-
     public User(String userName, String password , String type){
        this(userName,password,type,null,null,null);
+        data.add(this);
     }
     public User(String userName, String password , String type,String email,String address,String title){
         this.userName = userName;

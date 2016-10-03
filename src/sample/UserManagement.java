@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import com.firebase.client.*;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
