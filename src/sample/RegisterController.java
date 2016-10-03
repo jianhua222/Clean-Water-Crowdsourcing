@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import com.firebase.client.*;
+import java.util.Map;
+import java.util.HashMap;
 
 import java.io.IOException;
 
@@ -53,9 +56,11 @@ public class RegisterController {
     @FXML
     private void registerpressed()  {
 
-            UserManagement.register(userfx.getText(), passfx.getText(), usertype);
-            cancelPressed();
+           UserManagement.register(userfx.getText(), passfx.getText(),usertype);
 
+
+
+        cancelPressed();
     }
 
     @FXML

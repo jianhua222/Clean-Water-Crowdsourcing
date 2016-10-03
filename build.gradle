@@ -1,5 +1,14 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.gms:google-services:3.0.0'
+    }
+}
 defaultTasks  'jar'
 apply plugin: 'java'
+
 jar {
     manifest {
         attributes 'Implementation-Title': 'Gradle Quickstart',
@@ -10,8 +19,11 @@ jar {
 }
 sourceSets.main.java.srcDirs=['src']
 dependencies {
+    compile 'com.google.firebase:firebase-server-sdk:3.0.1'
     compile 'com.firebase:firebase-client-android:2.5.2+'
+    //compile 'com.google.firebase:firebase-database:9.0.0'
 }
 repositories{
     mavenCentral()
 }
+

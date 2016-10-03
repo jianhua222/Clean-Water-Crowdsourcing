@@ -7,31 +7,30 @@ import java.util.Scanner;
 import com.firebase.client.*;
 import java.util.Map;
 import java.util.HashMap;
-
+import java.util.ArrayList;
 
 /**
  * Created by Allen on 9/27/2016.
  */
 public class UserManagement {
-    public static File userInfor = new File( "userInfor.txt");
-    public static User currentUser;
-    public static Firebase ref = new Firebase("https://clean-water-crowdsourcing.firebaseio.com/");
-    public static Firebase userRef = myFirebaseRef.child("User");
-    public static void register(String userName, String password , String type) {
-        Map<String, String> newUser = new HashMap<String, String>();
-        newUser.put("userName",userName);
-        newUser.put("passWord",password);
-        newUser.put("type",type);
-        newUser.put("email","empty");
-        newUser.put("address","empty");
-        newUser.put("title","empty");
-        //User tem = new User(userName,password,type);
 
-        userRef.push().setValue(newUser);
-        System.out.print( userRef.getValue());
+    public static User currentUser;
+    //public static Firebase ref = new Firebase("https://clean-water-crowdsourcing.firebaseio.com");
+    //public static Firebase userRef = ref.child("User");
+    public static ArrayList<User> users = new ArrayList<>();
+
+    public static void register(String userName, String password , String type) {
+        User tem = new User(userName,password,type);
+        users.add(tem);
     }
     public static boolean verify(String userName, String password ){
-
+        for (User x : users){
+            if(x.getUserName().equals(userName)&&x.getPassword().equals(password)){
+                currentUser = new User(x.getUserName(),x.getPassword(),x.getType(),x.getEmail(),x.getAddress(),x. getTitle());
+                return true;
+            }
+        }
         return false;
     }
+
 }

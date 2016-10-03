@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "clean-water-crowdsourcing",
+  "private_key_id": "a80528e9627269fc99da8111f79ef2caee7549ed",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDIqTl85oqZBgdV\no8xVUOI2ENamM05YNDPlUBzwSYWC2/19TAaRoRRKEvMR5zifZvZja25LtPJ16o4f\nn6++Mc0F8lfvUa3O0859KhuPH3GsZVCp0kFK2rTkb7/MsTHyNmAD/w3DEbcBbtSg\nO8gbw+7AbyRZjMKwQF3orgvevckKw6oWM5vO87+vqqF9Nx6ZF0V8o3mxi6gtDv8/\n4yPetHbhc7mjOuSsMXyUqG6vfuDiojKkmWYz04SdiPa6DxSFY1x9iZuyQZrp6sSN\nQNPOpO5PJzMRIIuMA7KFJ6EBu5V/SFlHlQ0RD+ey+tSLA99azSgDwZcAvvbZW3fq\nsgvN2NG7AgMBAAECggEBAIIz9D6MZXCHzeiPAX52nmIQqQdtETAAp4/rXOu5+S0B\nTEmqNDT4vW6XPyvlygL8z3GRex8ayZ0j1pbEikeyjuOF7fM3H72uCDWFRh6ne54u\nm5ml+YH1yhzUOjM64zrUd5cAP9DMxN/kJ4nVYLJLf7dUJtUIlifBjG33yXH92d7m\nEc1CIZBTxe5JCtyjAuOkPLh5b3SbG464fbwVGUozGSUJRNaLiLwo3P/1qr1RseDp\nLmw6KgFizjRSR4HnvLIGHHwkmhNqJNGMGlm7zmXyXREst2Y/+++om1aJ4uJPDvpJ\nvMoaW9YMk/S+KD03q4GroqKSGqTjnMn9CwVOn/wHFHECgYEA+7kEscQ0Wljbd6Xc\nJ9I9umk8akbqyoeVGjHwgUlhevwCDVbsZ8tnBUO7H68/3ZLV+lbspA5qtKkfZdMg\nKB9N/jQQJFrlEyo8BjBjwox3ffATPtobsqF8lsPjF8asviiUpl6Hbschg6xzIltE\nC6pz2yQD+Su3R20jEdLwdspngVkCgYEAzBIXH9JhZfDUrtGVOm//p1RPJKq1MDSe\nf+KXxGPG/jswtMHc2Mf0b7zvAIS5tIMvGi1LuhBh+2sU3BvSzOpo9XQSRre77wLw\nOT/vwjk7tMwgFK5QklcF0rtLZv5szKavaw6G19sBIYPGdeZtKX7n40zaw5btIIK3\nz9HarXsT1TMCgYBdgtwFldfFAGF3Tzw75tRbnaB98p5iYn+3XXn07WezIk842WO1\nI1DAGes32AinrVakSwpZ36kwN+ucDhRSE18L4hdlCgczWWs2+V719Oym8jqUDL5h\nW7BG6bpBKOMfOUAPlepF8t+2ZKfYyYK7urSTYgu/0sehVx/CDVSbLJHK8QKBgE35\nJ47IIuEBmTJG8F8IxkVYSHk5JMwLfvhcSyMGANXJJf4bCNhn5nT/Ws7258IaUdgN\nsJ6ifd3D9492riAP/RS0SfttXsifdcxaKrEqjy6wxB1C0ZRo3de8Kr5qvoWftu0P\n+uPlUVRN9nm8Fr/BNrc5+Wi8dVRzveoRRB3/Jf/TAoGAFLf9kntzxbk1uplexQfA\nnvtZBBBcrKRF+Yj+uKfriECUIrBIDSalfZgy6raeNGpt+ItW8bft5BJAKHDK7Zqz\nJweteIDFQxg9N8yhIaA2kNIFp40DOTWfQHQOqi6AtXMVDdVBukYkstS4V+aJ+vDD\nSs7/F3Ov6v0ba+WlwHuJHjo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "jhua33@clean-water-crowdsourcing.iam.gserviceaccount.com",
+  "client_id": "116351337429223607761",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jhua33%40clean-water-crowdsourcing.iam.gserviceaccount.com"
+}
