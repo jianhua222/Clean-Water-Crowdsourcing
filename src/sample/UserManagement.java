@@ -26,7 +26,7 @@ public class UserManagement {
     public static boolean verify(String userName, String password ){
         for (User x : users){
             if(x.getUserName().equals(userName)&&x.getPassword().equals(password)){
-                currentUser = new User(x.getUserName(),x.getPassword(),x.getType(),x.getEmail(),x.getAddress(),x. getTitle());
+                currentUser = x;
                 return true;
             }
         }
