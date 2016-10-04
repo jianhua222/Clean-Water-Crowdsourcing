@@ -54,11 +54,7 @@ public class RegisterController {
 
     @FXML
     private void registerpressed()  {
-
-           UserManagement.register(userfx.getText(), passfx.getText(),usertype);
-
-
-
+        UserManagement.register(userfx.getText(), passfx.getText(), usertype);
         cancelPressed();
     }
 

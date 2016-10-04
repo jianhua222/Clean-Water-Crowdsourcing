@@ -33,4 +33,8 @@ public class UserManagement {
         return false;
     }
 
+    public static User getUser() {
+        return currentUser;
+    }
+
 }
