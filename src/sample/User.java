@@ -1,9 +1,8 @@
 package sample;
 
-import java.io.File;
-
 /**
  * Created by Allen on 9/27/2016.
+ * User information holder
  */
 public class User {
     private String userName;
@@ -13,11 +12,28 @@ public class User {
     private String address;
     private String title;
 
-    public User(String userName, String password , String type){
-       this(userName, password, type, null, null, null);
+    /**
+     * Constructor
+     *
+     * @param userName input user name
+     * @param password input password
+     * @param type     input type
+     */
+    public User(String userName, String password, String type) {
+        this(userName, password, type, null, null, null);
     }
 
-    public User(String userName, String password , String type,String email,String address,String title){
+    /**
+     * Constructor
+     *
+     * @param userName input user name
+     * @param password input password
+     * @param type     input type
+     * @param email    input email
+     * @param address  inupt address
+     * @param title    input title
+     */
+    public User(String userName, String password, String type, String email, String address, String title) {
         this.userName = userName;
         this.password = password;
         this.type = type;
@@ -26,46 +42,101 @@ public class User {
         this.title = title;
     }
 
-    public String getUserName(){
+    /**
+     * userName getter
+     *
+     * @return userName value
+     */
+    public String getUserName() {
         return userName;
     }
 
-    public String getPassword(){
+    /**
+     * password getter
+     *
+     * @return password value
+     */
+    public String getPassword() {
         return password;
     }
 
-    public String getType(){
+    /**
+     * type getter
+     *
+     * @return type value
+     */
+    public String getType() {
         return type;
     }
 
-    public String getEmail(){
+    /**
+     * email getert
+     *
+     * @return email value
+     */
+    public String getEmail() {
         return email;
     }
 
-    public String getAddress(){
+    /**
+     * address getter
+     *
+     * @return address value
+     */
+    public String getAddress() {
         return address;
     }
 
-    public String getTitle(){
+    /**
+     * title getter
+     *
+     * @return title value
+     */
+    public String getTitle() {
         return title;
     }
 
-    public void setEmail(String email){
+    /**
+     * email setter
+     *
+     * @param email value
+     */
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setAddress(String address){
+    /**
+     * address setter
+     *
+     * @param address value
+     */
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public void setTitle(String title){
+    /**
+     * title setter
+     *
+     * @param title value
+     */
+    public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * type setter
+     *
+     * @param type value
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     * userName  setter
+     *
+     * @param userName value
+     */
     public void setUsername(String userName) {
         this.userName = userName;
     }
