@@ -11,6 +11,7 @@ jar {
     }
 }
 sourceSets.main.java.srcDirs=['src']
+//sourceSets.main.resources.srcDir 'src/sample'
 dependencies {
     //compile 'com.google.firebase:firebase-server-sdk:3.0.1'
     //compile 'com.firebase:firebase-client-android:2.5.2+'

@@ -19,6 +19,12 @@ public class UserManagement {
      * @param type     input type
      */
     public static void register(String userName, String password, String type) {
+        for(User x : users){
+            if(x.getUserName().equals(userName)){
+                System.out.println("user name already exists. ");
+                    return;
+            }
+        }
         User tem = new User(userName, password, type);
         users.add(tem);
     }
