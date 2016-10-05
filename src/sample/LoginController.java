@@ -14,6 +14,7 @@ import java.io.IOException;
  * Controller for login screen
  */
 public class LoginController {
+
     @FXML
     private TextField first;
 
@@ -23,6 +24,12 @@ public class LoginController {
     @FXML
     private javafx.scene.control.Button closeButton;
 
+    /**
+     * Sets up the stage and scene to show when the user is logging in.
+     *
+     * @throws IOException if for some reason the file is not found.
+     *
+     */
     @FXML
     private void showLoggedInScreen() throws IOException {
         if (UserManagement.verify(first.getText(), second.getText())) {
@@ -45,6 +52,10 @@ public class LoginController {
         }
     }
 
+    /**
+     * Button handler for closing the login screen when the user presses the button.
+     *
+     */
     @FXML
     private void cancelHit() {
         Stage stage = (Stage) closeButton.getScene().getWindow();

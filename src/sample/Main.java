@@ -4,13 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.io.FileInputStream;
 
 public class Main extends Application {
 
@@ -21,7 +18,7 @@ public class Main extends Application {
     private Pane rootLayout;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         mainScreen = primaryStage;
         initRootLayout(mainScreen);
         //Payton is a boss!!!!
@@ -55,12 +52,20 @@ public class Main extends Application {
         }
     }
 
-
+    /**
+     * this is the main method
+     *
+     * @param args the array string passed into this method
+     */
     public static void main(String[] args) {
 
         launch(args);
     }
 
+    /**
+     * This method sets up the stage and scene when the user is logging in.
+     *
+     */
     public void showLoginScreen() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
@@ -74,6 +79,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * This method sets up the stage and scene when the user is registering.
+     *
+     */
     public void showRegisterScreen() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("register.fxml"));

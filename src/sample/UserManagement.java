@@ -8,8 +8,8 @@ import java.util.ArrayList;
  */
 public class UserManagement {
 
-    public static User currentUser;
-    public static ArrayList<User> users = new ArrayList<>();
+    private static User currentUser;
+    private static ArrayList<User> users = new ArrayList<>();
 
     /**
      * register a new user
@@ -28,6 +28,7 @@ public class UserManagement {
      *
      * @param userName input user name
      * @param password input password
+     * @return a boolean that checks the given username and password
      */
     public static boolean verify(String userName, String password) {
         for (User x : users) {

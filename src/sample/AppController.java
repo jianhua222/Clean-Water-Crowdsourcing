@@ -5,9 +5,6 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -20,12 +17,20 @@ public class AppController {
     @FXML
     private javafx.scene.control.Button logoutButton;
 
+    /**
+     * This method handles closing the main app, when the user chooses to do so.
+     *
+     */
     @FXML
     private void something() {
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * This method sets up the stage and screen for showing the user info.
+     *
+     */
     @FXML
     private void userInfo() {
         try {

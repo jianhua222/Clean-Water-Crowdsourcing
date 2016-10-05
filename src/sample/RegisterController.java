@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.util.Map;
-import java.util.HashMap;
 
-import java.io.IOException;
 
 /**
  * The controller for the root/main window
@@ -45,6 +42,10 @@ public class RegisterController {
         System.exit(0);
     }
 
+    /**
+     * Handles closing the stage of the register screen.
+     *
+     */
     @FXML
     private void cancelPressed() {
 
@@ -52,27 +53,47 @@ public class RegisterController {
         stage.close();
     }
 
+    /**
+     * Handles registering a user once they press register.
+     *
+     */
     @FXML
     private void registerpressed()  {
         UserManagement.register(userfx.getText(), passfx.getText(), usertype);
         cancelPressed();
     }
 
+    /**
+     * sets usertype to user when pressed.
+     *
+     */
     @FXML
     private void handle1() {
         usertype = "User";
     }
 
+    /**
+     * sets usertype to worker when pressed.
+     *
+     */
     @FXML
     private void handle2() {
         usertype = "Worker";
     }
 
+    /**
+     * sets usertype to manager when pressed.
+     *
+     */
     @FXML
     private void handle3() {
         usertype = "Manager";
     }
 
+    /**
+     * sets usertype to admin when pressed.
+     *
+     */
     @FXML
     private void handle4() {
         usertype = "Admin";

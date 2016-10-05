@@ -16,8 +16,8 @@ public class welcomeController {
      * @param main   the reference to the FX Application instance
      * */
     public void setMainApp(Main main) {
-            mainApplication = main;
-        }
+        mainApplication = main;
+    }
 
     /**
      * Close menu item event handler
@@ -27,12 +27,19 @@ public class welcomeController {
         System.exit(0);
     }
 
+    /**
+     * shows the login screen when the user pressed the button.
+     *
+     */
     @FXML
     private void addLoginPressed() {
         mainApplication.showLoginScreen();
-
     }
 
+    /**
+     * shows the register screen when the user presses the button.
+     *
+     */
     @FXML
     private void addRegisterPressed() {
         mainApplication.showRegisterScreen();
