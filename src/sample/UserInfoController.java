@@ -23,6 +23,9 @@ public class UserInfoController {
     private Label adfx;
 
     @FXML
+    private Label tyfx;
+
+    @FXML
     private TextField cufx;
 
     @FXML
@@ -44,7 +47,7 @@ public class UserInfoController {
             UserManagement.getUser().setUsername(cufx.getText());
         }
         if (!ctfx.getText().equals("")) {
-            UserManagement.getUser().setType(ctfx.getText());
+            UserManagement.getUser().setTitle(ctfx.getText());
         }
         if (!cefx.getText().equals("")) {
             UserManagement.getUser().setEmail(cefx.getText());
@@ -53,9 +56,10 @@ public class UserInfoController {
             UserManagement.getUser().setAddress(cafx.getText());
         }
         unfx.setText(UserManagement.getUser().getUserName());
-        titfx.setText(UserManagement.getUser().getType());
+        titfx.setText(UserManagement.getUser().getTitle());
         emfx.setText(UserManagement.getUser().getEmail());
         adfx.setText(UserManagement.getUser().getAddress());
+        tyfx.setText(UserManagement.getUser().getType());
     }
 
     /**
