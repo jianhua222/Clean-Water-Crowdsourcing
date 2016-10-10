@@ -3,11 +3,21 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AppController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AppController">
    <children>
       <Button fx:id="logoutButton" layoutX="109.0" layoutY="327.0" mnemonicParsing="false" onAction="#something" text="Logout" />
-      <Label layoutX="215.0" layoutY="146.0" prefHeight="108.0" prefWidth="170.0" text="Main Page" />
+      <Label alignment="CENTER" layoutX="3.0" layoutY="2.0" prefHeight="75.0" prefWidth="592.0" text="Main Scren">
+         <font>
+            <Font size="64.0" />
+         </font></Label>
       <Button layoutX="377.0" layoutY="327.0" mnemonicParsing="false" onAction="#userInfo" text="Show user info" />
+      <VBox layoutX="158.0" layoutY="100.0" prefHeight="200.0" prefWidth="249.0">
+         <children>
+            <Button fx:id="h2OReportBtn" mnemonicParsing="false" onAction="#toReportScreen" prefHeight="27.0" prefWidth="248.0" text="Water Source Report" />
+         </children>
+      </VBox>
    </children>
 </Pane>

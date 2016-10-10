@@ -37,7 +37,7 @@ public class LoginController {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("mainScreen.fxml"));
                 Stage primaryStage = new Stage();
-                primaryStage.setTitle(" LOGIN");
+                primaryStage.setTitle("Main Screen");
                 primaryStage.setScene(new Scene(root, 600, 400));
                 primaryStage.show();
                 Stage stage = (Stage) closeButton.getScene().getWindow();

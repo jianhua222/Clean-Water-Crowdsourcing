@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * user management class
  * Created by Allen on 9/27/2016.
+ * Service Provider
  */
 public class UserManagement {
 
