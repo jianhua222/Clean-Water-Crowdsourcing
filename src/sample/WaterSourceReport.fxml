@@ -93,5 +93,6 @@
             <TextField fx:id="contaminantPPM" promptText="00.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
+      <Label layoutX="392.0" layoutY="58.0" text="Format: yyyy-MM-dd hh:mm:ss" />
    </children>
 </Pane>
