@@ -42,7 +42,7 @@ public class AppController {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("UserInfo.fxml"));
             Stage primaryStage = new Stage();
-            primaryStage.setTitle(" LOGIN");
+            primaryStage.setTitle("User Information");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
 
