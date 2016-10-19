@@ -10,9 +10,13 @@ import java.util.Date;
  * Structurer
  */
 public class WaterReportManagement {
-    private WaterSourceReport currentReport;
+    public static WaterSourceReport currentReport;
     private static ArrayList<WaterSourceReport> totalReports = new ArrayList<>();
 
+    /**
+     * the constructor for Creating an instance of the water source report management
+     * @param waterSourceReport the first report to be placed in the list of reports
+     */
     WaterReportManagement(WaterSourceReport waterSourceReport) {
         this.currentReport = waterSourceReport; //References to the same object
         this.totalReports.add(currentReport);
@@ -47,21 +51,27 @@ public class WaterReportManagement {
         return totalReports.size() == 0;
     }
 
-    public static void saveReport(String timestamp, String userName, String reportNumber, String location,
-                                  String sourceType, String condition, String consumable, String Virus,
-                                  String contaminant) throws ParseException {
-        double latitude = Double.parseDouble(location.substring(0,location.indexOf(",")));
-        double longitude = Double.parseDouble(location.substring(location.indexOf(" ")));
-
-        // Create new report
-        SimpleDateFormat datetimeFormatter1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date lFromDate1 = datetimeFormatter1.parse(timestamp);
-
-        WaterSourceReport report = new WaterSourceReport(new Timestamp(lFromDate1.getTime()),
-                UserManagement.getUser(userName), longitude, latitude);
-        totalReports.add(report);
-
-        // Missing to set all the other variables
+    /**
+     * this method sets the current report
+     * @param givenReport the given report becomes the current report
+     */
+    public static void setCurrentReport(WaterSourceReport givenReport) {
+        currentReport = givenReport;
     }
 
+    /**
+     * The current report is returned
+     * @return the current report in report management
+     */
+    public static WaterSourceReport getCurrentReport() {
+        return currentReport;
+    }
+
+    /**
+     * this method adds the given report to the array list of reports
+     * @param givenReport
+     */
+    public static void addReport(WaterSourceReport givenReport) {
+        totalReports.add(givenReport);
+    }
 }

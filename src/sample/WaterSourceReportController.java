@@ -51,6 +51,9 @@ public class WaterSourceReportController {
     private Button cancelReportBtn;
 
     @FXML
+    private Button backBtn;
+
+    @FXML
     private ComboBox sourceTypeComboBox;
 
     @FXML
@@ -75,9 +78,9 @@ public class WaterSourceReportController {
         //Pass user info here
         // How to pass this information? Ans: User Management
         // Pull User Info Here
-        this.userWhoCreatedReport.setText("Payton Jonson");
+        this.userWhoCreatedReport.setText(UserManagement.getUser().getUserName());
 
-        this.newReport = new WaterSourceReport(_creationDate, null);
+        this.newReport = new WaterSourceReport(_creationDate, UserManagement.getUser());
 
         //Show Report Number
         this.reportNumber.setText(String.valueOf(newReport.getReportNumber()));
@@ -89,14 +92,19 @@ public class WaterSourceReportController {
         //Initilize ComboBoxes
         ObservableList<String> consumableConditionStuff = comboBoxConsumableConditionIteams();
         this.consumableConditionComboBox.setItems(consumableConditionStuff);
-
+        consumableConditionComboBox.setPromptText("Select Consumability");
 
         ObservableList<String> sourceTypeStuff = comboBoxSourceTypeIteams();
         this.sourceTypeComboBox.setItems(sourceTypeStuff);
-
+        sourceTypeComboBox.setPromptText("Select Source");
 
         ObservableList<String> waterConditionStuff = comboBoxWaterConditionIteams();
         this.h20SourceConditionComboBox.setItems(waterConditionStuff);
+        h20SourceConditionComboBox.setPromptText("Select Condition");
+
+        virusPPM.setText("00.00");
+
+        contaminantPPM.setText("00.00");
 
     }
     /**
@@ -154,7 +162,7 @@ public class WaterSourceReportController {
     @FXML
     private void handelCancelPressed() {
         // Forget Current Data and Return to blank report
-        newReport.setReportNumber(newReport.getReportNumber() - 1);
+        newReport.setSourceReportTotal(newReport.getSourceReportTotal() - 1);
         initialize();
     }
     /**
@@ -162,9 +170,8 @@ public class WaterSourceReportController {
      */
     @FXML
     private void handelBackButtonPressed() {
-        //Go to the main screen
-        //Reach Out to another class for this
-
+      Stage stage = (Stage) backBtn.getScene().getWindow();
+        stage.close();
     }
 
     /**
@@ -208,14 +215,18 @@ public class WaterSourceReportController {
 
             double contaminantPPMDouble = Double.parseDouble(contaminantPPM.getText());
             this.newReport.setComtaminantPPM(contaminantPPMDouble);
-
-
+            WaterReportManagement.addReport(this.newReport);
+            initialize();
         } else {
-
-
+            virusPPM.setText("00.00");
+            contaminantPPM.setText("00.00");
         }
     }
 
+    /**
+     *  Test the input for contaminants
+     * @return ture is the input is valid and false if otherwise
+     */
     private boolean inputValid() {
         if (virusPPM.getText() != null && contaminantPPM.getText() != null ) {
             String vPPM = virusPPM.getText();

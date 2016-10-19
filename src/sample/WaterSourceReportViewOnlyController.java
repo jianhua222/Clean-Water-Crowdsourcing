@@ -47,9 +47,6 @@ public class WaterSourceReportViewOnlyController {
     private Label reportNumber;
 
     @FXML
-    private Label locationOfReport;
-
-    @FXML
     private Label sourceTypeLabel;
 
     @FXML
@@ -57,6 +54,16 @@ public class WaterSourceReportViewOnlyController {
 
     @FXML
     private Label consumableTypeLabel;
+
+    @FXML
+    private Label virusPPMLabel;
+
+    @FXML
+    private Label contaminantPPMLabel;
+
+    @FXML
+    private Label locationLabel;
+
 
     private WaterSourceReport pulledReport;
 
@@ -70,15 +77,19 @@ public class WaterSourceReportViewOnlyController {
 
     @FXML
     private void initialize() {
+        this.pulledReport = WaterReportManagement.getCurrentReport();
         this.timeStamp.setText(pulledReport.getSourceTimeStamp().toString());
         this.userWhoCreatedReport.setText(UserManagement.getUser().getUserName());
         Integer pulledReportNumber = pulledReport.getReportNumber();
         this.reportNumber.setText(pulledReportNumber.toString());
-        this.locationOfReport.setText(pulledReport.getLongitutdeCoord() + " "
-                + pulledReport.getLatitudeCoord());
+        this.locationLabel.setText("33.7756° N, 84.3963° W");
         this.sourceTypeLabel.setText(pulledReport.getWaterSource());
         this.conditionTypeLabel.setText(pulledReport.getWaterCondition());
         this.consumableTypeLabel.setText(pulledReport.getConsumableCondition());
+        Double virusValue = pulledReport.getVirusPPM();
+        this.virusPPMLabel.setText(virusValue.toString());
+        Double contaminantValue = pulledReport.getComtaminantPPM();
+        this.contaminantPPMLabel.setText(contaminantValue.toString());
     }
 
     @FXML

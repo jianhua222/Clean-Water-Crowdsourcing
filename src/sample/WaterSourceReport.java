@@ -48,10 +48,15 @@ public class WaterSourceReport {
         this.flagByUser = false;
         this.flagByWorker = false;
         this.sourceReportTotal++;
-        this.activeSourceReports++;
+        this.activeSourceReports = this.sourceReportTotal;
         this.reportNumber = activeSourceReports;
     }
 
+    /**
+     * The water Source Report Constructor
+     * @param timestamp time time stamp when the water source report is created
+     * @param user the user who created the report
+     */
     WaterSourceReport(Timestamp timestamp, User user) {
         this(timestamp, user, 0.0, 0.0);
     }
