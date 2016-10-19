@@ -19,13 +19,6 @@ public class AppController {
     @FXML
     private javafx.scene.control.Button logoutButton;
 
-
-    @FXML
-    private javafx.scene.control.Button h2OReportBtn;
-
-    @FXML
-    private javafx.scene.control.Button showReports;
-
     /**
      * This method handles closing the main app, when the user chooses to do so.
      *
@@ -58,7 +51,6 @@ public class AppController {
     private void toReportScreen() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("WaterSourceReport.fxml"));
-            System.out.println("Before Root ERROR");
             Stage primaryStage = new Stage();
             primaryStage.setTitle("Water Source Report");
             primaryStage.setScene(new Scene(root, 600, 400));
@@ -81,7 +73,6 @@ public class AppController {
             primaryStage.setTitle("Water Source List");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
-
         } catch (IOException e) {
             System.out.println("WaterSourceList.fxml I/O ERROR");
         }
