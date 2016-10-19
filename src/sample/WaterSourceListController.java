@@ -27,7 +27,7 @@ import java.util.List;
 public class WaterSourceListController {
 
     @FXML
-    Button dropMapOfWaterReportsBtnl;
+    Button dropMapOfWaterReportsBtn;
 
     @FXML
     Button waterReportVsTimeShowGraphBtn;
@@ -37,9 +37,6 @@ public class WaterSourceListController {
 
     @FXML
     Button backToMainScreenBtn;
-
-    @FXML
-    ListView<Button> waterReportListViewBtnForm;
 
     @FXML
     Button reportBtn1;
@@ -104,6 +101,9 @@ public class WaterSourceListController {
             if (numOfBtns2Populate > 13) {
                 numOfBtns2Populate = 13;
             }
+            for (Button btn : reportBtnArrayList) {
+                btn.setOpacity(0.0);
+            }
             Button btn;
             String displayText;
             Integer reportNumberPulled;
@@ -115,17 +115,20 @@ public class WaterSourceListController {
             for(int i = 0; i < 13; i++) {
                 btn = reportBtnArrayList.get(i);
                 pulledReport = WaterReportManagement.getReport(i + 1);
-                displayText = "Report Num: ";
-                reportNumberPulled = pulledReport.getReportNumber();
-                displayText += reportNumberPulled.toString() + " ";
-                displayText += pulledReport.getWaterSource() + " ";
-                timeStampOfReport = pulledReport.getSourceTimeStamp().toString();
-                dayOfReport = timeStampOfReport.substring(8,10);
-                MonthOfReport = timeStampOfReport.substring(5,7);
-                timeReportCreated = timeStampOfReport.substring(11,16);
-                displayText +=  MonthOfReport + "/" + dayOfReport + " "
-                        + timeReportCreated;
-                btn.setText(displayText);
+                if (pulledReport != null) {
+                    displayText = "Report Num: ";
+                    reportNumberPulled = pulledReport.getReportNumber();
+                    displayText += reportNumberPulled.toString() + " ";
+                    displayText += pulledReport.getWaterSource() + " ";
+                    timeStampOfReport = pulledReport.getSourceTimeStamp().toString();
+                    dayOfReport = timeStampOfReport.substring(8, 10);
+                    MonthOfReport = timeStampOfReport.substring(5, 7);
+                    timeReportCreated = timeStampOfReport.substring(11, 16);
+                    displayText += MonthOfReport + "/" + dayOfReport + " "
+                            + timeReportCreated;
+                    btn.setText(displayText);
+
+                }
                 btn.setOpacity(1.0);
             }
         } else {
@@ -145,7 +148,25 @@ public class WaterSourceListController {
     @FXML
     private void handelReportBtn1Pressed() {
         WaterSourceReport pulledReport = WaterReportManagement.getReport(1);
-        //Pass the pulled Report Data To The FXML file
+        if(pulledReport != null) {
+            WaterReportManagement.setCurrentReport(pulledReport);
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("WaterSourceReportViewOnly.fxml"));
+                Stage primaryStage = new Stage();
+                primaryStage.setTitle("Water Source Report View");
+                primaryStage.setScene(new Scene(root, 600, 400));
+                primaryStage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("I/O ERROR");
+            }
+        } else {
+            System.out.println("handelReportBtn1Pressed report number 1 is null!!");
+        }
+
+        Stage stage = (Stage) backToMainScreenBtn.getScene().getWindow();
+        stage.close();
     }
 
     /**
@@ -153,7 +174,26 @@ public class WaterSourceListController {
      */
     @FXML
     private void handelReportBtn2Pressed() {
-        //Pull up the appropriate fxml and display contents
+        WaterSourceReport pulledReport = WaterReportManagement.getReport(2);
+        if (pulledReport != null) {
+            WaterReportManagement.setCurrentReport(pulledReport);
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("WaterSourceReportViewOnly.fxml"));
+                Stage primaryStage = new Stage();
+                primaryStage.setTitle("Water Source Report View");
+                primaryStage.setScene(new Scene(root, 600, 400));
+                primaryStage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("I/O ERROR");
+            }
+        } else {
+            System.out.println("handelReportBtn2Pressed report number 1 is null!!");
+        }
+
+        Stage stage = (Stage) backToMainScreenBtn.getScene().getWindow();
+        stage.close();
     }
 
     /**
@@ -161,6 +201,16 @@ public class WaterSourceListController {
      */
     @FXML
     private void handelBackBtnToMainScreenPressed() {
-        //Switch to main screen
+        Stage stage = (Stage) backToMainScreenBtn.getScene().getWindow();
+        stage.close();
+    }
+
+    /**
+     * initializes the google map
+     */
+    @FXML
+    private void initializeMapBtnPressed() {
+        GMapsController controller = new GMapsController();
+        controller.mapInitialized();
     }
 }

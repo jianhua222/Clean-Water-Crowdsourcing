@@ -57,7 +57,8 @@ public class AppController {
             primaryStage.show();
 
         } catch (IOException e) {
-             System.out.println("I/O ERROR");
+            e.printStackTrace();
+            System.out.println("I/O ERROR");
         }
     }
 
@@ -74,6 +75,7 @@ public class AppController {
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.println("WaterSourceList.fxml I/O ERROR");
         }
     }
