@@ -39,6 +39,14 @@ public class WaterReportManagement {
         return null;
     }
 
+    /**
+     * Returns true if totalReports list is empty and false otherwise
+     * @return
+     */
+    public static boolean isEmpty() {
+        return totalReports.size() == 0;
+    }
+
     public static void saveReport(String timestamp, String userName, String reportNumber, String location,
                                   String sourceType, String condition, String consumable, String Virus,
                                   String contaminant) throws ParseException {

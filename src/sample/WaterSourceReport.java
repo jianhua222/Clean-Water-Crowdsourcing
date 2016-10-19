@@ -36,7 +36,7 @@ public class WaterSourceReport {
     private boolean banned;
 
     WaterSourceReport(Timestamp timestamp, User user, Double _longitutdeCoord,
-                Double _latitudeCoord) {
+                      Double _latitudeCoord) {
         //Water Report Data Initilized
         this.sourceTimeStamp = timestamp;
         this.userWhoCreated = user;
@@ -53,7 +53,44 @@ public class WaterSourceReport {
     }
 
     WaterSourceReport(Timestamp timestamp, User user) {
-             this(timestamp, user, 0.0, 0.0);
+        this(timestamp, user, 0.0, 0.0);
+    }
+
+
+    public String getConsumableCondition() {
+        return consumableCondition;
+    }
+
+    public String getWaterCondition() {
+        return waterCondition;
+    }
+
+    public String getWaterSource() {
+        return waterSource;
+    }
+
+    public int getTotalFlagCount() {
+        return totalFlagCount;
+    }
+
+    public void setTotalFlagCount(int totalFlagCount) {
+        this.totalFlagCount = totalFlagCount;
+    }
+
+    public int getUserFlagCount() {
+        return userFlagCount;
+    }
+
+    public void setUserFlagCount(int userFlagCount) {
+        this.userFlagCount = userFlagCount;
+    }
+
+    public int getWorkerFlagCount() {
+        return workerFlagCount;
+    }
+
+    public void setWorkerFlagCount(int workerFlagCount) {
+        this.workerFlagCount = workerFlagCount;
     }
 
     public void setConsumableCondition(String consumableCondition) {
