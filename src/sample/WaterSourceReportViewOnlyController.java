@@ -82,7 +82,7 @@ public class WaterSourceReportViewOnlyController {
         this.userWhoCreatedReport.setText(UserManagement.getUser().getUserName());
         Integer pulledReportNumber = pulledReport.getReportNumber();
         this.reportNumber.setText(pulledReportNumber.toString());
-        this.locationLabel.setText("33.7756° N, 84.3963° W");
+        this.locationLabel.setText(pulledReport.getLatitudeCoord() + "ºN, " + pulledReport.getLongitutdeCoord() + "ºW");
         this.sourceTypeLabel.setText(pulledReport.getWaterSource());
         this.conditionTypeLabel.setText(pulledReport.getWaterCondition());
         this.consumableTypeLabel.setText(pulledReport.getConsumableCondition());

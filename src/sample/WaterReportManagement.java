@@ -1,9 +1,5 @@
 package sample;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Payton on 10/13/16.
@@ -41,6 +37,18 @@ public class WaterReportManagement {
             }
         }
         return null;
+    }
+
+    /**
+     * This method returns the list of water source reports.
+     * @return Water Source Reports if it's not empty else returns null
+     */
+    public static ArrayList<WaterSourceReport> getAllReports() {
+        if (totalReports.isEmpty()) {
+            return null;
+        } else {
+            return totalReports;
+        }
     }
 
     /**

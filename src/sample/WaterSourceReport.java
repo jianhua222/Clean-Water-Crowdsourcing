@@ -225,4 +225,13 @@ public class WaterSourceReport {
     public void setUserWhoCreated(User userWhoCreated) {
         this.userWhoCreated = userWhoCreated;
     }
+
+    public String getDescription() {
+        String string = "<p>Report Number: " + reportNumber + "</p>" +
+                "<p>Report Time: " + sourceTimeStamp + "</p>" +
+                "<p>Location: " + latitudeCoord + ", " + longitutdeCoord + "</p>" +
+                "<p>Virus PPM: " + virusPPM + "</p>" +
+                "<p>Contaminant PPM: " + comtaminantPPM + "</p>";
+        return string;
+    }
 }

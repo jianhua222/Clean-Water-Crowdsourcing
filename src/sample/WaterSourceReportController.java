@@ -39,9 +39,6 @@ public class WaterSourceReportController {
     private Label reportNumber;
 
     @FXML
-    private Label locationOfReport;
-
-    @FXML
     private RadioButton changeLoction;
 
     @FXML
@@ -69,6 +66,9 @@ public class WaterSourceReportController {
     private TextField contaminantPPM;
 
     @FXML
+    private TextField locationOfReport;
+
+    @FXML
     private void initialize() {
         //Get Date Of Creation
         Date creationDate = new Date();
@@ -87,7 +87,7 @@ public class WaterSourceReportController {
 
         //Show Location
         //Augment this to pull current location
-        this.locationOfReport.setText(new String("33.7756° N, 84.3963° W"));
+        this.locationOfReport.setText(new String("33.7756, 84.3963"));
 
         //Initilize ComboBoxes
         ObservableList<String> consumableConditionStuff = comboBoxConsumableConditionIteams();
@@ -202,7 +202,7 @@ public class WaterSourceReportController {
             this.newReport.setWaterCondition(h20SourceCondition);
 
             String sourceType;
-            if(sourceTypeComboBox.getValue() != null) {
+            if (sourceTypeComboBox.getValue() != null) {
                 sourceType = sourceTypeComboBox
                         .getValue().toString();
             } else {
@@ -215,6 +215,16 @@ public class WaterSourceReportController {
 
             double contaminantPPMDouble = Double.parseDouble(contaminantPPM.getText());
             this.newReport.setComtaminantPPM(contaminantPPMDouble);
+
+            if (locationOfReport.getText() != null) {
+                String location = locationOfReport.getText();
+                if (location.contains(", ")) {
+                    String[] locs = location.split(", ");
+                    newReport.setLatitudeCoord(Double.parseDouble(locs[0]));
+                    newReport.setLongitutdeCoord(Double.parseDouble(locs[1]));
+                }
+            }
+
             WaterReportManagement.addReport(this.newReport);
             initialize();
         } else {

@@ -2,20 +2,26 @@ package sample;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
-import com.lynden.gmapsfx.javascript.object.GoogleMap;
-import com.lynden.gmapsfx.javascript.object.LatLong;
-import com.lynden.gmapsfx.javascript.object.MapOptions;
-import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
-import com.lynden.gmapsfx.javascript.object.Marker;
-import com.lynden.gmapsfx.javascript.object.MarkerOptions;
+import com.lynden.gmapsfx.javascript.event.UIEventType;
+import com.lynden.gmapsfx.javascript.object.*;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import netscape.javascript.JSObject;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 /**
  * Created by David on 10/22/16.
@@ -27,13 +33,23 @@ public class GMapsController implements MapComponentInitializedListener {
 
     private GoogleMap map;
 
+    private ArrayList<WaterSourceReport> waterReports;
+
+    private double latCenter;
+
+    private double lngCenter;
+
+    private Stage primaryStage;
+
+    private InfoWindow currentInfoWindow;
+
     @Override
     public void mapInitialized() {
         mapView = new GoogleMapView();
         //Set the initial properties of the map.
         mapView.addMapInializedListener(() -> {
 
-            LatLong center = new LatLong(33.7756, 84.3963);
+            LatLong center = new LatLong(latCenter, lngCenter);
 
             MapOptions options = new MapOptions()
                     .center(center)
@@ -53,27 +69,77 @@ public class GMapsController implements MapComponentInitializedListener {
 
         Scene scene = new Scene(mapView);
 
-        Stage primaryStage = new Stage();
+        primaryStage = new Stage();
         primaryStage.setTitle("Water Source Map View");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    public void setWaterReports(ArrayList<WaterSourceReport> reports) {
+        waterReports = reports;
+        double latTotal = 0;
+        double lngTotal = 0;
+        for (WaterSourceReport report : reports) {
+            latTotal = latTotal + report.getLatitudeCoord();
+            lngTotal = lngTotal + report.getLongitutdeCoord();
+        }
+        latCenter = latTotal / reports.size();
+        lngCenter = lngTotal / reports.size();
+    }
+
     private void addMarkers() {
-        LatLong joeSmithLocation = new LatLong(33.7756, 84.3963);
-        LatLong joshAndersonLocation = new LatLong(33.7736, 84.3943);
+        for (WaterSourceReport report : waterReports) {
+            addMarker(report);
+        }
+
+    }
+
+    /**
+     * Adds one marker to the map.
+     * @param report
+     */
+    private void addMarker(WaterSourceReport report) {
+        LatLong location = new LatLong(report.getLatitudeCoord(), report.getLongitutdeCoord());
 
         //Add markers to the map
-        MarkerOptions markerOptions1 = new MarkerOptions();
-        markerOptions1.position(joeSmithLocation);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(location);
+        Marker marker = new Marker(markerOptions);
+//        ScriptEngineManager factory = new ScriptEngineManager();
+//        ScriptEngine engine = factory.getEngineByName("JavaScript");
+        map.addUIEventHandler(marker,
+                UIEventType.click, (JSObject obj) -> {
+                    if (currentInfoWindow != null) {
+                        currentInfoWindow.close();
+                    }
+                    InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
+                    infoWindowOptions.content(report.getDescription());
 
-        MarkerOptions markerOptions2 = new MarkerOptions();
-        markerOptions2.position(joshAndersonLocation);
+                    InfoWindow window = new InfoWindow(infoWindowOptions);
+                    currentInfoWindow = window;
+                    window.open(map, marker);
+                });
 
-        Marker joeSmithMarker = new Marker(markerOptions1);
-        Marker joshAndersonMarker = new Marker(markerOptions2);
+        map.addMarker(marker);
+    }
 
-        map.addMarker( joeSmithMarker );
-        map.addMarker( joshAndersonMarker );
+    private void showSpecificReport(WaterSourceReport report) {
+        if (report != null) {
+            WaterReportManagement.setCurrentReport(report);
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("WaterSourceReportViewOnly.fxml"));
+                Stage primaryStage = new Stage();
+                primaryStage.setTitle("Water Source Report View");
+                primaryStage.setScene(new Scene(root, 600, 400));
+                primaryStage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("I/O ERROR");
+            }
+        } else {
+            System.out.println("report is null!!");
+        }
+        primaryStage.close();
     }
 }

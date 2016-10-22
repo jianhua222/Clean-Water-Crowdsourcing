@@ -210,7 +210,9 @@ public class WaterSourceListController {
      */
     @FXML
     private void initializeMapBtnPressed() {
+        ArrayList<WaterSourceReport> reports = WaterReportManagement.getAllReports();
         GMapsController controller = new GMapsController();
+        controller.setWaterReports(reports);
         controller.mapInitialized();
     }
 }
