@@ -109,16 +109,19 @@ public class GMapsController implements MapComponentInitializedListener {
 //        ScriptEngine engine = factory.getEngineByName("JavaScript");
         map.addUIEventHandler(marker,
                 UIEventType.click, (JSObject obj) -> {
+                    WaterReportManagement.setCurrentReport(report);
                     if (currentInfoWindow != null) {
                         currentInfoWindow.close();
                     }
                     InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
                     infoWindowOptions.content(report.getDescription());
 
-                    InfoWindow window = new InfoWindow(infoWindowOptions);
-                    currentInfoWindow = window;
-                    window.open(map, marker);
+                    InfoWindow infoWindow = new InfoWindow(infoWindowOptions);
+
+                    currentInfoWindow = infoWindow;
+                    infoWindow.open(map, marker);
                 });
+        //map.addUIEventHandler(marker, UIEventType.alert);
 
         map.addMarker(marker);
     }
@@ -128,10 +131,10 @@ public class GMapsController implements MapComponentInitializedListener {
             WaterReportManagement.setCurrentReport(report);
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("WaterSourceReportViewOnly.fxml"));
-                Stage primaryStage = new Stage();
-                primaryStage.setTitle("Water Source Report View");
-                primaryStage.setScene(new Scene(root, 600, 400));
-                primaryStage.show();
+                Stage stage = new Stage();
+                stage.setTitle("Water Source Report View");
+                stage.setScene(new Scene(root, 600, 400));
+                stage.show();
 
             } catch (IOException e) {
                 e.printStackTrace();

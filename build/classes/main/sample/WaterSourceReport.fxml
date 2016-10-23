@@ -53,7 +53,7 @@
             <Label fx:id="timeStamp" prefHeight="17.0" prefWidth="218.0" text="Label" GridPane.columnIndex="1" />
             <Label fx:id="userWhoCreatedReport" prefHeight="17.0" prefWidth="227.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="reportNumber" prefHeight="17.0" prefWidth="195.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="locationOfReport" prefHeight="17.0" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="locationOfReport" prefHeight="17.0" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Location" GridPane.rowIndex="3" />
          </children>
       </GridPane>

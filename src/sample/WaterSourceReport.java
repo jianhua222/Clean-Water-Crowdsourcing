@@ -1,5 +1,13 @@
 package sample;
 
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.Date;
 import java.sql.Timestamp;
 /**
@@ -231,7 +239,23 @@ public class WaterSourceReport {
                 "<p>Report Time: " + sourceTimeStamp + "</p>" +
                 "<p>Location: " + latitudeCoord + ", " + longitutdeCoord + "</p>" +
                 "<p>Virus PPM: " + virusPPM + "</p>" +
-                "<p>Contaminant PPM: " + comtaminantPPM + "</p>";
+                "<p>Contaminant PPM: " + comtaminantPPM + "</p>" +
+                "<button onclick='print(\"Hello\")'>Show Report</button>";
+
         return string;
+    }
+
+    private void showSpecificReport(Stage primaryStage) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("WaterSourceReportViewOnly.fxml"));
+            primaryStage.setTitle("Water Source Report View");
+            primaryStage.setScene(new Scene(root, 600, 400));
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("I/O ERROR");
+        }
+        primaryStage.close();
     }
 }
