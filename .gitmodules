@@ -1,0 +1,3 @@
+[submodule "externals/GMapsFX"]
+	path = externals/GMapsFX
+	url = git://github.com/rterp/GMapsFX.git
