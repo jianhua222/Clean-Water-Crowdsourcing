@@ -135,7 +135,7 @@ public class GMapsController implements MapComponentInitializedListener {
                 System.out.println("I/O ERROR");
             }
         } else {
-            System.out.println("report is null!!");
+            System.out.println("report is null!!!!");
         }
         primaryStage.close();
     }

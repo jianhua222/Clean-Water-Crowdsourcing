@@ -144,7 +144,7 @@ public class WaterSourceListController {
         if(pulledReport != null) {
             WaterReportManagement.setCurrentReport(pulledReport);
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("WaterSourceReportViewOnly.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceReportViewOnly.fxml"));
                 Stage primaryStage = new Stage();
                 primaryStage.setTitle("Water Source Report View");
                 primaryStage.setScene(new Scene(root, 600, 400));
@@ -171,7 +171,7 @@ public class WaterSourceListController {
         if (pulledReport != null) {
             WaterReportManagement.setCurrentReport(pulledReport);
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("WaterSourceReportViewOnly.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceReportViewOnly.fxml"));
                 Stage primaryStage = new Stage();
                 primaryStage.setTitle("Water Source Report View");
                 primaryStage.setScene(new Scene(root, 600, 400));
