@@ -6,12 +6,12 @@ jar {
     manifest {
         attributes 'Implementation-Title': 'Gradle Quickstart',
                 'Implementation-Version': 3.0 ,
-               'Main-Class' : 'sample.Main',
+               'Main-Class' : 'sample.main.Main',
                 'Class-Path': '../../libs/firebase-client-android-2.5.2.jar'
     }
 }
 sourceSets.main.java.srcDirs=['src']
-//sourceSets.main.resources.srcDir 'src/sample'
+sourceSets.main.resources.srcDir 'src/sample/view'
 dependencies {
     //compile 'com.google.firebase:firebase-server-sdk:3.0.1'
     //compile 'com.firebase:firebase-client-android:2.5.2+'

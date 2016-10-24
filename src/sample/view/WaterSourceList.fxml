@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AppController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.WaterSourceListController">
    <children>
       <SplitPane dividerPositions="0.45819397993311034" layoutX="1.0" layoutY="44.0" prefHeight="356.0" prefWidth="600.0">
         <items>
@@ -27,19 +27,19 @@
                               <ButtonBar layoutX="43.0" prefHeight="40.0" prefWidth="200.0" />
                               <VBox prefHeight="397.0" prefWidth="249.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
-                                    <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="249.0" text="Button" />
+                                    <Button fx:id="reportBtn1" mnemonicParsing="false" onAction="#handelReportBtn1Pressed" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn2" mnemonicParsing="false" onAction="#handelReportBtn2Pressed" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn3" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn4" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn5" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn6" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn7" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn8" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn9" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn10" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn11" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn12" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" text="Button" />
+                                    <Button fx:id="reportBtn13" mnemonicParsing="false" prefHeight="33.0" prefWidth="249.0" text="Button" />
                                  </children>
                               </VBox>
                            </children>
@@ -63,7 +63,7 @@
                      <children>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="dropMapOfWaterReportsBtn" alignment="CENTER" cache="true" layoutX="51.0" layoutY="46.0" mnemonicParsing="false" text="Drop Map" />
+                              <Button fx:id="dropMapOfWaterReportsBtn" alignment="CENTER" cache="true" layoutX="51.0" layoutY="46.0" mnemonicParsing="false" onAction="#initializeMapBtnPressed" text="Drop Map" />
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -78,7 +78,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="170.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Button fx:id="backToMainScreenBtn" alignment="CENTER" cache="true" layoutX="51.0" layoutY="46.0" mnemonicParsing="false" text="Back" />
+                              <Button fx:id="backToMainScreenBtn" alignment="CENTER" cache="true" layoutX="51.0" layoutY="46.0" mnemonicParsing="false" onAction="#handelBackBtnToMainScreenPressed" text="Back" />
                            </children>
                         </AnchorPane>
                      </children>

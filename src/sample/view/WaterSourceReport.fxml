@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.AppController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.WaterSourceReportController">
    <children>
       <Label alignment="CENTER" layoutY="14.0" prefHeight="35.0" prefWidth="600.0" text="Water Source Report" textFill="#292bc4">
          <font>
@@ -22,13 +22,13 @@
          </font></Label>
       <HBox layoutX="120.0" layoutY="344.0" prefHeight="35.0" prefWidth="361.0">
          <children>
-            <Button fx:id="submitH2OReport" mnemonicParsing="false" prefHeight="27.0" prefWidth="179.0" text="Submit Report" />
-            <Button fx:id="cancelReportBtn" mnemonicParsing="false" text="Cancel">
+            <Button fx:id="submitH2OReport" mnemonicParsing="false" onAction="#handelSubmitButtonPressed" prefHeight="27.0" prefWidth="179.0" text="Submit Report" />
+            <Button fx:id="cancelReportBtn" mnemonicParsing="false" onAction="#handelCancelPressed" text="Cancel">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="backBtn" layoutX="194.0" layoutY="10.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="81.0" text="Back">
+            <Button fx:id="backBtn" layoutX="194.0" layoutY="10.0" mnemonicParsing="false" onAction="#handelBackButtonPressed" prefHeight="28.0" prefWidth="81.0" text="Back">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -53,7 +53,7 @@
             <Label fx:id="timeStamp" prefHeight="17.0" prefWidth="218.0" text="Label" GridPane.columnIndex="1" />
             <Label fx:id="userWhoCreatedReport" prefHeight="17.0" prefWidth="227.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="reportNumber" prefHeight="17.0" prefWidth="195.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="locationOfReport" prefHeight="17.0" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="locationOfReport" prefHeight="17.0" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Location" GridPane.rowIndex="3" />
          </children>
       </GridPane>
@@ -70,10 +70,10 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Source Type" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condition" GridPane.rowIndex="1" />
-            <ComboBox fx:id="sourceType" prefWidth="150.0" promptText="Select Type" visibleRowCount="4" GridPane.columnIndex="1" />
-            <ComboBox fx:id="h20SourceCondition" prefHeight="27.0" prefWidth="151.0" promptText="Select Condition" visibleRowCount="4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="sourceTypeComboBox" prefWidth="150.0" promptText="Select Type" visibleRowCount="4" GridPane.columnIndex="1" />
+            <ComboBox fx:id="h20SourceConditionComboBox" prefHeight="27.0" prefWidth="151.0" promptText="Select Condition" visibleRowCount="4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text layoutX="10.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Consumable" GridPane.rowIndex="2" />
-            <ComboBox fx:id="consumableCondition" layoutX="126.0" layoutY="71.0" prefHeight="27.0" prefWidth="151.0" promptText="Select Condition" visibleRowCount="4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="consumableConditionComboBox" layoutX="126.0" layoutY="71.0" prefHeight="27.0" prefWidth="151.0" promptText="Select Condition" visibleRowCount="4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <RadioButton fx:id="changeLoction" layoutX="463.0" layoutY="172.0" mnemonicParsing="false" text="Change Location" />
