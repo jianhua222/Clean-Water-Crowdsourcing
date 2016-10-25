@@ -87,6 +87,8 @@ public class WaterSourceReportViewOnlyController {
     @FXML
     private void handelReturnToListViewBtnPressed() {
         try{
+            Stage stage = (Stage) returnToListViewBtn.getScene().getWindow();
+            stage.close();
             Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceList.fxml"));
             Stage primaryStage = new Stage();
             primaryStage.setTitle("Water Source List View");

@@ -12,6 +12,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ToolBar;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import netscape.javascript.JSObject;
 import sample.model.WaterReportManagement;
@@ -37,9 +42,17 @@ public class GMapsController implements MapComponentInitializedListener {
 
     private InfoWindow currentInfoWindow;
 
+    private WaterSourceReport currentReport;
+
+    private Label l;
+
     @Override
     public void mapInitialized() {
         mapView = new GoogleMapView();
+        BorderPane bp = new BorderPane();
+        ToolBar tb = new ToolBar();
+        l = new Label("Select marker first");
+        l.setVisible(false);
         //Set the initial properties of the map.
         mapView.addMapInializedListener(() -> {
 
@@ -61,11 +74,17 @@ public class GMapsController implements MapComponentInitializedListener {
             addMarkers();
         });
 
-        Scene scene = new Scene(mapView);
+        Button btnShowReport = new Button("Show Selected Report");
+        btnShowReport.setOnAction(e -> {showSpecificReport();});
+        tb.getItems().addAll(btnShowReport, l);
+
+        bp.setTop(tb);
+        bp.setCenter(mapView);
+        bp.setMaxSize(600, 400);
 
         primaryStage = new Stage();
         primaryStage.setTitle("Water Source Map View");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(new Scene(bp));
         primaryStage.show();
     }
 
@@ -104,6 +123,7 @@ public class GMapsController implements MapComponentInitializedListener {
         map.addUIEventHandler(marker,
                 UIEventType.click, (JSObject obj) -> {
                     WaterReportManagement.setCurrentReport(report);
+                    l.setVisible(false);
                     if (currentInfoWindow != null) {
                         currentInfoWindow.close();
                     }
@@ -113,6 +133,7 @@ public class GMapsController implements MapComponentInitializedListener {
                     InfoWindow infoWindow = new InfoWindow(infoWindowOptions);
 
                     currentInfoWindow = infoWindow;
+                    currentReport = report;
                     infoWindow.open(map, marker);
                 });
         //map.addUIEventHandler(marker, UIEventType.alert);
@@ -120,9 +141,10 @@ public class GMapsController implements MapComponentInitializedListener {
         map.addMarker(marker);
     }
 
-    private void showSpecificReport(WaterSourceReport report) {
-        if (report != null) {
-            WaterReportManagement.setCurrentReport(report);
+    private void showSpecificReport() {
+        if (currentReport != null) {
+            l.setVisible(false);
+            WaterReportManagement.setCurrentReport(currentReport);
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceReportViewOnly.fxml"));
                 Stage stage = new Stage();
@@ -134,9 +156,9 @@ public class GMapsController implements MapComponentInitializedListener {
                 e.printStackTrace();
                 System.out.println("I/O ERROR");
             }
+            primaryStage.close();
         } else {
-            System.out.println("report is null!!!!");
+            l.setVisible(true);
         }
-        primaryStage.close();
     }
 }

@@ -232,12 +232,14 @@ public class WaterSourceReport {
     }
 
     public String getDescription() {
-        String string = "<p>Report Number: " + reportNumber + "</p>" +
-                "<p>Report Time: " + sourceTimeStamp + "</p>" +
-                "<p>Location: " + latitudeCoord + ", " + longitutdeCoord + "</p>" +
-                "<p>Virus PPM: " + virusPPM + "</p>" +
-                "<p>Contaminant PPM: " + comtaminantPPM + "</p>" +
-                "<button onclick='print(\"Hello\")'>Show Report</button>";
+        String string = "<p>Report Number: " + reportNumber + "</br>" +
+                "Report Time: " + sourceTimeStamp + "</br>" +
+                "Location: " + latitudeCoord + ", " + longitutdeCoord + "</br>" +
+                "Consumable condition: " + consumableCondition + "</br>" +
+                "Water Condition: " + waterCondition + "</br>" +
+                "Water Source: " + waterSource + "</br>" +
+                "Virus PPM: " + virusPPM + "</br>" +
+                "Contaminant PPM: " + comtaminantPPM + "</p>";
 
         return string;
     }
