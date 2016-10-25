@@ -50,9 +50,13 @@ public class RegisterController {
      */
     @FXML
     private void cancelPressed() {
+        try {
+            Stage primaryStage = (Stage) closeButton.getScene().getWindow();
+            Main mainclass = new Main();
+            mainclass.start(primaryStage);
+        } catch (Exception e) {
 
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
+        }
     }
 
     /**

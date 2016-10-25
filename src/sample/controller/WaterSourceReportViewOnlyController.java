@@ -27,9 +27,6 @@ public class WaterSourceReportViewOnlyController {
     Button backReportBtn;
 
     @FXML
-    Button nextReportBtn;
-
-    @FXML
     private Label timeStamp;
 
     @FXML
@@ -86,39 +83,22 @@ public class WaterSourceReportViewOnlyController {
 
     @FXML
     private void handelReturnToListViewBtnPressed() {
-        try{
-            Stage stage = (Stage) returnToListViewBtn.getScene().getWindow();
-            stage.close();
-            Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceList.fxml"));
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("Water Source List View");
-            primaryStage.setScene(new Scene(root, 600, 400));
-            primaryStage.show();
-
-        } catch (IOException e) {
-            System.out.println("I/O ERROR in handelReturnToListViewBtnPressed"
-                    + "() in WaterSourceList.fxml");
-        }
+        WaterSourceListController controller = new WaterSourceListController();
+        controller.init((Stage) returnToListViewBtn.getScene().getWindow());
     }
 
     @FXML
     private void handelBackPressed() {
-        int reportNumberDesired = pulledReport.getReportNumber() - 1;
-        if (reportNumberDesired == 0) {
-            reportNumberDesired = pulledReport.getSourceReportTotal();
-        }
-        pulledReport = WaterReportManagement.getReport(reportNumberDesired);
-        initialize();
-    }
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+            Stage primaryStage = (Stage) backReportBtn.getScene().getWindow();
+            primaryStage.setTitle("Main Screen");
+            primaryStage.setScene(new Scene(root, 600, 400));
+            primaryStage.show();
 
-    @FXML
-    private void handelNextButtonPressed() {
-        //pull the next listed report
-        int reportNumberDesired = pulledReport.getReportNumber() + 1;
-        if (reportNumberDesired == pulledReport.getSourceReportTotal() + 1) {
-            reportNumberDesired = 1;
+        } catch (IOException f) {
+            f.printStackTrace();
+            System.out.println("I/O ERROR");
         }
-        pulledReport = WaterReportManagement.getReport(reportNumberDesired);
-        initialize();
     }
 }

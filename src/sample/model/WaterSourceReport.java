@@ -243,18 +243,4 @@ public class WaterSourceReport {
 
         return string;
     }
-
-    private void showSpecificReport(Stage primaryStage) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("view/WaterSourceReportViewOnly.fxml"));
-            primaryStage.setTitle("Water Source Report View");
-            primaryStage.setScene(new Scene(root, 600, 400));
-            primaryStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("I/O ERROR");
-        }
-        primaryStage.close();
-    }
 }

@@ -3,6 +3,9 @@ package sample.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.model.*;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -166,8 +170,17 @@ public class WaterSourceReportController {
      */
     @FXML
     private void handelBackButtonPressed() {
-      Stage stage = (Stage) backBtn.getScene().getWindow();
-        stage.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+            Stage primaryStage = (Stage) backBtn.getScene().getWindow();
+            primaryStage.setTitle("Water Source Report View");
+            primaryStage.setScene(new Scene(root, 600, 400));
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("I/O ERROR");
+        }
     }
 
     /**

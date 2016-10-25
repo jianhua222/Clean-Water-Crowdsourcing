@@ -20,14 +20,9 @@
       <HBox layoutX="120.0" layoutY="344.0" prefHeight="35.0" prefWidth="361.0">
          <children>
             <Button fx:id="returnToListViewBtn" mnemonicParsing="false" onAction="#handelReturnToListViewBtnPressed" prefHeight="27.0" prefWidth="179.0" text="Return To List View" />
-            <Button fx:id="backReportBtn" mnemonicParsing="false" onMouseClicked="#handelBackPressed" text="Back">
+            <Button fx:id="backReportBtn" mnemonicParsing="false" onMouseClicked="#handelBackPressed" text="Back to Main Screen">
                <HBox.margin>
                   <Insets left="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="nextReportBtn" layoutX="194.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#handelNextButtonPressed" prefHeight="28.0" prefWidth="81.0" text="Next">
-               <HBox.margin>
-                  <Insets left="10.0" />
                </HBox.margin>
             </Button>
          </children>

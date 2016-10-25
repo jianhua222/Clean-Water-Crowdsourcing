@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jdk.nashorn.internal.runtime.ECMAException;
+import sample.main.Main;
 import sample.model.UserManagement;
 
 import java.io.IOException;
@@ -37,16 +39,14 @@ public class LoginController {
 
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
-                Stage primaryStage = new Stage();
+                Stage primaryStage = (Stage) closeButton.getScene().getWindow();
                 primaryStage.setTitle("Main Screen");
                 primaryStage.setScene(new Scene(root, 600, 400));
                 primaryStage.show();
-                Stage stage = (Stage) closeButton.getScene().getWindow();
-                stage.close();
-
 
             } catch (IOException e) {
-
+                e.printStackTrace();
+                System.out.println("I/O ERROR");
             }
         } else {
             System.out.println("The given username or password is incorrect.");
@@ -59,7 +59,11 @@ public class LoginController {
      */
     @FXML
     private void cancelHit() {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
+        try {
+            Stage primaryStage = (Stage) closeButton.getScene().getWindow();
+            Main mainclass = new Main();
+            mainclass.start(primaryStage);
+        } catch (Exception e) {
+        }
     }
 }

@@ -58,7 +58,6 @@ public class Main extends Application {
      * @param args the array string passed into this method
      */
     public static void main(String[] args) {
-
         launch(args);
     }
 
@@ -69,10 +68,9 @@ public class Main extends Application {
     public void showLoginScreen() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("LOGIN");
-            primaryStage.setScene(new Scene(root, 600, 400));
-            primaryStage.show();
+            mainScreen.setTitle("LOGIN");
+            mainScreen.setScene(new Scene(root, 600, 400));
+            mainScreen.show();
 
         } catch (IOException e) {
 
@@ -86,10 +84,9 @@ public class Main extends Application {
     public void showRegisterScreen() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/register.fxml"));
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle(" Register");
-            primaryStage.setScene(new Scene(root, 600, 400));
-            primaryStage.show();
+            mainScreen.setTitle(" Register");
+            mainScreen.setScene(new Scene(root, 600, 400));
+            mainScreen.show();
 
         } catch (IOException e) {
 

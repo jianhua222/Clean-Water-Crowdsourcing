@@ -72,8 +72,7 @@ public class WaterSourceListController {
 
     private static ArrayList<Button> reportBtnArrayList = new ArrayList<Button>();
 
-    @FXML
-    private void initialize() {
+    public void initialize() {
         reportBtnArrayList.add(reportBtn1);
         reportBtnArrayList.add(reportBtn2);
         reportBtnArrayList.add(reportBtn3);
@@ -89,13 +88,10 @@ public class WaterSourceListController {
         reportBtnArrayList.add(reportBtn13);
 
         boolean isEmpty = WaterReportManagement.isEmpty();
-        if (isEmpty == false) {
+        if (!isEmpty) {
              int numOfBtns2Populate = WaterReportManagement.getReport(1).getActiveSourceReports();
             if (numOfBtns2Populate > 13) {
                 numOfBtns2Populate = 13;
-            }
-            for (Button btn : reportBtnArrayList) {
-                btn.setOpacity(0.0);
             }
             Button btn;
             String displayText;
@@ -120,19 +116,26 @@ public class WaterSourceListController {
                     displayText += MonthOfReport + "/" + dayOfReport + " "
                             + timeReportCreated;
                     btn.setText(displayText);
-
+                    System.out.println("Hello " + btn.getText());
                 }
-                btn.setOpacity(1.0);
             }
         } else {
-            for (Button btn : reportBtnArrayList) {
-                btn.setOpacity(0.0);
-            }
             Button btn = reportBtnArrayList.get(0);
             btn.setText("No Reports Exist");
-            btn.setOpacity(1.0);
         }
+    }
 
+    public void init(Stage stage) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceList.fxml"));
+            Stage primaryStage = stage;
+            primaryStage.setTitle("Water Source List");
+            primaryStage.setScene(new Scene(root, 600, 400));
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("WaterSourceList.fxml I/O ERROR");
+        }
     }
 
     /**
@@ -145,7 +148,7 @@ public class WaterSourceListController {
             WaterReportManagement.setCurrentReport(pulledReport);
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceReportViewOnly.fxml"));
-                Stage primaryStage = new Stage();
+                Stage primaryStage = (Stage) reportBtn1.getScene().getWindow();
                 primaryStage.setTitle("Water Source Report View");
                 primaryStage.setScene(new Scene(root, 600, 400));
                 primaryStage.show();
@@ -157,9 +160,6 @@ public class WaterSourceListController {
         } else {
             System.out.println("handelReportBtn1Pressed report number 1 is null!!");
         }
-
-        Stage stage = (Stage) backToMainScreenBtn.getScene().getWindow();
-        stage.close();
     }
 
     /**
@@ -172,7 +172,7 @@ public class WaterSourceListController {
             WaterReportManagement.setCurrentReport(pulledReport);
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceReportViewOnly.fxml"));
-                Stage primaryStage = new Stage();
+                Stage primaryStage = (Stage) reportBtn2.getScene().getWindow();
                 primaryStage.setTitle("Water Source Report View");
                 primaryStage.setScene(new Scene(root, 600, 400));
                 primaryStage.show();
@@ -184,9 +184,6 @@ public class WaterSourceListController {
         } else {
             System.out.println("handelReportBtn2Pressed report number 1 is null!!");
         }
-
-        Stage stage = (Stage) backToMainScreenBtn.getScene().getWindow();
-        stage.close();
     }
 
     /**
@@ -194,8 +191,17 @@ public class WaterSourceListController {
      */
     @FXML
     private void handelBackBtnToMainScreenPressed() {
-        Stage stage = (Stage) backToMainScreenBtn.getScene().getWindow();
-        stage.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+            Stage primaryStage = (Stage) backToMainScreenBtn.getScene().getWindow();
+            primaryStage.setTitle("Main Screen");
+            primaryStage.setScene(new Scene(root, 600, 400));
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("I/O ERROR");
+        }
     }
 
     /**
@@ -204,10 +210,10 @@ public class WaterSourceListController {
     @FXML
     private void initializeMapBtnPressed() {
         Stage stage = (Stage) dropMapOfWaterReportsBtn.getScene().getWindow();
-        stage.close();
         ArrayList<WaterSourceReport> reports = WaterReportManagement.getAllReports();
         GMapsController controller = new GMapsController();
         controller.setWaterReports(reports);
+        controller.setPrimaryStage(stage);
         controller.mapInitialized();
     }
 }

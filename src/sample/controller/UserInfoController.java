@@ -1,10 +1,15 @@
 package sample.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.model.UserManagement;
+
+import java.io.IOException;
 
 /**
  * Created by Ashwin on 10/3/16.
@@ -69,7 +74,16 @@ public class UserInfoController {
      */
     @FXML
     private void closedat() {
-        Stage stage = (Stage) emfx.getScene().getWindow();
-        stage.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+            Stage primaryStage = (Stage) unfx.getScene().getWindow();
+            primaryStage.setTitle("Main Screen");
+            primaryStage.setScene(new Scene(root, 600, 400));
+            primaryStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("I/O ERROR");
+        }
     }
 }

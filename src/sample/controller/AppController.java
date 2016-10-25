@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import sample.main.Main;
 
 import java.io.IOException;
 
@@ -25,8 +26,12 @@ public class AppController {
      */
     @FXML
     private void something() {
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        stage.close();
+        try {
+            Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
+            Main mainclass = new Main();
+            mainclass.start(primaryStage);
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -37,7 +42,7 @@ public class AppController {
     private void userInfo() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/UserInfo.fxml"));
-            Stage primaryStage = new Stage();
+            Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
             primaryStage.setTitle("User Information");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
@@ -51,7 +56,7 @@ public class AppController {
     private void toReportScreen() {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceReport.fxml"));
-            Stage primaryStage = new Stage();
+            Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
             primaryStage.setTitle("Water Source Report");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
@@ -68,16 +73,8 @@ public class AppController {
      */
     @FXML
     private void toWaterSourceList() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceList.fxml"));
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("Water Source List");
-            primaryStage.setScene(new Scene(root, 600, 400));
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("WaterSourceList.fxml I/O ERROR");
-        }
+        WaterSourceListController controller = new WaterSourceListController();
+        controller.init((Stage) logoutButton.getScene().getWindow());
     }
 
 }

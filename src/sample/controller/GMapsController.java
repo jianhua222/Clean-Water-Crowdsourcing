@@ -15,8 +15,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import netscape.javascript.JSObject;
 import sample.model.WaterReportManagement;
@@ -76,16 +77,36 @@ public class GMapsController implements MapComponentInitializedListener {
 
         Button btnShowReport = new Button("Show Selected Report");
         btnShowReport.setOnAction(e -> {showSpecificReport();});
-        tb.getItems().addAll(btnShowReport, l);
+        Button btnBack = new Button("Back to Main Screen");
+        btnBack.setOnAction(e -> {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+                primaryStage.setTitle("Main Screen");
+                primaryStage.setScene(new Scene(root, 600, 400));
+                primaryStage.show();
+
+            } catch (IOException f) {
+                f.printStackTrace();
+                System.out.println("I/O ERROR");
+            }
+        });
+        HBox box = new HBox();
+        box.setSpacing(30.0);
+        box.getChildren().addAll(btnShowReport, l, btnBack);
+
+        tb.getItems().addAll(box);
 
         bp.setTop(tb);
         bp.setCenter(mapView);
-        bp.setMaxSize(600, 400);
+        bp.setMaxSize(600,400);
 
-        primaryStage = new Stage();
         primaryStage.setTitle("Water Source Map View");
         primaryStage.setScene(new Scene(bp));
         primaryStage.show();
+    }
+
+    public void setPrimaryStage(Stage stage) {
+        primaryStage = stage;
     }
 
     public void setWaterReports(ArrayList<WaterSourceReport> reports) {
