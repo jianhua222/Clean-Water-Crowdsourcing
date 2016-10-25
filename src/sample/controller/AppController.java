@@ -76,5 +76,4 @@ public class AppController {
         WaterSourceListController controller = new WaterSourceListController();
         controller.init((Stage) logoutButton.getScene().getWindow());
     }
-
 }
