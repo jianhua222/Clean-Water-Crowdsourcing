@@ -13,6 +13,13 @@ public class User {
     private String title;
 
     /**
+     * Default Constructor - make compiler happy
+     */
+    public User() {
+
+    }
+
+    /**
      * Constructor
      *
      * @param userName input user name
@@ -140,5 +147,4 @@ public class User {
     public void setUsername(String userName) {
         this.userName = userName;
     }
-
 }

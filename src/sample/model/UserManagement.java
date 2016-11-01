@@ -28,8 +28,17 @@ public class UserManagement {
                     return;
             }
         }
-        User tem = new User(userName, password, type);
-        users.add(tem);
+        User newuser = new User();
+        if(type.equals("User")) {
+            newuser =new User(userName, password, type);
+        } else if(type.equals("Worker")) {
+            newuser = new Worker(userName, password, type);
+
+        } else if(type.equals("Manager")) {
+
+        } else if(type.equals("Admin")) {
+        }
+        users.add(newuser);
     }
 
     /**
