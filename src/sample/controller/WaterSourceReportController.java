@@ -187,6 +187,7 @@ public class WaterSourceReportController {
     @FXML
     private void handelBackButtonPressed() {
         try {
+            newReport.setSourceReportTotal(newReport.getSourceReportTotal() - 1);
             Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
             Stage primaryStage = (Stage) backBtn.getScene().getWindow();
             primaryStage.setTitle("Water Source Report View");
