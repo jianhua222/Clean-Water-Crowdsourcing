@@ -84,7 +84,7 @@ public class WaterSourceReportViewOnlyController {
         this.consumableTypeLabel.setText(pulledReport.getConsumableCondition());
         // if user then hard code to zero
         User author = pulledReport.getUserWhoCreated();
-        if (author instanceof Worker) { // Add or manager
+        if (author instanceof Worker || author instanceof Manager) { // Add or manager
             Double virusValue = pulledReport.getVirusPPM();
             this.VirusValue.setText(virusValue.toString());
             Double contaminantValue = pulledReport.getComtaminantPPM();

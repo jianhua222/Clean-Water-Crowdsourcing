@@ -35,6 +35,7 @@ public class UserManagement {
             newuser = new Worker(userName, password, type);
 
         } else if(type.equals("Manager")) {
+            newuser = new Manager(userName, password, type);
 
         } else if(type.equals("Admin")) {
         }

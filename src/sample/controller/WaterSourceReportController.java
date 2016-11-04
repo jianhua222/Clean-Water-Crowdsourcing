@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.model.*;
 
@@ -110,7 +109,7 @@ public class WaterSourceReportController {
         h20SourceConditionComboBox.setPromptText("Select Condition");
 
         User currentUser = UserManagement.getUser();
-        if (currentUser instanceof Worker) {
+        if (currentUser instanceof Worker || currentUser instanceof Manager ) {
             virusPPM.setText("00.00");
             contaminantPPM.setText("00.00");
         } else {
