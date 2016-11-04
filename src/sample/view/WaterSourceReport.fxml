@@ -87,8 +87,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Virus PPM" />
-            <Label text="Contaminant PPM" GridPane.rowIndex="1" />
+            <Label fx:id="VirusLabel" text="Virus PPM" />
+            <Label fx:id="ContaminantLabel" text="Contaminant PPM" GridPane.rowIndex="1" />
             <TextField fx:id="virusPPM" promptText="00.00" GridPane.columnIndex="1" />
             <TextField fx:id="contaminantPPM" promptText="00.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>

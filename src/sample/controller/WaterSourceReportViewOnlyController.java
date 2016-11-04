@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import sample.model.*;
 import sample.model.UserManagement;
 import sample.model.WaterReportManagement;
 import sample.model.WaterSourceReport;
@@ -45,10 +46,16 @@ public class WaterSourceReportViewOnlyController {
     private Label consumableTypeLabel;
 
     @FXML
-    private Label virusPPMLabel;
+    private Label VirusLabel;
 
     @FXML
-    private Label contaminantPPMLabel;
+    private Label ContaminantLabel;
+
+    @FXML
+    private Label VirusValue;
+
+    @FXML
+    private Label ContaminantValue;
 
     @FXML
     private Label locationLabel;
@@ -68,17 +75,26 @@ public class WaterSourceReportViewOnlyController {
     private void initialize() {
         this.pulledReport = WaterReportManagement.getCurrentReport();
         this.timeStamp.setText(pulledReport.getSourceTimeStamp().toString());
-        this.userWhoCreatedReport.setText(UserManagement.getUser().getUserName());
+        this.userWhoCreatedReport.setText(pulledReport.getUserWhoCreated().getUserName());
         Integer pulledReportNumber = pulledReport.getReportNumber();
         this.reportNumber.setText(pulledReportNumber.toString());
         this.locationLabel.setText(pulledReport.getLatitudeCoord() + "ºN, " + pulledReport.getLongitutdeCoord() + "ºW");
         this.sourceTypeLabel.setText(pulledReport.getWaterSource());
         this.conditionTypeLabel.setText(pulledReport.getWaterCondition());
         this.consumableTypeLabel.setText(pulledReport.getConsumableCondition());
-        Double virusValue = pulledReport.getVirusPPM();
-        this.virusPPMLabel.setText(virusValue.toString());
-        Double contaminantValue = pulledReport.getComtaminantPPM();
-        this.contaminantPPMLabel.setText(contaminantValue.toString());
+        // if user then hard code to zero
+        User author = pulledReport.getUserWhoCreated();
+        if (author instanceof Worker) { // Add or manager
+            Double virusValue = pulledReport.getVirusPPM();
+            this.VirusValue.setText(virusValue.toString());
+            Double contaminantValue = pulledReport.getComtaminantPPM();
+            this.ContaminantValue.setText(contaminantValue.toString());
+        } else {
+            VirusLabel.setVisible(false);
+            ContaminantLabel.setVisible(false);
+            VirusValue.setVisible(false);
+            ContaminantValue.setVisible(false);
+        }
     }
 
     @FXML

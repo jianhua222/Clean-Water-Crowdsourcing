@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.model.*;
 
@@ -69,6 +70,12 @@ public class WaterSourceReportController {
     private TextField locationOfReport;
 
     @FXML
+    private Label VirusLabel;
+
+    @FXML
+    private Label ContaminantLabel;
+
+    @FXML
     private void initialize() {
         //Get Date Of Creation
         Date creationDate = new Date();
@@ -102,10 +109,19 @@ public class WaterSourceReportController {
         this.h20SourceConditionComboBox.setItems(waterConditionStuff);
         h20SourceConditionComboBox.setPromptText("Select Condition");
 
-        virusPPM.setText("00.00");
-
-        contaminantPPM.setText("00.00");
-
+        User currentUser = UserManagement.getUser();
+        if (currentUser instanceof Worker) {
+            virusPPM.setText("00.00");
+            contaminantPPM.setText("00.00");
+        } else {
+            //Users can not submit virus/contaminant information
+            virusPPM.setText("00.00");
+            contaminantPPM.setText("00.00");
+            VirusLabel.setVisible(false);
+            ContaminantLabel.setVisible(false);
+            virusPPM.setVisible(false);
+            contaminantPPM.setVisible(false);
+        }
     }
     /**
      * called automatically after load
@@ -171,6 +187,7 @@ public class WaterSourceReportController {
     @FXML
     private void handelBackButtonPressed() {
         try {
+            newReport.setSourceReportTotal(newReport.getSourceReportTotal() - 1);
             Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
             Stage primaryStage = (Stage) backBtn.getScene().getWindow();
             primaryStage.setTitle("Water Source Report View");
@@ -237,8 +254,8 @@ public class WaterSourceReportController {
             WaterReportManagement.addReport(this.newReport);
             initialize();
         } else {
-            virusPPM.setText("00.00");
-            contaminantPPM.setText("00.00");
+            //virusPPM.setText("00.00");
+            //contaminantPPM.setText("00.00");
         }
     }
 
@@ -284,5 +301,4 @@ public class WaterSourceReportController {
     private void handelChangeLocation() {
      // Offer a menu that allows a user to add GPS coordinates
     }
-
 }
