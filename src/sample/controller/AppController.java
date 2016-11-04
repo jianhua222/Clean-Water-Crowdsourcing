@@ -1,13 +1,16 @@
 package sample.controller;
 
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.Axis;
+import javafx.scene.chart.BarChart;
+import javafx.stage.Stage;
 import sample.main.Main;
 
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -76,4 +79,11 @@ public class AppController {
         WaterSourceListController controller = new WaterSourceListController();
         controller.init((Stage) logoutButton.getScene().getWindow());
     }
+
+    @FXML
+    private void showGraph() {
+
+    }
+
+
 }

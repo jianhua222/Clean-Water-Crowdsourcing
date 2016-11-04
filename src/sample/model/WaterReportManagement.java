@@ -78,9 +78,10 @@ public class WaterReportManagement {
 
     /**
      * this method adds the given report to the array list of reports
-     * @param givenReport
+     * @param givenReport the given report is added
      */
     public static void addReport(WaterSourceReport givenReport) {
+        //givenReport.setReportNumber(givenReport.getReportNumber() + 1);
         totalReports.add(givenReport);
     }
 }
