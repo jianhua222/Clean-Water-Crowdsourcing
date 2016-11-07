@@ -26,15 +26,10 @@ public class WaterReportManagement {
      * @return Water Source Report with the matching report number else returns null
      */
     public static WaterSourceReport getReport(int reportNumber) {
-        if (totalReports.isEmpty()) {
-            return null;
-        } else {
-            WaterSourceReport temp;
-            for (int i = 0; i < totalReports.size(); i++) {
-                temp = totalReports.get(i);
-                if (temp.getReportNumber() == reportNumber) {
-                    return temp;
-                }
+        for (WaterSourceReport wa:totalReports
+             ) {
+            if (wa.getReportNumber() + 48 == reportNumber) {
+                return wa;
             }
         }
         return null;

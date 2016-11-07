@@ -243,4 +243,8 @@ public class WaterSourceReport {
 
         return string;
     }
+
+    public String toString() {
+        return "Report number: " + Integer.toString(reportNumber);
+    }
 }

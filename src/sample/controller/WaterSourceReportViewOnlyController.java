@@ -73,9 +73,9 @@ public class WaterSourceReportViewOnlyController {
 
     @FXML
     private void initialize() {
-        this.pulledReport = WaterReportManagement.getCurrentReport();
-        this.timeStamp.setText(pulledReport.getSourceTimeStamp().toString());
-        this.userWhoCreatedReport.setText(pulledReport.getUserWhoCreated().getUserName());
+        pulledReport = WaterReportManagement.getCurrentReport();
+        //timeStamp.setText(pulledReport.getSourceTimeStamp().toString());
+        userWhoCreatedReport.setText(pulledReport.getUserWhoCreated().toString());
         Integer pulledReportNumber = pulledReport.getReportNumber();
         this.reportNumber.setText(pulledReportNumber.toString());
         this.locationLabel.setText(pulledReport.getLatitudeCoord() + "ºN, " + pulledReport.getLongitutdeCoord() + "ºW");

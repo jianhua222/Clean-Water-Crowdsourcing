@@ -4,13 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.Axis;
-import javafx.scene.chart.BarChart;
+import javafx.scene.chart.*;
 import javafx.stage.Stage;
 import sample.main.Main;
 
 import java.io.IOException;
-import java.util.List;
 
 
 /**
@@ -82,7 +80,22 @@ public class AppController {
 
     @FXML
     private void showGraph() {
+        Axis XAxis = new NumberAxis();
+        Axis YAxis = new CategoryAxis();
+        BarChart graph = new BarChart(XAxis, YAxis);
+        XYChart.Series series1 = new XYChart.Series();
+        series1.getData().add(new XYChart.Data("november", 20));
+        graph.getData().addAll(series1);
+        try {
+            Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
+            primaryStage.setTitle("Main Screen");
+            primaryStage.setScene(new Scene(graph, 600, 400));
+            primaryStage.show();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("I/O ERROR");
+        }
     }
 
 

@@ -148,4 +148,8 @@ public class User {
     public void setUsername(String userName) {
         this.userName = userName;
     }
+
+    public String toString() {
+        return userName;
+    }
 }
