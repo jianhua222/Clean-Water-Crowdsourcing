@@ -1,9 +1,11 @@
 package sample.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Payton on 10/15/16.
  */
-public enum WaterSource {
+public enum WaterSource implements Serializable {
     BOTTLED("Bottled"),
     WELL("Well"),
     STREAM("Stream"),

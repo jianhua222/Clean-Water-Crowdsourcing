@@ -1,9 +1,11 @@
 package sample.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Payton on 10/15/16.
  */
-public enum ConsumableCondition {
+public enum ConsumableCondition implements Serializable {
     SAFE("Safe"),
     TREATABLE("Treatable"),
     UNSAFE("Unsafe"),

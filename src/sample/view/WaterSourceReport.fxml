@@ -23,7 +23,7 @@
       <HBox layoutX="120.0" layoutY="344.0" prefHeight="35.0" prefWidth="361.0">
          <children>
             <Button fx:id="submitH2OReport" mnemonicParsing="false" onAction="#handelSubmitButtonPressed" prefHeight="27.0" prefWidth="179.0" text="Submit Report" />
-            <Button fx:id="cancelReportBtn" mnemonicParsing="false" onAction="#handelCancelPressed" text="Cancel">
+            <Button fx:id="cancelReportBtn" mnemonicParsing="false"  text="Cancel">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>

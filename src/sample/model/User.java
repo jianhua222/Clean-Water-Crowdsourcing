@@ -1,11 +1,12 @@
 package sample.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Allen on 9/27/2016.
  * User information holder
  */
-public class User {
-
+public class User implements Serializable {
     private String userName;
     private String password;
     private String type;
@@ -147,9 +148,5 @@ public class User {
      */
     public void setUsername(String userName) {
         this.userName = userName;
-    }
-
-    public String toString() {
-        return userName;
     }
 }
