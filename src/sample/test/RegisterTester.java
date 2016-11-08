@@ -2,9 +2,15 @@ package sample.test;
 
 import org.junit.Before;
 import org.junit.Test;
+import sample.model.User;
 import sample.model.UserManagement;
 
-import static junit.framework.TestCase.assertEquals;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -12,36 +18,61 @@ import static org.junit.Assert.assertTrue;
  */
 public class RegisterTester {
 
+    User tem = new User();
+    User tep = new User();
+
     @Before
     public void setUp() {
-        UserManagement.clear();
         UserManagement.register("UN1", "P1", "User");
         UserManagement.register("UN2", "P2", "Admin");
+        try {
+            FileInputStream fileIn = new FileInputStream("UN1.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            tem = (User) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            System.out.println(i);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        }
+        try {
+            FileInputStream fileIn = new FileInputStream("UN2.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            tep = (User) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            System.out.println(i);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
-    public void testRegisterUserNames() {
-        assertEquals(UserManagement.users.get(0).toString(), "UN1");
-        assertEquals(UserManagement.users.get(1).toString(), "UN2");
+    public void testFilesCreated() {
+        File file1 = new File("UN1.ser");
+        assertTrue(file1.exists());
+        File file2 = new File("UN2.ser");
+        assertTrue(file2.exists());
     }
 
     @Test
-    public void testRegisterTypes() {
-        assertEquals(UserManagement.users.get(0).getType(), "User");
-        assertEquals(UserManagement.users.get(1).getType(), "Admin");
+    public void testUserNames() {
+        assertEquals("The usernames do not match", tem.getUserName(), "UN1");
+        assertEquals("The usernames do not match", tep.getUserName(), "UN2");
+    }
+
+    @Test
+    public void testTypes() {
+        assertEquals("The types do not match", tem.getType(), "User");
+        assertEquals("The types do not match", tep.getType(), "Admin");
     }
 
     @Test
     public void testPasswords() {
-        assertEquals(UserManagement.users.get(0).getPassword(), "P1");
-        assertEquals(UserManagement.users.get(1).getPassword(), "P2");
-    }
-
-    @Test
-    public void testAddDuplicateUserNames() {
-        UserManagement.register("UN1", "P1", "User");
-        UserManagement.register("UN2", "P2", "Admin");
-        assertEquals(UserManagement.users.size(), 2);
+        assertEquals("The passwords do not match", tem.getPassword(), "P1");
+        assertEquals("The passwords do not match", tep.getPassword(), "P2");
     }
 
     @Test
