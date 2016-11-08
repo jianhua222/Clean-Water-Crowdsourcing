@@ -1,5 +1,7 @@
 package sample.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,8 +9,13 @@ import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.stage.Stage;
 import sample.main.Main;
+import sample.model.WaterReportManagement;
+import sample.model.WaterSourceReport;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.Timestamp;
 
 
 /**
@@ -80,15 +87,30 @@ public class AppController {
 
     @FXML
     private void showGraph() {
-        Axis XAxis = new NumberAxis();
-        Axis YAxis = new CategoryAxis();
-        BarChart graph = new BarChart(XAxis, YAxis);
-        XYChart.Series series1 = new XYChart.Series();
-        series1.getData().add(new XYChart.Data("november", 20));
-        graph.getData().addAll(series1);
-        try {
+        List<String> months = new ArrayList<>();
+        List<Double> vvalues = new ArrayList<>(); //virus ppm
+        List<Double> cvalues = new ArrayList<>(); //containment ppm
+        Timestamp timestamp;
+        for (WaterSourceReport report: WaterReportManagement.getAllReports()) {
+            vvalues.add(report.getVirusPPM());
+            cvalues.add(report.getVirusPPM());
+            timestamp = report.getSourceTimeStamp();
+            months.add(getMonth(timestamp.toString()));
+
+        }
+        //ObservableList<String> obslist = FXCollections.observableList(months);
+        CategoryAxis month = new CategoryAxis();
+        NumberAxis ppm = new NumberAxis();
+        BarChart<String, Number> graph = new BarChart<String,Number>(month, ppm);
+        XYChart.Series series1 = new XYChart.Series<>();
+        XYChart.Series series2 = new XYChart.Series<>();
+        series1.getData().add(new XYChart.Data(months.get(0),vvalues.get(0)));
+        series2.getData().add(new XYChart.Data(months.get(0),cvalues.get(0)));
+        //series1.getData().add(new XYChart.Data(months.get(1),ppmvalues.get(1)));
+        graph.getData().addAll(series1, series2);
+        try{
             Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
-            primaryStage.setTitle("Main Screen");
+            primaryStage.setTitle("Water Source Report");
             primaryStage.setScene(new Scene(graph, 600, 400));
             primaryStage.show();
 
@@ -96,6 +118,19 @@ public class AppController {
             e.printStackTrace();
             System.out.println("I/O ERROR");
         }
+    }
+    private String getMonth(String s) {
+        String sub = s.substring(5,7);
+        String month;
+        switch (sub) {
+            case "11":
+                month = "November";
+                break;
+            default:
+                month = "November";
+                System.out.println("Fell to default");
+        }
+        return month;
     }
 
 
