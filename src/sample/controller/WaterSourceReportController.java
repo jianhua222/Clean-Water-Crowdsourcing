@@ -90,7 +90,7 @@ public class WaterSourceReportController {
 
 
         //Show Report Number
-        this.reportNumber.setText(String.valueOf(WaterReportManagement.totalReports.size() + 1));
+        this.reportNumber.setText(String.valueOf(WaterReportManagement.getAllReports().size() ));
 
         //Show Location
         //Augment this to pull current location

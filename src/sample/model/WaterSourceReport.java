@@ -6,17 +6,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Timestamp;
 /**
  * Created by Payton on 10/13/16.
  * Information Holder
  */
-public class WaterSourceReport {
+public class WaterSourceReport implements Serializable {
     //Security Log Variables
     //private WaterSourceActivity activity;
     private Timestamp sourceTimeStamp;
     private int reportNumber;
-    private static int sourceReportTotal;
+
     private static int activeSourceReports;
     private static int deactivatedSourceReports;
 
@@ -52,9 +53,10 @@ public class WaterSourceReport {
         this.banned = false;
         this.flagByUser = false;
         this.flagByWorker = false;
-        this.sourceReportTotal++;
-        this.activeSourceReports = this.sourceReportTotal;
-        this.reportNumber = activeSourceReports;
+
+
+       // this.activeSourceReports = WaterReportManagement.getAllReports().size()+1;
+        this.reportNumber = WaterReportManagement.reportList.getBackingArray().size();
     }
 
     /**
@@ -144,12 +146,10 @@ public class WaterSourceReport {
     }
 
     public static int getSourceReportTotal() {
-        return sourceReportTotal;
+        return WaterReportManagement.getAllReports().size();
     }
 
-    public static void setSourceReportTotal(int sourceReportTotal) {
-        WaterSourceReport.sourceReportTotal = sourceReportTotal;
-    }
+
 
     public static int getActiveSourceReports() {
         return activeSourceReports;

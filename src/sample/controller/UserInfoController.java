@@ -9,7 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.model.UserManagement;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 /**
  * Created by Ashwin on 10/3/16.
@@ -66,6 +68,18 @@ public class UserInfoController {
         emfx.setText(UserManagement.getUser().getEmail());
         adfx.setText(UserManagement.getUser().getAddress());
         tyfx.setText(UserManagement.getUser().getType());
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream(UserManagement.getUser().getUserName()+".ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(UserManagement.getUser());
+            //out.writeObject(b);
+            out.close();
+            fileOut.close();
+            //System.out.printf("Serialized data is saved in /tmp/employee.ser");
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
     }
 
     /**

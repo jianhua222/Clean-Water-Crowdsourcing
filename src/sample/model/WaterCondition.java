@@ -1,9 +1,11 @@
 package sample.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Payton on 10/15/16.
  */
-public enum WaterCondition {
+public enum WaterCondition implements Serializable {
     WASTE("Waste"),
     TREATABLECLEAR("Treatable-Clear"),
     TREATABLEMUDDY("Treatable-Muddy"),

@@ -50,6 +50,7 @@ public class WaterSourceListController {
 
     @FXML
     public void reportPressed() {
+
         String reNum = listViewFX.getSelectionModel().getSelectedItem();
         int some = (int) reNum.charAt(reNum.length() - 1);
         WaterSourceReport toShow = WaterReportManagement.getReport(some);
