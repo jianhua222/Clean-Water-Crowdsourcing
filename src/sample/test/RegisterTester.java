@@ -18,8 +18,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class RegisterTester {
 
-    User tem = new User();
-    User tep = new User();
+    private User tem = new User();
+    private User tep = new User();
 
     @Before
     public void setUp() {
