@@ -29,6 +29,8 @@ public class WaterSourceReportController {
 
     WaterSourceReport newReport;
 
+    Timestamp _creationDate;
+
     @FXML
     private Label timeStamp;
 
@@ -78,7 +80,7 @@ public class WaterSourceReportController {
     private void initialize() {
         //Get Date Of Creation
         Date creationDate = new Date();
-        Timestamp _creationDate = new Timestamp(creationDate.getTime());
+        this._creationDate = new Timestamp(creationDate.getTime());
         this.timeStamp.setText(_creationDate.toString());
 
         //Pass user info here
@@ -86,10 +88,9 @@ public class WaterSourceReportController {
         // Pull User Info Here
         this.userWhoCreatedReport.setText(UserManagement.getUser().getUserName());
 
-        this.newReport = new WaterSourceReport(_creationDate, UserManagement.getUser());
 
         //Show Report Number
-        this.reportNumber.setText(String.valueOf(newReport.getReportNumber()));
+        this.reportNumber.setText(String.valueOf(WaterReportManagement.totalReports.size() + 1));
 
         //Show Location
         //Augment this to pull current location
@@ -177,7 +178,6 @@ public class WaterSourceReportController {
     @FXML
     private void handelCancelPressed() {
         // Forget Current Data and Return to blank report
-        newReport.setSourceReportTotal(newReport.getSourceReportTotal() - 1);
         initialize();
     }
     /**
@@ -186,7 +186,7 @@ public class WaterSourceReportController {
     @FXML
     private void handelBackButtonPressed() {
         try {
-            newReport.setSourceReportTotal(newReport.getSourceReportTotal() - 1);
+
             Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
             Stage primaryStage = (Stage) backBtn.getScene().getWindow();
             primaryStage.setTitle("Water Source Report View");
@@ -214,6 +214,7 @@ public class WaterSourceReportController {
                 //Implement a UI error for future iteration
                 consumableConditon = ConsumableCondition.NA.toString();
             }
+            this.newReport = new WaterSourceReport(this._creationDate, UserManagement.getUser());
             this.newReport.setConsumableCondition(consumableConditon);
 
             String h20SourceCondition;

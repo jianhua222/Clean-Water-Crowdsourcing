@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class WaterReportManagement {
     public static WaterSourceReport currentReport;
-    private static ArrayList<WaterSourceReport> totalReports = new ArrayList<>();
+    public static ArrayList<WaterSourceReport> totalReports = new ArrayList<>();
 
     /**
      * the constructor for Creating an instance of the water source report management
