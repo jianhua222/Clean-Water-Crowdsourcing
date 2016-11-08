@@ -1,5 +1,4 @@
 package sample.controller;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -114,7 +113,7 @@ public class WaterSourceListController {
         try {
             Stage primaryStage = (Stage) dropMapOfWaterReportsBtn.getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceReport.fxml"));
-            primaryStage.setTitle("Main Screen");
+            primaryStage.setTitle("Add a report");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
 

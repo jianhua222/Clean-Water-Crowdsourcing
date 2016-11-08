@@ -12,7 +12,11 @@ import java.util.ArrayList;
 public class UserManagement {
 
     private static User currentUser;
-    private static ArrayList<User> users = new ArrayList<>();
+    public static ArrayList<User> users = new ArrayList<>();
+
+    public static void clear() {
+        users = new ArrayList<>();
+    }
 
     /**
      * register a new user
@@ -22,22 +26,25 @@ public class UserManagement {
      * @param type     input type
      */
     public static void register(String userName, String password, String type) {
-        for(User x : users){
-            if(x.getUserName().equals(userName)){
-                System.out.println("user name already exists. ");
+        for (User x : users) {
+            if (x.getUserName().equals(userName)) {
+                System.out.println("user name already exists.");
                     return;
             }
         }
         User newuser = new User();
-        if(type.equals("User")) {
-            newuser =new User(userName, password, type);
-        } else if(type.equals("Worker")) {
+        if (type.equals("User")) {
+            newuser = new User(userName, password, type);
+        } else if (type.equals("Worker")) {
             newuser = new Worker(userName, password, type);
 
-        } else if(type.equals("Manager")) {
+        } else if (type.equals("Manager")) {
             newuser = new Manager(userName, password, type);
 
-        } else if(type.equals("Admin")) {
+        } else if (type.equals("Admin")) {
+            newuser = new User(userName, password, type);
+        } else {
+            throw new IllegalArgumentException("Wrong user type given");
         }
         users.add(newuser);
     }
