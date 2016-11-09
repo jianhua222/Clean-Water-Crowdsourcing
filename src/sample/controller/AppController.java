@@ -98,14 +98,28 @@ public class AppController {
             System.out.println("There are currently no reports to view");
         } else {
             ObservableList<String> oList = FXCollections.observableArrayList();
+            ArrayList<Double> lats = new ArrayList<Double>();
+            ArrayList<Double[]> virusvalues = new ArrayList<Double[]>();
+            ArrayList<String[]> months = new ArrayList<String[]>(); //String array holding months for each location
+            ObservableList<String> locations = FXCollections.observableArrayList();
             for (WaterSourceReport wr : WaterReportManagement.getAllReports()) {
+                if (lats.contains(wr.getLatitudeCoord())) {
+                    // duplicate locations
+
+                } else {
+                    locations.add("Location: " + String.valueOf(wr.getLatitudeCoord() + "," + String.valueOf(wr.getLongitutdeCoord())));
+                    lats.add(wr.getLatitudeCoord());
+
+                }
                 oList.add(wr.toString());
             }
-            list.setItems(oList);
-            ap.getChildren().addAll(list);
+            list.setItems(locations);
+            Button backButton = new Button("Back");
+            AnchorPane.setRightAnchor(backButton, 65.0);
+            ap.getChildren().addAll(list, backButton);
             try{
                 Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
-                primaryStage.setTitle("Water Source Report");
+                primaryStage.setTitle("Select Location to see a graph of PPM Values");
                 primaryStage.setScene(new Scene(ap, 600, 400));
                 primaryStage.show();
 
@@ -113,6 +127,21 @@ public class AppController {
                 e.printStackTrace();
                 System.out.println("I/O ERROR");
             }
+            backButton.setOnAction(e -> {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+                    Stage primaryStage = (Stage) backButton.getScene().getWindow();
+                    primaryStage.setTitle("Main Screen");
+                    primaryStage.setScene(new Scene(root, 600, 400));
+                    primaryStage.show();
+
+                } catch (IOException f) {
+                    f.printStackTrace();
+                    System.out.println("I/O ERROR");
+                }
+            });
+            /*
+            list.setItems(oList);
             list.setOnMouseClicked(event -> {
                 BorderPane bp = new BorderPane();
                 Button backButton = new Button("Back");
@@ -154,9 +183,8 @@ public class AppController {
                     System.out.println("I/O ERROR");
                 }
             });
-
-
         }
+        */
         /*
         BorderPane bp = new BorderPane();
         List<String> months = new ArrayList<>();
@@ -227,6 +255,7 @@ public class AppController {
             System.out.println("I/O ERROR");
         }
         */
+        }
     }
     private String getMonth(String s) {
         String sub = s.substring(5,7);
