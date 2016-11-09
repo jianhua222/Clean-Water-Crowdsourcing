@@ -57,7 +57,7 @@ public class AppController {
     public void initialize() {
         User currentUser = UserManagement.getUser();
         if (!currentUser.getType().equals("Manager")) {
-         graphfx.setVisible(false);
+            graphfx.setVisible(false);
         }
         //System.out.println("Inside Initialize");
     }
@@ -107,21 +107,41 @@ public class AppController {
         if (WaterReportManagement.getAllReports() == null) {
             System.out.println("There are currently no reports to view");
         } else {
-            ObservableList<String> oList = FXCollections.observableArrayList();
             ArrayList<Double> lats = new ArrayList<Double>();
-            ArrayList<Double[]> virusvalues = new ArrayList<Double[]>();
-            ArrayList<String[]> months = new ArrayList<String[]>(); //String array holding months for each location
+            ArrayList<ArrayList<Double>> virusvalues = new ArrayList<ArrayList<Double>>();
+            //Array List within Array List to hold months within each location
+            ArrayList<ArrayList<String>> months = new ArrayList<ArrayList<String>>();
             ObservableList<String> locations = FXCollections.observableArrayList();
             for (WaterSourceReport wr : WaterReportManagement.getAllReports()) {
                 if (lats.contains(wr.getLatitudeCoord())) {
                     // duplicate locations
+                    int index = lats.indexOf(wr.getLatitudeCoord());
+                    //check for duplicate months
+                    String s = getMonth(wr.getSourceTimeStamp().toString());
+                    if(months.get(index).contains(s)) {
+                        //average values for that month
+                        //Not exactly an average, but shhhhhh!
+                        int monthIndex = months.get(index).indexOf(s);
+                        double dub = virusvalues.get(index).get(monthIndex);
+                        virusvalues.get(index).set(monthIndex, (dub + wr.getVirusPPM()) / 2);
+                    } else {
+                        // not a duplicate month
+                        months.get(index).add(s);
+                        virusvalues.get(index).add(wr.getVirusPPM());
+                    }
 
                 } else {
                     locations.add("Location: " + String.valueOf(wr.getLatitudeCoord() + "," + String.valueOf(wr.getLongitutdeCoord())));
                     lats.add(wr.getLatitudeCoord());
+                    ArrayList<Double> val = new ArrayList<>();
+                    val.add(wr.getVirusPPM());
+                    ArrayList<String> temp = new ArrayList<>();
+                    String s = getMonth(wr.getSourceTimeStamp().toString());
+                    temp.add(s);
+                    months.add(temp);
+                    virusvalues.add(val);
 
                 }
-                oList.add(wr.toString());
             }
             list.setItems(locations);
             Button backButton = new Button("Back");
@@ -150,36 +170,36 @@ public class AppController {
                     System.out.println("I/O ERROR");
                 }
             });
-            /*
-            list.setItems(oList);
             list.setOnMouseClicked(event -> {
                 BorderPane bp = new BorderPane();
-                Button backButton = new Button("Back");
-                bp.setTop(backButton);
-                String reNum = (String) list.getSelectionModel().getSelectedItem();
-                int some = (int) reNum.charAt(reNum.length() - 1);
-                WaterSourceReport myreport = WaterReportManagement.getReport(some);
+                Button backButton2 = new Button("Back");
+                backButton2.setOnAction(e -> {
+                    try {
+                        Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+                        Stage primaryStage = (Stage) backButton2.getScene().getWindow();
+                        primaryStage.setTitle("Main Screen");
+                        primaryStage.setScene(new Scene(root, 600, 400));
+                        primaryStage.show();
+
+                    } catch (IOException f) {
+                        f.printStackTrace();
+                        System.out.println("I/O ERROR");
+                    }
+                });
+                bp.setTop(backButton2);
+                int locindex = list.getSelectionModel().getSelectedIndex();
+                //show graph for all reports at this loc
                 //graph code
-                List<String> months = new ArrayList<>();
-                List<Double> vvalues = new ArrayList<>(); //virus ppm
-                List<Double> cvalues = new ArrayList<>(); //containment ppm
-                List<Integer> collisions = new ArrayList<>(); //track number of collision
-                String s;
-                Timestamp timestamp;
-                timestamp = myreport.getSourceTimeStamp();
-                s = getMonth(timestamp.toString());
-                months.add(s);
-                vvalues.add(myreport.getVirusPPM());
-                cvalues.add(myreport.getComtaminantPPM());
-                collisions.add(1);
                 CategoryAxis month = new CategoryAxis();
                 NumberAxis ppm = new NumberAxis();
                 BarChart<String, Number> graph = new BarChart<String,Number>(month, ppm);
                 XYChart.Series series1 = new XYChart.Series<>();
-                XYChart.Series series2 = new XYChart.Series<>();
-                series1.getData().addAll(new XYChart.Data(months.get(0),vvalues.get(0)));
-                series2.getData().addAll(new XYChart.Data(months.get(0),cvalues.get(0)));
-                graph.getData().addAll(series1, series2);
+                //XYChart.Series series2 = new XYChart.Series<>();
+                for(int i = 0; i < months.get(locindex).size(); i++) {
+                    series1.getData().addAll(new XYChart.Data(months.get(locindex).get(i), virusvalues.get(locindex).get(i)));
+                }
+                //series2.getData().addAll(new XYChart.Data(months.get(0),cvalues.get(0)));
+                graph.getData().addAll(series1);
                 bp.setCenter(graph);
                 try{
                     Stage primaryStage = (Stage) ap.getScene().getWindow();
@@ -194,7 +214,6 @@ public class AppController {
                 }
             });
         }
-        */
         /*
         BorderPane bp = new BorderPane();
         List<String> months = new ArrayList<>();
@@ -265,7 +284,6 @@ public class AppController {
             System.out.println("I/O ERROR");
         }
         */
-        }
     }
     private String getMonth(String s) {
         String sub = s.substring(5,7);
@@ -277,7 +295,7 @@ public class AppController {
             case "12":
                 month = "December";
             default:
-                month = "November";
+                month = "October";
                 System.out.println("Fell to default");
         }
         return month;

@@ -29,8 +29,9 @@ public class UserManagement {
         } else if (type.equals("Worker")) {
             newuser = new Worker(userName, password, type);
         } else if (type.equals("Manager")) {
-            newuser = new User(userName, password, type);
+            newuser = new Manager(userName, password, type);
         } else if (type.equals("Admin")) {
+            //Change to ADMIN if needed
             newuser = new User(userName, password, type);
         } else {
             throw new IllegalArgumentException("The given user type was not correct");
