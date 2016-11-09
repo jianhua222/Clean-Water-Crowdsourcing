@@ -61,7 +61,21 @@ public class Main extends Application {
      * @param args the array string passed into this method
      */
     public static void main(String[] args) {
-
+        /*
+        WaterSourceReportList tem = new WaterSourceReportList();
+        try {
+            FileOutputStream fileOut =
+                    new FileOutputStream("ReportBase.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(tem);
+            //out.writeObject(b);
+            out.close();
+            fileOut.close();
+            //System.out.printf("Serialized data is saved in /tmp/employee.ser");
+        }catch(IOException i) {
+            i.printStackTrace();
+        }
+        */
         launch(args);
     }
 
@@ -97,3 +111,4 @@ public class Main extends Application {
         }
     }
 }
+
