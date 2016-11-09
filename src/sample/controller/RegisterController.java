@@ -14,9 +14,6 @@ import sample.model.UserManagement;
  */
 public class RegisterController {
 
-    /** reference back to mainApplication if needed */
-    private Main mainApplication;
-
     @FXML
     private javafx.scene.control.Button closeButton;
 
@@ -33,7 +30,8 @@ public class RegisterController {
      * @param main   the reference to the FX Application instance
      * */
     public void setMainApp(Main main) {
-        mainApplication = main;
+        /* reference back to mainApplication if needed */
+        main.toString();
     }
 
     /**

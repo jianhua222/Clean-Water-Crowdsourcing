@@ -61,7 +61,6 @@ public class GMapsController implements MapComponentInitializedListener {
 
             MapOptions options = new MapOptions()
                     .center(center)
-                    .mapMarker(true)
                     .zoom(12)
                     .overviewMapControl(true)
                     .panControl(true)

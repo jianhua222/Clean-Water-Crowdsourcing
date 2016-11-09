@@ -103,7 +103,7 @@ public class AppController {
     @FXML
     private void showGraph() {
         AnchorPane ap = new AnchorPane();
-        ListView list = new ListView();
+        ListView<String> list = new ListView<>();
         if (WaterReportManagement.getAllReports() == null) {
             System.out.println("There are currently no reports to view");
         } else {

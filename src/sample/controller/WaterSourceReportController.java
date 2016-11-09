@@ -76,6 +76,7 @@ public class WaterSourceReportController {
     @FXML
     private Label ContaminantLabel;
 
+    @SuppressWarnings("unchecked")
     @FXML
     private void initialize() {
         //Get Date Of Creation
@@ -90,11 +91,15 @@ public class WaterSourceReportController {
 
 
         //Show Report Number
-        this.reportNumber.setText(String.valueOf(WaterReportManagement.getAllReports().size() ));
+        if (WaterReportManagement.getAllReports() == null) {
+            this.reportNumber.setText("1");
+        } else {
+            this.reportNumber.setText(String.valueOf(WaterReportManagement.getAllReports().size()));
+        }
 
         //Show Location
         //Augment this to pull current location
-        this.locationOfReport.setText(new String("33.7756, 84.3963"));
+        this.locationOfReport.setText("33.7756, 84.3963");
 
         //Initilize ComboBoxes
         ObservableList<String> consumableConditionStuff = comboBoxConsumableConditionIteams();
@@ -135,8 +140,7 @@ public class WaterSourceReportController {
             tempList.add(tempStrings[i].toString());
         }
 
-        ObservableList<String> temp = FXCollections.observableList(tempList);
-        return temp;
+        return FXCollections.observableList(tempList);
     }
 
 
@@ -152,8 +156,7 @@ public class WaterSourceReportController {
             tempList.add(tempStrings[i].toString());
         }
 
-        ObservableList<String> temp = FXCollections.observableList(tempList);
-        return temp;
+        return FXCollections.observableList(tempList);
     }
 
     /**
@@ -168,8 +171,7 @@ public class WaterSourceReportController {
             tempList.add(tempStrings[i].toString());
         }
 
-        ObservableList<String> temp = FXCollections.observableList(tempList);
-        return temp;
+        return FXCollections.observableList(tempList);
     }
 
     /**

@@ -58,7 +58,7 @@ public class WaterSourceListController {
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceReportViewOnly.fxml"));
-            Stage primaryStage = (Stage) backToMainScreenBtn.getScene().getWindow();;
+            Stage primaryStage = (Stage) backToMainScreenBtn.getScene().getWindow();
             primaryStage.setTitle("Water Report");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
@@ -68,10 +68,9 @@ public class WaterSourceListController {
         }
     }
 
-    public void init(Stage stage) {
+    public void init(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceList.fxml"));
-            Stage primaryStage = stage;
             primaryStage.setTitle("Water Source List");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();

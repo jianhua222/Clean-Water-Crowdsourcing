@@ -47,7 +47,9 @@ public class WaterReportManagement {
      * @return Water Source Reports if it's not empty else returns null
      */
     public static ArrayList<WaterSourceReport> getAllReports() {
-
+        if (reportList == null) {
+            return null;
+        }
         return reportList.getBackingArray();
     }
 
