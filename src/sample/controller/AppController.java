@@ -11,8 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import sample.main.Main;
-import sample.model.WaterReportManagement;
-import sample.model.WaterSourceReport;
+import sample.model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +28,9 @@ public class AppController {
 
     @FXML
     private javafx.scene.control.Button logoutButton;
+
+    @FXML
+    private javafx.scene.control.Button graphfx;
 
     /**
      * This method handles closing the main app, when the user chooses to do so.
@@ -48,6 +50,14 @@ public class AppController {
      * This method sets up the stage and screen for showing the user info.
      *
      */
+    @FXML
+    public void initialize() {
+        User currentUser = UserManagement.getUser();
+        if (!currentUser.getType().equals("Manager")) {
+         graphfx.setVisible(false);
+        }
+        //System.out.println("Inside Initialize");
+    }
     @FXML
     private void userInfo() {
         try {
