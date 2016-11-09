@@ -21,33 +21,38 @@ import java.util.ArrayList;
 public class WaterSourceListController {
 
     @FXML
-    Button dropMapOfWaterReportsBtn;
+    private Button dropMapOfWaterReportsBtn;
 
     @FXML
-    Button waterReportVsTimeShowGraphBtn;
+    private Button waterReportVsTimeShowGraphBtn;
 
     @FXML
-    Button addWaterSourceReportBtn;
+    private Button addWaterSourceReportBtn;
 
     @FXML
-    Button backToMainScreenBtn;
+    private Button backToMainScreenBtn;
 
     @FXML
-    ListView<String> listViewFX;
+    private ListView<String> listViewFX;
 
+    /**
+     * initializes the water report list
+     */
     public void initialize() {
         if (WaterReportManagement.getAllReports() == null) {
             System.out.println("There are currently no reports to view");
         } else {
             ObservableList<String> oList = FXCollections.observableArrayList();
-            for (WaterSourceReport wr : WaterReportManagement.getAllReports()
-                    ) {
+            for (WaterSourceReport wr : WaterReportManagement.getAllReports()) {
                 oList.add(wr.toString());
             }
             listViewFX.setItems(oList);
         }
     }
 
+    /**
+     * handles pressing a report button
+     */
     @FXML
     public void reportPressed() {
 
@@ -57,8 +62,10 @@ public class WaterSourceListController {
         WaterReportManagement.setCurrentReport(toShow);
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceReportViewOnly.fxml"));
-            Stage primaryStage = (Stage) backToMainScreenBtn.getScene().getWindow();
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/WaterSourceReportViewOnly.fxml"));
+            Stage primaryStage =
+                    (Stage) backToMainScreenBtn.getScene().getWindow();
             primaryStage.setTitle("Water Report");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
@@ -68,9 +75,15 @@ public class WaterSourceListController {
         }
     }
 
-    public void init(Stage primaryStage) {
+    /**
+     * Adds one marker to the map.
+     * @param stage the given stage
+     */
+    public void init(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceList.fxml"));
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/WaterSourceList.fxml"));
+            Stage primaryStage = stage;
             primaryStage.setTitle("Water Source List");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
@@ -86,18 +99,24 @@ public class WaterSourceListController {
     @FXML
     private void initializeMapBtnPressed() {
         Stage stage = (Stage) dropMapOfWaterReportsBtn.getScene().getWindow();
-        ArrayList<WaterSourceReport> reports = WaterReportManagement.getAllReports();
+        ArrayList<WaterSourceReport> reports =
+                WaterReportManagement.getAllReports();
         GMapsController controller = new GMapsController();
         controller.setWaterReports(reports);
         controller.setPrimaryStage(stage);
         controller.mapInitialized();
     }
 
+    /**
+     * Handler method for when back button is pressed.s
+     */
     @FXML
     private void backBut() {
         try {
-            Stage primaryStage = (Stage) dropMapOfWaterReportsBtn.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+            Stage primaryStage =
+                    (Stage) dropMapOfWaterReportsBtn.getScene().getWindow();
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/mainScreen.fxml"));
             primaryStage.setTitle("Main Screen");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();
@@ -108,11 +127,16 @@ public class WaterSourceListController {
         }
     }
 
+    /**
+     * Adds the report when button is pressed
+     */
     @FXML
     private void addRep() {
         try {
-            Stage primaryStage = (Stage) dropMapOfWaterReportsBtn.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("/WaterSourceReport.fxml"));
+            Stage primaryStage =
+                    (Stage) dropMapOfWaterReportsBtn.getScene().getWindow();
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/WaterSourceReport.fxml"));
             primaryStage.setTitle("Add a report");
             primaryStage.setScene(new Scene(root, 600, 400));
             primaryStage.show();

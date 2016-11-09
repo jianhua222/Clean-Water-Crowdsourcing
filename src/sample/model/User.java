@@ -44,7 +44,8 @@ public class User implements Serializable {
      * @param address  inupt address
      * @param title    input title
      */
-    /*public User(String userName, String password, String type, String email, String address, String title) {
+    /*public User(String userName, String password, String type,
+    String email, String address, String title) {
         this.userName = userName;
         this.password = password;
         this.type = type;

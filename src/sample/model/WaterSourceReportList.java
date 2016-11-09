@@ -40,6 +40,7 @@ public class WaterSourceReportList implements Serializable {
     /**
      * getReport
      * @param reportNumer wanted report number
+     * @return the water source report
      */
     public WaterSourceReport getReport(int reportNumer) {
         return backingArray.get(reportNumer);
@@ -67,7 +68,6 @@ public class WaterSourceReportList implements Serializable {
             //out.writeObject(b);
             out.close();
             fileOut.close();
-            //System.out.printf("Serialized data is saved in /tmp/employee.ser");
         } catch (IOException i) {
             i.printStackTrace();
         }

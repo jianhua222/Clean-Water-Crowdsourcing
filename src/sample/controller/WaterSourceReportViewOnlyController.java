@@ -7,7 +7,11 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import sample.model.*;
+import sample.model.Manager;
+import sample.model.User;
+import sample.model.WaterReportManagement;
+import sample.model.WaterSourceReport;
+import sample.model.Worker;
 
 import java.io.IOException;
 
@@ -19,10 +23,10 @@ import java.io.IOException;
 public class WaterSourceReportViewOnlyController {
 
     @FXML
-    Button returnToListViewBtn;
+    private Button returnToListViewBtn;
 
     @FXML
-    Button backReportBtn;
+    private Button backReportBtn;
 
     @FXML
     private Label timeStamp;
@@ -43,16 +47,16 @@ public class WaterSourceReportViewOnlyController {
     private Label consumableTypeLabel;
 
     @FXML
-    private Label VirusLabel;
+    private Label otherVirusLabel;
 
     @FXML
-    private Label ContaminantLabel;
+    private Label otherContaminantLabel;
 
     @FXML
-    private Label VirusValue;
+    private Label otherVirusValue;
 
     @FXML
-    private Label ContaminantValue;
+    private Label soContaminantValue;
 
     @FXML
     private Label locationLabel;
@@ -68,42 +72,59 @@ public class WaterSourceReportViewOnlyController {
         this.pulledReport = givenReport;
     }
 
+    /**
+     *
+     * initializes the water report for viewing
+     */
     @FXML
     private void initialize() {
         pulledReport = WaterReportManagement.getCurrentReport();
         //timeStamp.setText(pulledReport.getSourceTimeStamp().toString());
-        userWhoCreatedReport.setText(pulledReport.getUserWhoCreated().toString());
+        userWhoCreatedReport.setText(
+                pulledReport.getUserWhoCreated().toString());
         Integer pulledReportNumber = pulledReport.getReportNumber();
         this.reportNumber.setText(pulledReportNumber.toString());
-        this.locationLabel.setText(pulledReport.getLatitudeCoord() + "ºN, " + pulledReport.getLongitutdeCoord() + "ºW");
+        this.locationLabel.setText(
+                pulledReport.getLatitudeCoord()
+                        + "ºN, " + pulledReport.getLongitutdeCoord() + "ºW");
         this.sourceTypeLabel.setText(pulledReport.getWaterSource());
         this.conditionTypeLabel.setText(pulledReport.getWaterCondition());
         this.consumableTypeLabel.setText(pulledReport.getConsumableCondition());
         // if user then hard code to zero
         User author = pulledReport.getUserWhoCreated();
-        if (author instanceof Worker || author instanceof Manager) { // Add or manager
-            Double virusValue = pulledReport.getVirusPPM();
-            this.VirusValue.setText(virusValue.toString());
-            Double contaminantValue = pulledReport.getComtaminantPPM();
-            this.ContaminantValue.setText(contaminantValue.toString());
+        if (author instanceof Worker
+                || author instanceof Manager) { // Add or manager
+            Double otherVirusValue = pulledReport.getVirusPPM();
+            this.otherVirusValue.setText(otherVirusValue.toString());
+            Double soContaminantValue = pulledReport.getComtaminantPPM();
+            this.soContaminantValue.setText(soContaminantValue.toString());
         } else {
-            VirusLabel.setVisible(false);
-            ContaminantLabel.setVisible(false);
-            VirusValue.setVisible(false);
-            ContaminantValue.setVisible(false);
+            otherVirusLabel.setVisible(false);
+            otherContaminantLabel.setVisible(false);
+            otherVirusValue.setVisible(false);
+            soContaminantValue.setVisible(false);
         }
     }
 
+    /**
+     *
+     * the button handler for returning to the list
+     */
     @FXML
     private void handelReturnToListViewBtnPressed() {
         WaterSourceListController controller = new WaterSourceListController();
         controller.init((Stage) returnToListViewBtn.getScene().getWindow());
     }
 
+    /**
+     *
+     * the handler when the back button is pressed
+     */
     @FXML
     private void handelBackPressed() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/mainScreen.fxml"));
             Stage primaryStage = (Stage) backReportBtn.getScene().getWindow();
             primaryStage.setTitle("Main Screen");
             primaryStage.setScene(new Scene(root, 600, 400));

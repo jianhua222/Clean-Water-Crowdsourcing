@@ -70,14 +70,14 @@ public class UserInfoController {
         tyfx.setText(UserManagement.getUser().getType());
         try {
             FileOutputStream fileOut =
-                    new FileOutputStream(UserManagement.getUser().getUserName()+".ser");
+                    new FileOutputStream(
+                            UserManagement.getUser().getUserName() + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(UserManagement.getUser());
             //out.writeObject(b);
             out.close();
             fileOut.close();
-            //System.out.printf("Serialized data is saved in /tmp/employee.ser");
-        }catch(IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
         }
     }
@@ -89,7 +89,8 @@ public class UserInfoController {
     @FXML
     private void closedat() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/mainScreen.fxml"));
             Stage primaryStage = (Stage) unfx.getScene().getWindow();
             primaryStage.setTitle("Main Screen");
             primaryStage.setScene(new Scene(root, 600, 400));

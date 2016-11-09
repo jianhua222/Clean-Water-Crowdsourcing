@@ -8,7 +8,11 @@ import java.io.ObjectInputStream;
  * Created by Allen on 11/8/2016.
  */
 public class Tester {
-    public static void main(String[] args){
+    /**
+     * Adds one marker to the map.
+     * @param args the string array
+     */
+    public static void main(String[] args) {
         WaterSourceReportList temp = null;
         try {
             FileInputStream fileIn = new FileInputStream("ReportBase.ser");
@@ -19,7 +23,6 @@ public class Tester {
         } catch (IOException i) {
             i.printStackTrace();
 
-            //System.out.printf("Serialized data is saved in /tmp/employee.ser");
 
 
         } catch (ClassNotFoundException c) {
@@ -33,13 +36,13 @@ public class Tester {
         try {
             FileInputStream fileIn = new FileInputStream("a.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            tem = ( User) in.readObject();
+            tem = (User) in.readObject();
             in.close();
             fileIn.close();
-        }catch(IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
             //return;
-        }catch(ClassNotFoundException c) {
+        } catch (ClassNotFoundException c) {
             System.out.println();
             c.printStackTrace();
             //return;

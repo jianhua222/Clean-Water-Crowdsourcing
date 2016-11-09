@@ -6,9 +6,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.model.*;
+import sample.model.ConsumableCondition;
+import sample.model.Manager;
+import sample.model.User;
+import sample.model.UserManagement;
+import sample.model.WaterCondition;
+import sample.model.WaterReportManagement;
+import sample.model.WaterSource;
+import sample.model.WaterSourceReport;
+import sample.model.Worker;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -22,11 +34,11 @@ import java.util.List;
  */
 public class WaterSourceReportController {
 
-    User user;
+    private User user;
 
-    WaterSourceReport newReport;
+    private WaterSourceReport newReport;
 
-    Timestamp _creationDate;
+    private Timestamp otherCreationDate;
 
     @FXML
     private Label timeStamp;
@@ -68,38 +80,43 @@ public class WaterSourceReportController {
     private TextField locationOfReport;
 
     @FXML
-    private Label VirusLabel;
+    private Label newVirusLabel;
 
     @FXML
-    private Label ContaminantLabel;
+    private Label newContaminantLabel;
 
-    @SuppressWarnings("unchecked")
+    /**
+     * initializes the water source report
+     */
     @FXML
     private void initialize() {
         //Get Date Of Creation
         Date creationDate = new Date();
-        this._creationDate = new Timestamp(creationDate.getTime());
-        this.timeStamp.setText(_creationDate.toString());
+        this.otherCreationDate = new Timestamp(creationDate.getTime());
+        this.timeStamp.setText(otherCreationDate.toString());
 
         //Pass user info here
         // How to pass this information? Ans: User Management
         // Pull User Info Here
-        this.userWhoCreatedReport.setText(UserManagement.getUser().getUserName());
+        this.userWhoCreatedReport.setText(
+                UserManagement.getUser().getUserName());
 
 
         //Show Report Number
         if (WaterReportManagement.getAllReports() == null) {
             this.reportNumber.setText("1");
         } else {
-            this.reportNumber.setText(String.valueOf(WaterReportManagement.getAllReports().size()));
+            this.reportNumber.setText(String.valueOf(
+                    WaterReportManagement.getAllReports().size()));
         }
 
         //Show Location
         //Augment this to pull current location
-        this.locationOfReport.setText("33.7756, 84.3963");
+        this.locationOfReport.setText(new String("33.7756, 84.3963"));
 
         //Initilize ComboBoxes
-        ObservableList<String> consumableConditionStuff = comboBoxConsumableConditionIteams();
+        ObservableList<String> consumableConditionStuff =
+                comboBoxConsumableConditionIteams();
         this.consumableConditionComboBox.setItems(consumableConditionStuff);
         consumableConditionComboBox.setPromptText("Select Consumability");
 
@@ -107,20 +124,21 @@ public class WaterSourceReportController {
         this.sourceTypeComboBox.setItems(sourceTypeStuff);
         sourceTypeComboBox.setPromptText("Select Source");
 
-        ObservableList<String> waterConditionStuff = comboBoxWaterConditionIteams();
+        ObservableList<String> waterConditionStuff =
+                comboBoxWaterConditionIteams();
         this.h20SourceConditionComboBox.setItems(waterConditionStuff);
         h20SourceConditionComboBox.setPromptText("Select Condition");
 
         User currentUser = UserManagement.getUser();
-        if (currentUser instanceof Worker || currentUser instanceof Manager ) {
+        if (currentUser instanceof Worker || currentUser instanceof Manager) {
             virusPPM.setText("00.00");
             contaminantPPM.setText("00.00");
         } else {
             //Users can not submit virus/contaminant information
             virusPPM.setText("00.00");
             contaminantPPM.setText("00.00");
-            VirusLabel.setVisible(false);
-            ContaminantLabel.setVisible(false);
+            newVirusLabel.setVisible(false);
+            newContaminantLabel.setVisible(false);
             virusPPM.setVisible(false);
             contaminantPPM.setVisible(false);
         }
@@ -130,14 +148,15 @@ public class WaterSourceReportController {
      * @return _comboBox as an obseravable list
      */
     private static ObservableList<String> comboBoxWaterConditionIteams() {
-        WaterCondition[] tempStrings= WaterCondition.values();
+        WaterCondition[] tempStrings = WaterCondition.values();
         List<String> tempList = new ArrayList<>();
 
-        for(int i = 0; i < tempStrings.length; i++) {
+        for (int i = 0; i < tempStrings.length; i++) {
             tempList.add(tempStrings[i].toString());
         }
 
-        return FXCollections.observableList(tempList);
+        ObservableList<String> temp = FXCollections.observableList(tempList);
+        return temp;
     }
 
 
@@ -146,14 +165,15 @@ public class WaterSourceReportController {
      * @return _comboBox as an obseravable list
      */
     private static ObservableList<String> comboBoxSourceTypeIteams() {
-        WaterSource[] tempStrings= WaterSource.values();
+        WaterSource[] tempStrings = WaterSource.values();
         List<String> tempList = new ArrayList<>();
 
-        for(int i = 0; i < tempStrings.length; i++) {
+        for (int i = 0; i < tempStrings.length; i++) {
             tempList.add(tempStrings[i].toString());
         }
 
-        return FXCollections.observableList(tempList);
+        ObservableList<String> temp = FXCollections.observableList(tempList);
+        return temp;
     }
 
     /**
@@ -161,14 +181,15 @@ public class WaterSourceReportController {
      * @return _comboBox as an obseravable list
      */
     private static ObservableList<String> comboBoxConsumableConditionIteams() {
-        ConsumableCondition[] tempStrings= ConsumableCondition.values();
+        ConsumableCondition[] tempStrings = ConsumableCondition.values();
         List<String> tempList = new ArrayList<>();
 
-        for(int i = 0; i < tempStrings.length; i++) {
+        for (int i = 0; i < tempStrings.length; i++) {
             tempList.add(tempStrings[i].toString());
         }
 
-        return FXCollections.observableList(tempList);
+        ObservableList<String> temp = FXCollections.observableList(tempList);
+        return temp;
     }
 
     /**
@@ -186,7 +207,8 @@ public class WaterSourceReportController {
     private void handelBackButtonPressed() {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/mainScreen.fxml"));
             Stage primaryStage = (Stage) backBtn.getScene().getWindow();
             primaryStage.setTitle("Water Source Report View");
             primaryStage.setScene(new Scene(root, 600, 400));
@@ -204,7 +226,7 @@ public class WaterSourceReportController {
     @FXML
     private void handelSubmitButtonPressed() {
         //Save the data submitted by user
-        if(inputValid()) {
+        if (inputValid()) {
             String consumableConditon;
             if (consumableConditionComboBox.getValue() != null) {
                 consumableConditon = consumableConditionComboBox
@@ -213,7 +235,8 @@ public class WaterSourceReportController {
                 //Implement a UI error for future iteration
                 consumableConditon = ConsumableCondition.NA.toString();
             }
-            this.newReport = new WaterSourceReport(this._creationDate, UserManagement.getUser());
+            this.newReport = new WaterSourceReport(
+                    this.otherCreationDate, UserManagement.getUser());
             this.newReport.setConsumableCondition(consumableConditon);
 
             String h20SourceCondition;
@@ -238,7 +261,8 @@ public class WaterSourceReportController {
             double virusPPMDouble = Double.parseDouble(virusPPM.getText());
             this.newReport.setVirusPPM(virusPPMDouble);
 
-            double contaminantPPMDouble = Double.parseDouble(contaminantPPM.getText());
+            double contaminantPPMDouble =
+                    Double.parseDouble(contaminantPPM.getText());
             this.newReport.setComtaminantPPM(contaminantPPMDouble);
 
             if (locationOfReport.getText() != null) {
@@ -255,6 +279,7 @@ public class WaterSourceReportController {
         } else {
             //virusPPM.setText("00.00");
             //contaminantPPM.setText("00.00");
+            int p = 0;
         }
     }
 
@@ -263,7 +288,7 @@ public class WaterSourceReportController {
      * @return ture is the input is valid and false if otherwise
      */
     private boolean inputValid() {
-        if (virusPPM.getText() != null && contaminantPPM.getText() != null ) {
+        if (virusPPM.getText() != null && contaminantPPM.getText() != null) {
             String vPPM = virusPPM.getText();
             String cPPM = contaminantPPM.getText();
 

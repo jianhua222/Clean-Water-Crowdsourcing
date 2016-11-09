@@ -10,6 +10,12 @@ import java.io.Serializable;
  * Constructor for worker
  */
 public class Worker extends User implements Serializable {
+    /**
+     *the constructor the a worker
+     * @param username the username
+     * @param password the password
+     * @param type the type
+     */
     public Worker(String username, String password, String type) {
         super(username, password, type);
     }

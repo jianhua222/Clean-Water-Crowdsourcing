@@ -1,8 +1,11 @@
 package sample.model;
 
-import sample.model.User;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * user management class
@@ -33,18 +36,18 @@ public class UserManagement {
             //Change to ADMIN if needed
             newuser = new User(userName, password, type);
         } else {
-            throw new IllegalArgumentException("The given user type was not correct");
+            throw new IllegalArgumentException(
+                    "The given user type was not correct");
         }
         try {
             FileOutputStream fileOut =
-                    new FileOutputStream(newuser.getUserName()+".ser");
+                    new FileOutputStream(newuser.getUserName() + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(newuser);
             //out.writeObject(b);
             out.close();
             fileOut.close();
-            //System.out.printf("Serialized data is saved in /tmp/employee.ser");
-        }catch(IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
         }
         //users.add(newuser);
@@ -60,21 +63,22 @@ public class UserManagement {
     public static boolean verify(String userName, String password) {
         User tem = null;
         try {
-            FileInputStream fileIn = new FileInputStream(userName+".ser");
+            FileInputStream fileIn = new FileInputStream(userName + ".ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            tem = ( User) in.readObject();
+            tem = (User) in.readObject();
             in.close();
             fileIn.close();
-        }catch(IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
             //return;
-        }catch(ClassNotFoundException c) {
+        } catch (ClassNotFoundException c) {
             System.out.println();
             c.printStackTrace();
             //return;
         }
         if (tem != null) {
-            if (tem.getUserName().equals(userName) && tem.getPassword().equals(password)) {
+            if (tem.getUserName().equals(userName)
+                    && tem.getPassword().equals(password)) {
                 currentUser = tem;
                 return true;
             }
@@ -91,18 +95,4 @@ public class UserManagement {
     public static User getUser() {
         return currentUser;
     }
-
-    /**
-     * search for a user
-     *
-     * @return the user
-     */
-   /* public static User getUser(String userName) {
-        for (User user : users) {
-            if (user.getUserName().equals(userName)) {
-                return user;
-            }
-        }
-        return null;
-    }*/
 }

@@ -22,7 +22,8 @@ public class Main extends Application {
     }
 
     /**
-     * Initialize the main screen for the application.  Most other views will be shown in this screen.
+     * Initialize the main screen for the application.
+     * Most other views will be shown in this screen.
      *
      * @param mainScreen  the main Stage window of the application
      */
@@ -56,21 +57,21 @@ public class Main extends Application {
      * @param args the array string passed into this method
      */
     public static void main(String[] args) {
-        /*
-        WaterSourceReportList tem = new WaterSourceReportList();
-        try {
-            FileOutputStream fileOut =
-                    new FileOutputStream("ReportBase.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(tem);
-            //out.writeObject(b);
-            out.close();
-            fileOut.close();
-            //System.out.printf("Serialized data is saved in /tmp/employee.ser");
-        }catch(IOException i) {
-            i.printStackTrace();
-        }
-        */
+        //
+        //WaterSourceReportList tem = new WaterSourceReportList();
+        //try {
+        //FileOutputStream fileOut =
+        //new FileOutputStream("ReportBase.ser");
+        //ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        //out.writeObject(tem);
+        ////out.writeObject(b);
+        //out.close();
+        //fileOut.close();
+        ////System.out.printf("Serialized data is saved in /tmp/employee.ser");
+        //}catch(IOException i) {
+        //i.printStackTrace();
+        //}
+        //
         launch(args);
     }
 
@@ -80,7 +81,8 @@ public class Main extends Application {
      */
     public void showLoginScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/login.fxml"));
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/login.fxml"));
             mainScreen.setTitle("LOGIN");
             mainScreen.setScene(new Scene(root, 600, 400));
             mainScreen.show();
@@ -96,7 +98,8 @@ public class Main extends Application {
      */
     public void showRegisterScreen() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/register.fxml"));
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/register.fxml"));
             mainScreen.setTitle(" Register");
             mainScreen.setScene(new Scene(root, 600, 400));
             mainScreen.show();

@@ -35,22 +35,28 @@ public class WaterSourceReport implements Serializable {
     private int workerFlagCount;
     private boolean banned;
 
-    public WaterSourceReport(Timestamp timestamp, User user, Double _longitutdeCoord,
-                      Double _latitudeCoord) {
+    /**
+     * Constructor for water source report.
+     * @param timestamp the timestamp
+     * @param user the user
+     * @param longitutdeCoord the longitude
+     * @param latitudeCoord the latitude
+     */
+    public WaterSourceReport(Timestamp timestamp,
+                             User user,
+                             Double longitutdeCoord, Double latitudeCoord) {
         //Water Report Data Initilized
         this.sourceTimeStamp = timestamp;
         this.userWhoCreated = user;
-        this.longitutdeCoord = _longitutdeCoord;
-        this.latitudeCoord = _latitudeCoord;
+        this.longitutdeCoord = longitutdeCoord;
+        this.latitudeCoord = latitudeCoord;
 
         //Water Report Security Data Initilized
         this.banned = false;
         this.flagByUser = false;
         this.flagByWorker = false;
-
-
-       // this.activeSourceReports = WaterReportManagement.getAllReports().size()+1;
-        this.reportNumber = WaterReportManagement.reportList.getBackingArray().size();
+        this.reportNumber =
+                WaterReportManagement.getReportList().getBackingArray().size();
     }
 
     /**
@@ -62,180 +68,164 @@ public class WaterSourceReport implements Serializable {
         this(timestamp, user, 0.0, 0.0);
     }
 
-
+    /**
+     * getter for condition
+     * @return the consumable condition
+     */
     public String getConsumableCondition() {
         return consumableCondition;
     }
 
+    /**
+     * getter for water condition
+     * @return the water condition
+     */
     public String getWaterCondition() {
         return waterCondition;
     }
 
+    /**
+     * getter for water source
+     * @return the water source
+     */
     public String getWaterSource() {
         return waterSource;
     }
 
-    public int getTotalFlagCount() {
-        return totalFlagCount;
-    }
-
-    public void setTotalFlagCount(int totalFlagCount) {
-        this.totalFlagCount = totalFlagCount;
-    }
-
-    public int getUserFlagCount() {
-        return userFlagCount;
-    }
-
-    public void setUserFlagCount(int userFlagCount) {
-        this.userFlagCount = userFlagCount;
-    }
-
-    public int getWorkerFlagCount() {
-        return workerFlagCount;
-    }
-
-    public void setWorkerFlagCount(int workerFlagCount) {
-        this.workerFlagCount = workerFlagCount;
-    }
-
+    /**
+     * setter for consumable condition
+     * @param consumableCondition the consumable condition
+     */
     public void setConsumableCondition(String consumableCondition) {
         this.consumableCondition = consumableCondition;
     }
 
+    /**
+     * setter for consumable condition
+     * @param waterCondition the water Condition
+     */
     public void setWaterCondition(String waterCondition) {
         this.waterCondition = waterCondition;
     }
 
+    /**
+     * setter for water source
+     * @param waterSource the water source
+     */
     public void setWaterSource(String waterSource) {
         this.waterSource = waterSource;
     }
 
-    public User getWorkerWhoVerified() {
-        return workerWhoVerified;
-    }
-
-    public void setWorkerWhoVerified(User workerWhoVerified) {
-        this.workerWhoVerified = workerWhoVerified;
-    }
-
-    public boolean isBanned() {
-        return banned;
-    }
-
-    public void setBanned(boolean banned) {
-        this.banned = banned;
-    }
-
+    /**
+     * getter for time stamp
+     * @return the timestamp
+     */
     public Timestamp getSourceTimeStamp() {
         return sourceTimeStamp;
     }
 
+    /**
+     * getter for report number
+     * @return the report number
+     */
     public int getReportNumber() {
         return reportNumber;
     }
 
-    public void setReportNumber(int reportNumber) {
-        this.reportNumber = reportNumber;
-    }
-
-    public static int getSourceReportTotal() {
-        return WaterReportManagement.getAllReports().size();
-    }
-
-
-
-    public static int getActiveSourceReports() {
-        return activeSourceReports;
-    }
-
-    public static void setActiveSourceReports(int activeSourceReports) {
-        WaterSourceReport.activeSourceReports = activeSourceReports;
-    }
-
-    public static int getDeactivatedSourceReports() {
-        return deactivatedSourceReports;
-    }
-
-    public static void setDeactivatedSourceReports(int deactivatedSourceReports) {
-        WaterSourceReport.deactivatedSourceReports = deactivatedSourceReports;
-    }
-
+    /**
+     * getter for latitude
+     * @return the latitude
+     */
     public double getLatitudeCoord() {
         return latitudeCoord;
     }
 
+    /**
+     * setter for condition
+     * @param latitudeCoord the latitude
+     */
     public void setLatitudeCoord(double latitudeCoord) {
         this.latitudeCoord = latitudeCoord;
     }
 
+    /**
+     * getter for longitude
+     * @return the longitude
+     */
     public double getLongitutdeCoord() {
         return longitutdeCoord;
     }
 
+    /**
+     * setter for longitude
+     * @param longitutdeCoord the longitude
+     */
     public void setLongitutdeCoord(double longitutdeCoord) {
         this.longitutdeCoord = longitutdeCoord;
     }
 
+    /**
+     * getter for the virus PPM
+     * @return the VirusPPM
+     */
     public double getVirusPPM() {
         return virusPPM;
     }
 
+    /**
+     * setter for virus PPM
+     * @param  virusPPM virus PPM
+     */
     public void setVirusPPM(double virusPPM) {
         this.virusPPM = virusPPM;
     }
 
+    /**
+     * getter for contaminant PPM
+     * @return the contaminant PPM
+     */
     public double getComtaminantPPM() {
         return comtaminantPPM;
     }
 
+    /**
+     * setter for Contaminant PPM
+     * @param comtaminantPPM the containment PPM
+     */
     public void setComtaminantPPM(double comtaminantPPM) {
         this.comtaminantPPM = comtaminantPPM;
     }
 
-    public boolean isAcceptedByWorkers() {
-        return acceptedByWorkers;
-    }
-
-    public void setAcceptedByWorkers(boolean acceptedByWorkers) {
-        this.acceptedByWorkers = acceptedByWorkers;
-    }
-
-    public boolean isFlagByUser() {
-        return flagByUser;
-    }
-
-    public void setFlagByUser(boolean flagByUser) {
-        this.flagByUser = flagByUser;
-    }
-
-    public boolean isFlagByWorker() {
-        return flagByWorker;
-    }
-
-    public void setFlagByWorker(boolean flagByWorker) {
-        this.flagByWorker = flagByWorker;
-    }
-
+    /**
+     * getter for consumable condition
+     * @return the user who created the report
+     */
     public User getUserWhoCreated() {
         return userWhoCreated;
     }
 
-    public void setUserWhoCreated(User userWhoCreated) {
-        this.userWhoCreated = userWhoCreated;
-    }
-
+    /**
+     * method to return description of the report
+     * @return the description
+     */
     public String getDescription() {
-        return "<p>Report Number: " + reportNumber + "</br>" +
-                "Report Time: " + sourceTimeStamp + "</br>" +
-                "Location: " + latitudeCoord + ", " + longitutdeCoord + "</br>" +
-                "Consumable condition: " + consumableCondition + "</br>" +
-                "Water Condition: " + waterCondition + "</br>" +
-                "Water Source: " + waterSource + "</br>" +
-                "Virus PPM: " + virusPPM + "</br>" +
-                "Contaminant PPM: " + comtaminantPPM + "</p>";
+        String string = "<p>Report Number: " + reportNumber + "</br>"
+                + "Report Time: " + sourceTimeStamp + "</br>"
+                + "Location: " + latitudeCoord
+                + ", " + longitutdeCoord + "</br>"
+                + "Consumable condition: " + consumableCondition + "</br>"
+                + "Water Condition: " + waterCondition + "</br>"
+                + "Water Source: " + waterSource + "</br>"
+                + "Virus PPM: " + virusPPM + "</br>"
+                + "Contaminant PPM: " + comtaminantPPM + "</p>";
+        return string;
     }
 
+    /**
+     * to string method for the water report
+     * @return string representation of reports
+     *
+     */
     public String toString() {
         return "Report number: " + Integer.toString(reportNumber);
     }

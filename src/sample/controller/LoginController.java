@@ -37,7 +37,8 @@ public class LoginController {
         if (UserManagement.verify(first.getText(), second.getText())) {
 
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+                Parent root = FXMLLoader.load(
+                        getClass().getResource("/mainScreen.fxml"));
                 Stage primaryStage = (Stage) closeButton.getScene().getWindow();
                 primaryStage.setTitle("Main Screen");
                 primaryStage.setScene(new Scene(root, 600, 400));
@@ -52,7 +53,8 @@ public class LoginController {
     }
 
     /**
-     * Button handler for closing the login screen when the user presses the button.
+     * Button handler for closing the
+     * login screen when the user presses the button.
      *
      */
     @FXML

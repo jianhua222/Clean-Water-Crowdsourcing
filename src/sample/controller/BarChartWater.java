@@ -54,6 +54,11 @@ public class BarChartWater extends Application {
         stage.show();
     }
 
+    /**
+     * This method is the main method.
+     *
+     *@param args the string array
+     */
     public static void main(String[] args) {
         launch(args);
     }
