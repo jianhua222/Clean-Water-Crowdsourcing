@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import sample.main.Main;
 import sample.model.WaterReportManagement;
@@ -87,16 +89,29 @@ public class AppController {
 
     @FXML
     private void showGraph() {
+        BorderPane bp = new BorderPane();
         List<String> months = new ArrayList<>();
         List<Double> vvalues = new ArrayList<>(); //virus ppm
         List<Double> cvalues = new ArrayList<>(); //containment ppm
+        List<Integer> collisions = new ArrayList<>(); //track number of collision
+        String s;
         Timestamp timestamp;
         for (WaterSourceReport report: WaterReportManagement.getAllReports()) {
-            vvalues.add(report.getVirusPPM());
-            cvalues.add(report.getVirusPPM());
             timestamp = report.getSourceTimeStamp();
-            months.add(getMonth(timestamp.toString()));
-
+            s = getMonth(timestamp.toString());
+            if (months.contains(s)) {
+                int index = months.indexOf(s);
+                double virus = report.getVirusPPM();
+                double comtam = report.getComtaminantPPM();
+                vvalues.add(index, vvalues.get(index) + virus);
+                cvalues.add(index, cvalues.get(index) + comtam);
+                collisions.add(index, collisions.get(index) + 1);
+            } else {
+                months.add(s);
+                vvalues.add(report.getVirusPPM());
+                cvalues.add(report.getComtaminantPPM());
+                collisions.add(1);
+            }
         }
         //ObservableList<String> obslist = FXCollections.observableList(months);
         CategoryAxis month = new CategoryAxis();
@@ -104,14 +119,38 @@ public class AppController {
         BarChart<String, Number> graph = new BarChart<String,Number>(month, ppm);
         XYChart.Series series1 = new XYChart.Series<>();
         XYChart.Series series2 = new XYChart.Series<>();
-        series1.getData().add(new XYChart.Data(months.get(0),vvalues.get(0)));
-        series2.getData().add(new XYChart.Data(months.get(0),cvalues.get(0)));
+        for(int j = 0; j < collisions.size(); j++) {
+            int denom = collisions.get(j);
+            vvalues.add(j, vvalues.get(j) / denom);
+            cvalues.add(j, cvalues.get(j) / denom);
+        }
+        for(int i = 0; i < months.size(); i++) {
+            series1.getData().addAll(new XYChart.Data(months.get(i),vvalues.get(i)));
+            series2.getData().addAll(new XYChart.Data(months.get(0),cvalues.get(i)));
+        }
         //series1.getData().add(new XYChart.Data(months.get(1),ppmvalues.get(1)));
         graph.getData().addAll(series1, series2);
+        // Back Button
+        bp.setCenter(graph);
+        Button backButton = new Button("Back");
+        backButton.setOnAction(e -> {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+                Stage primaryStage = (Stage) backButton.getScene().getWindow();
+                primaryStage.setTitle("Main Screen");
+                primaryStage.setScene(new Scene(root, 600, 400));
+                primaryStage.show();
+
+            } catch (IOException f) {
+                f.printStackTrace();
+                System.out.println("I/O ERROR");
+            }
+        });
+        bp.setTop(backButton);
         try{
             Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
             primaryStage.setTitle("Water Source Report");
-            primaryStage.setScene(new Scene(graph, 600, 400));
+            primaryStage.setScene(new Scene(bp, 600, 400));
             primaryStage.show();
 
         } catch (Exception e) {
@@ -126,6 +165,8 @@ public class AppController {
             case "11":
                 month = "November";
                 break;
+            case "12":
+                month = "December";
             default:
                 month = "November";
                 System.out.println("Fell to default");
