@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Timestamp;
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -99,6 +102,100 @@ public class AppController {
 
     @FXML
     private void showGraph() {
+        AnchorPane ap = new AnchorPane();
+        ListView list = new ListView();
+        if (WaterReportManagement.getAllReports() == null) {
+            System.out.println("There are currently no reports to view");
+        } else {
+            ObservableList<String> oList = FXCollections.observableArrayList();
+            ArrayList<Double> lats = new ArrayList<Double>();
+            ArrayList<Double[]> virusvalues = new ArrayList<Double[]>();
+            ArrayList<String[]> months = new ArrayList<String[]>(); //String array holding months for each location
+            ObservableList<String> locations = FXCollections.observableArrayList();
+            for (WaterSourceReport wr : WaterReportManagement.getAllReports()) {
+                if (lats.contains(wr.getLatitudeCoord())) {
+                    // duplicate locations
+
+                } else {
+                    locations.add("Location: " + String.valueOf(wr.getLatitudeCoord() + "," + String.valueOf(wr.getLongitutdeCoord())));
+                    lats.add(wr.getLatitudeCoord());
+
+                }
+                oList.add(wr.toString());
+            }
+            list.setItems(locations);
+            Button backButton = new Button("Back");
+            AnchorPane.setRightAnchor(backButton, 65.0);
+            ap.getChildren().addAll(list, backButton);
+            try{
+                Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
+                primaryStage.setTitle("Select Location to see a graph of PPM Values");
+                primaryStage.setScene(new Scene(ap, 600, 400));
+                primaryStage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("I/O ERROR");
+            }
+            backButton.setOnAction(e -> {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("/mainScreen.fxml"));
+                    Stage primaryStage = (Stage) backButton.getScene().getWindow();
+                    primaryStage.setTitle("Main Screen");
+                    primaryStage.setScene(new Scene(root, 600, 400));
+                    primaryStage.show();
+
+                } catch (IOException f) {
+                    f.printStackTrace();
+                    System.out.println("I/O ERROR");
+                }
+            });
+            /*
+            list.setItems(oList);
+            list.setOnMouseClicked(event -> {
+                BorderPane bp = new BorderPane();
+                Button backButton = new Button("Back");
+                bp.setTop(backButton);
+                String reNum = (String) list.getSelectionModel().getSelectedItem();
+                int some = (int) reNum.charAt(reNum.length() - 1);
+                WaterSourceReport myreport = WaterReportManagement.getReport(some);
+                //graph code
+                List<String> months = new ArrayList<>();
+                List<Double> vvalues = new ArrayList<>(); //virus ppm
+                List<Double> cvalues = new ArrayList<>(); //containment ppm
+                List<Integer> collisions = new ArrayList<>(); //track number of collision
+                String s;
+                Timestamp timestamp;
+                timestamp = myreport.getSourceTimeStamp();
+                s = getMonth(timestamp.toString());
+                months.add(s);
+                vvalues.add(myreport.getVirusPPM());
+                cvalues.add(myreport.getComtaminantPPM());
+                collisions.add(1);
+                CategoryAxis month = new CategoryAxis();
+                NumberAxis ppm = new NumberAxis();
+                BarChart<String, Number> graph = new BarChart<String,Number>(month, ppm);
+                XYChart.Series series1 = new XYChart.Series<>();
+                XYChart.Series series2 = new XYChart.Series<>();
+                series1.getData().addAll(new XYChart.Data(months.get(0),vvalues.get(0)));
+                series2.getData().addAll(new XYChart.Data(months.get(0),cvalues.get(0)));
+                graph.getData().addAll(series1, series2);
+                bp.setCenter(graph);
+                try{
+                    Stage primaryStage = (Stage) ap.getScene().getWindow();
+                    primaryStage.setTitle("Water Source Report");
+                    primaryStage.setScene(new Scene(bp, 600, 400));
+                    primaryStage.show();
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("I/O ERROR");
+                }
+            });
+        }
+        */
+        /*
         BorderPane bp = new BorderPane();
         List<String> months = new ArrayList<>();
         List<Double> vvalues = new ArrayList<>(); //virus ppm
@@ -166,6 +263,8 @@ public class AppController {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("I/O ERROR");
+        }
+        */
         }
     }
     private String getMonth(String s) {
