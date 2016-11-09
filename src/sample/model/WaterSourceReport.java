@@ -232,7 +232,7 @@ public class WaterSourceReport implements Serializable {
     }
 
     public String getDescription() {
-        String string = "<p>Report Number: " + reportNumber + "</br>" +
+        return "<p>Report Number: " + reportNumber + "</br>" +
                 "Report Time: " + sourceTimeStamp + "</br>" +
                 "Location: " + latitudeCoord + ", " + longitutdeCoord + "</br>" +
                 "Consumable condition: " + consumableCondition + "</br>" +
@@ -240,8 +240,6 @@ public class WaterSourceReport implements Serializable {
                 "Water Source: " + waterSource + "</br>" +
                 "Virus PPM: " + virusPPM + "</br>" +
                 "Contaminant PPM: " + comtaminantPPM + "</p>";
-
-        return string;
     }
 
     public String toString() {

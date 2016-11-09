@@ -14,9 +14,6 @@ import sample.model.UserManagement;
  */
 public class RegisterController {
 
-    /** reference back to mainApplication if needed */
-    private Main mainApplication;
-
     @FXML
     private javafx.scene.control.Button closeButton;
 
@@ -27,14 +24,6 @@ public class RegisterController {
     private PasswordField passfx;
 
     private String usertype;
-
-    /**
-     * allow for calling back to the main application code if necessary
-     * @param main   the reference to the FX Application instance
-     * */
-    public void setMainApp(Main main) {
-        mainApplication = main;
-    }
 
     /**
      * Close menu item event handler

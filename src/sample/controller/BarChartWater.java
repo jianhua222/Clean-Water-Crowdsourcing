@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 /**
  * Created by Ashwin on 11/4/16.
  */
+@SuppressWarnings("unchecked")
 public class BarChartWater extends Application {
 
     @Override public void start(Stage stage) {

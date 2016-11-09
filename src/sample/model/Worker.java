@@ -7,7 +7,7 @@ package sample.model;
 import java.io.Serializable;
 
 /**
- * Constructor for woker
+ * Constructor for worker
  */
 public class Worker extends User implements Serializable {
     public Worker(String username, String password, String type) {

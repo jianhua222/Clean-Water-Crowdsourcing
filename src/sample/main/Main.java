@@ -18,9 +18,6 @@ public class Main extends Application {
     /** the main container for the application window */
     private Stage mainScreen;
 
-    /** the main layout for the main window */
-    private Pane rootLayout;
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         mainScreen = primaryStage;
@@ -37,7 +34,8 @@ public class Main extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/welcome.fxml"));
-            rootLayout = loader.load();
+            /* the main layout for the main window */
+            Pane rootLayout = loader.load();
 
             // Give the controller access to the main app.
             welcomeController controller = loader.getController();

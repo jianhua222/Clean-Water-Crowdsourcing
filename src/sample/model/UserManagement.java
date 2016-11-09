@@ -74,11 +74,12 @@ public class UserManagement {
             c.printStackTrace();
             //return;
         }
-
+        if (tem != null) {
             if (tem.getUserName().equals(userName) && tem.getPassword().equals(password)) {
                 currentUser = tem;
                 return true;
             }
+        }
 
         return false;
     }
