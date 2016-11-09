@@ -1,36 +1,63 @@
 package sample.model;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 /**
  * Created by Allen on 11/7/2016.
+ * stores reports
  */
 public class WaterSourceReportList implements Serializable {
-    private static ArrayList<WaterSourceReport> backingArray = new ArrayList<>();
-    public WaterSourceReportList(){
+    private ArrayList<WaterSourceReport> backingArray = new ArrayList<>();
+
+    /**
+     * /**
+     * constructor
+     */
+    public WaterSourceReportList() {
         backingArray = new ArrayList<>();
     }
-    public static void addReport(WaterSourceReport input){
-        if(input == null){
+    /**
+     * add report
+     * @param input input report
+     */
+    public void addReport(WaterSourceReport input) {
+        if (input == null) {
             System.out.print("input null");
         }
         backingArray.add(input);
     }
-    public static ArrayList<WaterSourceReport> getBackingArray(){
+    /**
+     * return backingArray
+     * @return backingArray
+     */
+    public ArrayList<WaterSourceReport> getBackingArray() {
         return backingArray;
     }
-    public static WaterSourceReport getReport(int reportNumer){
+    /**
+     * getReport
+     * @param reportNumer wanted report number
+     */
+    public WaterSourceReport getReport(int reportNumer) {
         return backingArray.get(reportNumer);
     }
-    public String toString(){
+    /**
+     * toString
+     * @return String
+     */
+    public String toString() {
         String str = "";
-        for(WaterSourceReport x : backingArray){
-            str = str+ "/n" + x.toString();
+        for (WaterSourceReport x : backingArray) {
+            str = str + "\n" + x.toString();
         }
         return str;
     }
+    /**
+     * serialize object
+     */
     public void save() {
         try {
             FileOutputStream fileOut =
@@ -41,7 +68,7 @@ public class WaterSourceReportList implements Serializable {
             out.close();
             fileOut.close();
             //System.out.printf("Serialized data is saved in /tmp/employee.ser");
-        }catch(IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
         }
 

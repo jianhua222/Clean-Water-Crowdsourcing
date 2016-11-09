@@ -12,35 +12,18 @@ public class WaterReportManagement {
     public static WaterSourceReportList reportList = initialize();
     //private static ArrayList<WaterSourceReport> totalReports = WaterSourceReportList.getBackingArray();
 
-
     /**
-     * the constructor for Creating an instance of the water source report management
-     * @param waterSourceReport the first report to be placed in the list of reports
-     */
-    // WaterReportManagement(WaterSourceReport waterSourceReport) {
-    //   this.currentReport = waterSourceReport; //References to the same object
-    /// this.totalReports.add(currentReport);
-    //}
-
-
-    /**
-     * This method returns a water source report if there exists a report with a matching
-     * report number in the array list of totalReports.
-     *
-     * @param reportNumber The report number of a water source report
-     * @return Water Source Report with the matching report number else returns null
+     * get reportList from local
+     * @return locally stored reportList
      */
     public static WaterSourceReportList initialize(){
         WaterSourceReportList temp = null;
         try {
-            FileInputStream fileIn = new FileInputStream("ReportBase.ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            temp = (WaterSourceReportList) in.readObject();
-            in.close();
-            fileIn.close();
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("ReportBase.ser"));
+             temp = (WaterSourceReportList) in.readObject();
         } catch (IOException i) {
             i.printStackTrace();
-            //return;
+
         } catch (ClassNotFoundException c) {
             System.out.println();
             c.printStackTrace();
@@ -48,6 +31,12 @@ public class WaterReportManagement {
         }
         return temp;
     }
+
+    /**
+     * This method returns a water source report if there exists a report with a matching
+     * report number in the array list of totalReports.
+     * @return Water Source Report with the matching report number else returns null
+     */
     public static WaterSourceReport getReport(int reportNumber) {
         return reportList.getBackingArray().get(reportNumber-48);
     }
@@ -98,5 +87,24 @@ public class WaterReportManagement {
     public static void addReport(WaterSourceReport givenReport) {
         reportList.addReport(givenReport);
         reportList.save();
+        WaterSourceReportList tem = null;
+        try {
+            FileInputStream fileIn = new FileInputStream("ReportBase.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            tem = (WaterSourceReportList) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+
+            //System.out.printf("Serialized data is saved in /tmp/employee.ser");
+
+
+        } catch (ClassNotFoundException c) {
+            System.out.println();
+            c.printStackTrace();
+            //return;
+        }
+        System.out.println(tem);
     }
 }
