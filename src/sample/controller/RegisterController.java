@@ -26,15 +26,6 @@ public class RegisterController {
     private String usertype;
 
     /**
-     * allow for calling back to the main application code if necessary
-     * @param main   the reference to the FX Application instance
-     * */
-    public void setMainApp(Main main) {
-        /* reference back to mainApplication if needed */
-        main.toString();
-    }
-
-    /**
      * Close menu item event handler
      */
     @FXML

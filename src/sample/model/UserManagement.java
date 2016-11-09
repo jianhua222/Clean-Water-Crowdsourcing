@@ -29,7 +29,7 @@ public class UserManagement {
         } else if (type.equals("Worker")) {
             newuser = new Worker(userName, password, type);
         } else if (type.equals("Manager")) {
-            newuser = new User(userName, password, type);
+            newuser = new Manager(userName, password, type);
         } else if (type.equals("Admin")) {
             newuser = new User(userName, password, type);
         } else {
@@ -73,11 +73,12 @@ public class UserManagement {
             c.printStackTrace();
             //return;
         }
-
+        if (tem != null) {
             if (tem.getUserName().equals(userName) && tem.getPassword().equals(password)) {
                 currentUser = tem;
                 return true;
             }
+        }
 
         return false;
     }
