@@ -8,9 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import sample.model.*;
-import sample.model.UserManagement;
-import sample.model.WaterReportManagement;
-import sample.model.WaterSourceReport;
 
 import java.io.IOException;
 

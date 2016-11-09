@@ -6,20 +6,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.*;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import sample.main.Main;
 import sample.model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.sql.Timestamp;
-import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -46,6 +46,7 @@ public class AppController {
             Main mainclass = new Main();
             mainclass.start(primaryStage);
         } catch (Exception e) {
+            System.out.println("mainStage error");
         }
     }
 
@@ -71,7 +72,7 @@ public class AppController {
             primaryStage.show();
 
         } catch (IOException e) {
-            //System.out.println("I/O ERROR");
+            System.out.println("userInfo Error");
         }
     }
 

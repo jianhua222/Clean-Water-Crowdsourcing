@@ -3,7 +3,6 @@ package sample.model;
 import sample.model.User;
 
 import java.io.*;
-import java.util.ArrayList;
 
 /**
  * user management class
