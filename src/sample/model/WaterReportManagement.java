@@ -14,8 +14,7 @@ public class WaterReportManagement {
     private static WaterSourceReportList reportList = initialize();
 
     /**
-     * get reportList from local
-     * @return locally stored reportList
+     * initilaz
      */
     private static WaterSourceReportList initialize() {
         WaterSourceReportList temp = null;
