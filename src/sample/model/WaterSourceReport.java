@@ -9,31 +9,21 @@ import java.sql.Timestamp;
 public class WaterSourceReport implements Serializable {
     //Security Log Variables
     //private WaterSourceActivity activity;
-    private Timestamp sourceTimeStamp;
+    private final Timestamp sourceTimeStamp;
     private int reportNumber;
 
-    private static int activeSourceReports;
-    private static int deactivatedSourceReports;
+
+
 
     // Report Variables
     private double latitudeCoord;
     private double longitutdeCoord;
     private double virusPPM;
     private double comtaminantPPM;
-    private User userWhoCreated;
+    private final User userWhoCreated;
     private String consumableCondition;
     private String waterCondition;
     private String waterSource;
-
-    // Safty Variables
-    private User workerWhoVerified;
-    private boolean acceptedByWorkers;
-    private boolean flagByUser;
-    private boolean flagByWorker;
-    private int totalFlagCount;
-    private int userFlagCount;
-    private int workerFlagCount;
-    private boolean banned;
 
     /**
      * Constructor for water source report.
@@ -42,7 +32,7 @@ public class WaterSourceReport implements Serializable {
      * @param longitutdeCoord the longitude
      * @param latitudeCoord the latitude
      */
-    public WaterSourceReport(Timestamp timestamp,
+    private WaterSourceReport(Timestamp timestamp,
                              User user,
                              Double longitutdeCoord, Double latitudeCoord) {
         //Water Report Data Initilized
@@ -52,9 +42,6 @@ public class WaterSourceReport implements Serializable {
         this.latitudeCoord = latitudeCoord;
 
         //Water Report Security Data Initilized
-        this.banned = false;
-        this.flagByUser = false;
-        this.flagByWorker = false;
         this.reportNumber =
                 WaterReportManagement.getReportList().getBackingArray().size();
     }
@@ -209,7 +196,8 @@ public class WaterSourceReport implements Serializable {
      * @return the description
      */
     public String getDescription() {
-        String string = "<p>Report Number: " + reportNumber + "</br>"
+
+        return "<p>Report Number: " + reportNumber + "</br>"
                 + "Report Time: " + sourceTimeStamp + "</br>"
                 + "Location: " + latitudeCoord
                 + ", " + longitutdeCoord + "</br>"
@@ -218,7 +206,6 @@ public class WaterSourceReport implements Serializable {
                 + "Water Source: " + waterSource + "</br>"
                 + "Virus PPM: " + virusPPM + "</br>"
                 + "Contaminant PPM: " + comtaminantPPM + "</p>";
-        return string;
     }
 
     /**

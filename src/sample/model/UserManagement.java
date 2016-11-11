@@ -25,7 +25,7 @@ public class UserManagement {
      * @param type     input type
      */
     public static void register(String userName, String password, String type) {
-        User newuser = new User();
+        User newuser;
         if (type.equals("User")) {
             newuser = new User(userName, password, type);
         } else if (type.equals("Worker")) {

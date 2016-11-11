@@ -17,7 +17,7 @@ public class WaterReportManagement {
      * get reportList from local
      * @return locally stored reportList
      */
-    public static WaterSourceReportList initialize() {
+    private static WaterSourceReportList initialize() {
         WaterSourceReportList temp = null;
         try {
             ObjectInputStream in = new ObjectInputStream(
@@ -58,15 +58,7 @@ public class WaterReportManagement {
         return reportList.getBackingArray();
     }
 
-    /**
-     * Returns true if totalReports list is empty and false otherwise
-     *
-     * @return if the backing array is empty or not
-     */
-    public static boolean isEmpty() {
 
-        return reportList.getBackingArray().size() == 0;
-    }
 
     /**
      * this method sets the current report

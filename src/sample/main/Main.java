@@ -48,6 +48,7 @@ public class Main extends Application {
             mainScreen.show();
 
         } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -88,7 +89,7 @@ public class Main extends Application {
             mainScreen.show();
 
         } catch (IOException e) {
-
+            System.out.println(e.getMessage());
         }
     }
 
@@ -105,7 +106,7 @@ public class Main extends Application {
             mainScreen.show();
 
         } catch (IOException e) {
-
+            System.out.println(e.getMessage());
         }
     }
 }

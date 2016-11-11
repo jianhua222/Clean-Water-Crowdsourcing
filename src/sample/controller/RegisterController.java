@@ -25,13 +25,6 @@ public class RegisterController {
 
     private String usertype;
 
-    /**
-     * Close menu item event handler
-     */
-    @FXML
-    private void handleCloseMenu() {
-        System.exit(0);
-    }
 
     /**
      * Handles closing the stage of the register screen.
@@ -44,7 +37,7 @@ public class RegisterController {
             Main mainclass = new Main();
             mainclass.start(primaryStage);
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
     }
 

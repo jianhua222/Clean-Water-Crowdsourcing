@@ -64,6 +64,7 @@ public class LoginController {
             Main mainclass = new Main();
             mainclass.start(primaryStage);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

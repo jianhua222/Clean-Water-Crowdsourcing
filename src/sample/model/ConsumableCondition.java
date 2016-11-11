@@ -11,7 +11,7 @@ public enum ConsumableCondition implements Serializable {
     UNSAFE("Unsafe"),
     NA("N/A");
 
-    private String consumableCondition;
+    private final String consumableCondition;
 
     /**
      * This constructor sets the consumablecondition to input

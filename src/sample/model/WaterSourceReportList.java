@@ -37,14 +37,7 @@ public class WaterSourceReportList implements Serializable {
     public ArrayList<WaterSourceReport> getBackingArray() {
         return backingArray;
     }
-    /**
-     * getReport
-     * @param reportNumer wanted report number
-     * @return the water source report
-     */
-    public WaterSourceReport getReport(int reportNumer) {
-        return backingArray.get(reportNumer);
-    }
+
     /**
      * toString
      * @return String

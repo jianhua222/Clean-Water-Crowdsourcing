@@ -20,13 +20,6 @@ public class welcomeController {
         mainApplication = main;
     }
 
-    /**
-     * Close menu item event handler
-     */
-    @FXML
-    private void handleCloseMenu() {
-        System.exit(0);
-    }
 
     /**
      * shows the login screen when the user pressed the button.

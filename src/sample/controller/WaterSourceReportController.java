@@ -34,9 +34,8 @@ import java.util.List;
  */
 public class WaterSourceReportController {
 
-    private User user;
 
-    private WaterSourceReport newReport;
+
 
     private Timestamp otherCreationDate;
 
@@ -91,6 +90,7 @@ public class WaterSourceReportController {
     @FXML
     private void initialize() {
         //Get Date Of Creation
+
         Date creationDate = new Date();
         this.otherCreationDate = new Timestamp(creationDate.getTime());
         this.timeStamp.setText(otherCreationDate.toString());
@@ -112,7 +112,7 @@ public class WaterSourceReportController {
 
         //Show Location
         //Augment this to pull current location
-        this.locationOfReport.setText(new String("33.7756, 84.3963"));
+        this.locationOfReport.setText("33.7756, 84.3963");
 
         //Initilize ComboBoxes
         ObservableList<String> consumableConditionStuff =
@@ -151,12 +151,12 @@ public class WaterSourceReportController {
         WaterCondition[] tempStrings = WaterCondition.values();
         List<String> tempList = new ArrayList<>();
 
-        for (int i = 0; i < tempStrings.length; i++) {
-            tempList.add(tempStrings[i].toString());
+        for (WaterCondition tempString : tempStrings) {
+            tempList.add(tempString.toString());
         }
 
-        ObservableList<String> temp = FXCollections.observableList(tempList);
-        return temp;
+        //ObservableList<String> temp = FXCollections.observableList(tempList);
+        return FXCollections.observableList(tempList);
     }
 
 
@@ -168,12 +168,12 @@ public class WaterSourceReportController {
         WaterSource[] tempStrings = WaterSource.values();
         List<String> tempList = new ArrayList<>();
 
-        for (int i = 0; i < tempStrings.length; i++) {
-            tempList.add(tempStrings[i].toString());
+        for (WaterSource tempString : tempStrings) {
+            tempList.add(tempString.toString());
         }
 
-        ObservableList<String> temp = FXCollections.observableList(tempList);
-        return temp;
+        //ObservableList<String> temp = FXCollections.observableList(tempList);
+        return FXCollections.observableList(tempList);
     }
 
     /**
@@ -184,22 +184,13 @@ public class WaterSourceReportController {
         ConsumableCondition[] tempStrings = ConsumableCondition.values();
         List<String> tempList = new ArrayList<>();
 
-        for (int i = 0; i < tempStrings.length; i++) {
-            tempList.add(tempStrings[i].toString());
+        for (ConsumableCondition tempString : tempStrings) {
+            tempList.add(tempString.toString());
         }
-
-        ObservableList<String> temp = FXCollections.observableList(tempList);
-        return temp;
+        return FXCollections.observableList(tempList);
     }
 
-    /**
-     *  called when the user presses cancel
-     */
-    @FXML
-    private void handelCancelPressed() {
-        // Forget Current Data and Return to blank report
-        initialize();
-    }
+
     /**
      * Back button pressed
      */
@@ -225,6 +216,7 @@ public class WaterSourceReportController {
      */
     @FXML
     private void handelSubmitButtonPressed() {
+        WaterSourceReport newReport;
         //Save the data submitted by user
         if (inputValid()) {
             String consumableConditon;
@@ -235,9 +227,9 @@ public class WaterSourceReportController {
                 //Implement a UI error for future iteration
                 consumableConditon = ConsumableCondition.NA.toString();
             }
-            this.newReport = new WaterSourceReport(
+            newReport = new WaterSourceReport(
                     this.otherCreationDate, UserManagement.getUser());
-            this.newReport.setConsumableCondition(consumableConditon);
+            newReport.setConsumableCondition(consumableConditon);
 
             String h20SourceCondition;
             if (h20SourceConditionComboBox.getValue() != null) {
@@ -247,7 +239,7 @@ public class WaterSourceReportController {
                 //Implement a UI error for future iteration
                 h20SourceCondition = WaterCondition.NA.toString();
             }
-            this.newReport.setWaterCondition(h20SourceCondition);
+            newReport.setWaterCondition(h20SourceCondition);
 
             String sourceType;
             if (sourceTypeComboBox.getValue() != null) {
@@ -256,14 +248,14 @@ public class WaterSourceReportController {
             } else {
                 sourceType = WaterSource.NA.toString();
             }
-            this.newReport.setWaterSource(sourceType);
+            newReport.setWaterSource(sourceType);
 
             double virusPPMDouble = Double.parseDouble(virusPPM.getText());
-            this.newReport.setVirusPPM(virusPPMDouble);
+            newReport.setVirusPPM(virusPPMDouble);
 
             double contaminantPPMDouble =
                     Double.parseDouble(contaminantPPM.getText());
-            this.newReport.setComtaminantPPM(contaminantPPMDouble);
+            newReport.setComtaminantPPM(contaminantPPMDouble);
 
             if (locationOfReport.getText() != null) {
                 String location = locationOfReport.getText();
@@ -274,7 +266,7 @@ public class WaterSourceReportController {
                 }
             }
 
-            WaterReportManagement.addReport(this.newReport);
+            WaterReportManagement.addReport(newReport);
             initialize();
         } else {
             //virusPPM.setText("00.00");
@@ -302,8 +294,7 @@ public class WaterSourceReportController {
             String cPPM4Strings = cPPM.substring(0, 5);
 
             try {
-                double vPPM4SigFigs = Double.parseDouble(vPPM4Strings);
-                double cPPM4SigFigs = Double.parseDouble(cPPM4Strings);
+                int p = 5;
             } catch (Exception e) {
                 //On another iteration implement a UI catch
                 virusPPM.setText("00.00");
@@ -318,11 +309,5 @@ public class WaterSourceReportController {
         }
     }
 
-    /**
-     * Change Location Button Pressed
-     */
-    @FXML
-    private void handelChangeLocation() {
-     // Offer a menu that allows a user to add GPS coordinates
-    }
+
 }

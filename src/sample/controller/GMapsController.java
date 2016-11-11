@@ -143,10 +143,7 @@ public class GMapsController implements MapComponentInitializedListener {
      *
      */
     private void addMarkers() {
-        for (WaterSourceReport report : waterReports) {
-            addMarker(report);
-        }
-
+        waterReports.forEach(this::addMarker);
     }
 
     /**

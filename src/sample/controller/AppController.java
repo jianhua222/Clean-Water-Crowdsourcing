@@ -127,12 +127,12 @@ public class AppController {
         if (WaterReportManagement.getAllReports() == null) {
             System.out.println("There are currently no reports to view");
         } else {
-            ArrayList<Double> lats = new ArrayList<Double>();
+            ArrayList<Double> lats = new ArrayList<>();
             ArrayList<ArrayList<Double>> virusvalues =
-                    new ArrayList<ArrayList<Double>>();
+                    new ArrayList<>();
             //Array List within Array List to hold months within each location
             ArrayList<ArrayList<String>> months =
-                    new ArrayList<ArrayList<String>>();
+                    new ArrayList<>();
             ObservableList<String> locations =
                     FXCollections.observableArrayList();
             for (WaterSourceReport wr : WaterReportManagement.getAllReports()) {
@@ -225,7 +225,7 @@ public class AppController {
                 CategoryAxis month = new CategoryAxis();
                 NumberAxis ppm = new NumberAxis();
                 BarChart<String, Number> graph =
-                        new BarChart<String, Number>(month, ppm);
+                        new BarChart<>(month, ppm);
                 XYChart.Series series1 = new XYChart.Series<>();
                 //XYChart.Series series2 = new XYChart.Series<>();
                 for (int i = 0; i < months.get(locindex).size(); i++) {

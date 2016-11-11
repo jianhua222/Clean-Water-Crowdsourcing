@@ -19,7 +19,7 @@ public class BarChartWater extends Application {
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         final BarChart<String, Number> bc =
-                new BarChart<String, Number>(xAxis, yAxis);
+                new BarChart<>(xAxis, yAxis);
         bc.setTitle("Country Summary");
         xAxis.setLabel("Country");
         yAxis.setLabel("Value");

@@ -12,7 +12,7 @@ public enum WaterCondition implements Serializable {
     POTABLE("Potable"),
     NA("N/A");
 
-    private String waterCondition;
+    private final String waterCondition;
 
     /**
      * This constructor set the water condition

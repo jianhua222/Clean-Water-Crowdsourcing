@@ -61,23 +61,13 @@ public class WaterSourceReportViewOnlyController {
     @FXML
     private Label locationLabel;
 
-
-    private WaterSourceReport pulledReport;
-
-    /**
-     *
-     * @param givenReport The desired report to be read
-     */
-    public void setPulledReport(WaterSourceReport givenReport) {
-        this.pulledReport = givenReport;
-    }
-
     /**
      *
      * initializes the water report for viewing
      */
     @FXML
     private void initialize() {
+        WaterSourceReport pulledReport;
         pulledReport = WaterReportManagement.getCurrentReport();
         //timeStamp.setText(pulledReport.getSourceTimeStamp().toString());
         userWhoCreatedReport.setText(

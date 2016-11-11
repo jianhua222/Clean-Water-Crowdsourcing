@@ -23,8 +23,7 @@ public class WaterSourceListController {
     @FXML
     private Button dropMapOfWaterReportsBtn;
 
-    @FXML
-    private Button waterReportVsTimeShowGraphBtn;
+
 
     @FXML
     private Button addWaterSourceReportBtn;
@@ -83,10 +82,9 @@ public class WaterSourceListController {
         try {
             Parent root = FXMLLoader.load(
                     getClass().getResource("/WaterSourceList.fxml"));
-            Stage primaryStage = stage;
-            primaryStage.setTitle("Water Source List");
-            primaryStage.setScene(new Scene(root, 600, 400));
-            primaryStage.show();
+            stage.setTitle("Water Source List");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("WaterSourceList.fxml I/O ERROR");

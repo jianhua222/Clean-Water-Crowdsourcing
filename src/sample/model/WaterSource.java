@@ -15,7 +15,7 @@ public enum WaterSource implements Serializable {
     NA("N/A");
 
 
-    private String waterSource;
+    private final String waterSource;
 
     /**
      * This constructor set the waterSource string

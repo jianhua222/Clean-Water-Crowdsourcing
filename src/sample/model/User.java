@@ -34,7 +34,7 @@ public class User implements Serializable {
         this.type = type;
     }
 
-    /**
+    /*
      * Constructor
      *
      * @param userName input user name
@@ -135,14 +135,7 @@ public class User implements Serializable {
         this.title = title;
     }
 
-    /**
-     * type setter
-     *
-     * @param type value
-     */
-    public void setType(String type) {
-        this.type = type;
-    }
+
 
     /**
      * userName  setter
