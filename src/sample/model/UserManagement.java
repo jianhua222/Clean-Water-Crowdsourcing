@@ -88,6 +88,17 @@ public class UserManagement {
     }
 
     /**
+     * return the user that was logged out
+     *
+     * @return the user that was logged out
+     */
+    public static User logoutUser() {
+        User temp = currentUser;
+        currentUser = null;
+        return temp;
+    }
+
+    /**
      * return the current user
      *
      * @return the current user

@@ -46,6 +46,7 @@ public class AppController {
     private void something() {
         try {
             Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
+            UserManagement.logoutUser();
             Main mainclass = new Main();
             mainclass.start(primaryStage);
         } catch (Exception e) {

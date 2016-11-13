@@ -18,6 +18,8 @@ dependencies {
     //compile 'com.lynden/GMapsFX'
     // https://mvnrepository.com/artifact/com.lynden/GMapsFX
     compile group: 'com.lynden', name: 'GMapsFX', version: '2.0.9'
+    compile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
 
 }
 repositories{
