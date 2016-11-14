@@ -45,7 +45,10 @@ public class WaterSourceReport implements Serializable {
         this.reportNumber =
                 WaterReportManagement.getReportList().getBackingArray().size();
     }
-
+    public WaterSourceReport(){
+        sourceTimeStamp = null;
+        userWhoCreated = null;
+    }
     /**
      * The water Source Report Constructor
      * @param timestamp time time stamp when the water source report is created

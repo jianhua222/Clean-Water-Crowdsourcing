@@ -26,9 +26,10 @@ public class WaterSourceReportList implements Serializable {
      */
     public void addReport(WaterSourceReport input) {
         if (input == null) {
-            System.out.print("input null");
+            throw new IllegalArgumentException("input is null");
         }
-        backingArray.add(input);
+        else{
+        backingArray.add(input);}
     }
     /**
      * return backingArray
