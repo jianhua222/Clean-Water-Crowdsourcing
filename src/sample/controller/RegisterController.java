@@ -23,7 +23,7 @@ public class RegisterController {
     @FXML
     private PasswordField passfx;
 
-    private String usertype;
+    private String userType;
 
 
     /**
@@ -34,8 +34,8 @@ public class RegisterController {
     private void cancelPressed() {
         try {
             Stage primaryStage = (Stage) closeButton.getScene().getWindow();
-            Main mainclass = new Main();
-            mainclass.start(primaryStage);
+            Main mainClass = new Main();
+            mainClass.start(primaryStage);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -47,44 +47,44 @@ public class RegisterController {
      */
     @FXML
     private void registerpressed()  {
-        UserManagement.register(userfx.getText(), passfx.getText(), usertype);
+        UserManagement.register(userfx.getText(), passfx.getText(), userType);
         cancelPressed();
     }
 
     /**
-     * sets usertype to user when pressed.
+     * sets user Type to user when pressed.
      *
      */
     @FXML
     private void handle1() {
-        usertype = "User";
+        userType = "User";
     }
 
     /**
-     * sets usertype to worker when pressed.
+     * sets user Type to worker when pressed.
      *
      */
     @FXML
     private void handle2() {
-        usertype = "Worker";
+        userType = "Worker";
     }
 
     /**
-     * sets usertype to manager when pressed.
+     * sets user Type to manager when pressed.
      *
      */
     @FXML
     private void handle3() {
-        usertype = "Manager";
+        userType = "Manager";
     }
 
     /**
-     * sets usertype to admin when pressed.
+     * sets user Type to admin when pressed.
      *
      */
     @FXML
     private void handle4() {
-        usertype = "Admin";
+        userType = "Admin";
     }
 
 

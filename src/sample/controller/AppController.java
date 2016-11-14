@@ -47,8 +47,8 @@ public class AppController {
         try {
             Stage primaryStage = (Stage) logoutButton.getScene().getWindow();
             UserManagement.logoutUser();
-            Main mainclass = new Main();
-            mainclass.start(primaryStage);
+            Main mainClass = new Main();
+            mainClass.start(primaryStage);
         } catch (Exception e) {
             System.out.println("mainStage error");
         }
@@ -129,7 +129,7 @@ public class AppController {
             System.out.println("There are currently no reports to view");
         } else {
             ArrayList<Double> lats = new ArrayList<>();
-            ArrayList<ArrayList<Double>> virusvalues =
+            ArrayList<ArrayList<Double>> virusValues =
                     new ArrayList<>();
             //Array List within Array List to hold months within each location
             ArrayList<ArrayList<String>> months =
@@ -137,36 +137,36 @@ public class AppController {
             ObservableList<String> locations =
                     FXCollections.observableArrayList();
             for (WaterSourceReport wr : WaterReportManagement.getAllReports()) {
-                if (lats.contains(wr.getLatitudeCoord())) {
+                if (lats.contains(wr.getLatitudeCoordinate())) {
                     // duplicate locations
-                    int index = lats.indexOf(wr.getLatitudeCoord());
+                    int index = lats.indexOf(wr.getLatitudeCoordinate());
                     //check for duplicate months
                     String s = getMonth(wr.getSourceTimeStamp().toString());
                     if (months.get(index).contains(s)) {
                         //average values for that month
-                        //Not exactly an average, but shhhhhh!
                         int monthIndex = months.get(index).indexOf(s);
-                        double dub = virusvalues.get(index).get(monthIndex);
-                        virusvalues.get(index).set(
+                        double dub = virusValues.get(index).get(monthIndex);
+                        virusValues.get(index).set(
                                 monthIndex, (dub + wr.getVirusPPM()) / 2);
                     } else {
                         // not a duplicate month
                         months.get(index).add(s);
-                        virusvalues.get(index).add(wr.getVirusPPM());
+                        virusValues.get(index).add(wr.getVirusPPM());
                     }
 
                 } else {
                     locations.add("Location: "
-                            + String.valueOf(wr.getLatitudeCoord()
-                            + "," + String.valueOf(wr.getLongitutdeCoord())));
-                    lats.add(wr.getLatitudeCoord());
+                            + String.valueOf(wr.getLatitudeCoordinate()
+                            + ","
+                            + String.valueOf(wr.getLongitudeCoordinate())));
+                    lats.add(wr.getLatitudeCoordinate());
                     ArrayList<Double> val = new ArrayList<>();
                     val.add(wr.getVirusPPM());
                     ArrayList<String> temp = new ArrayList<>();
                     String s = getMonth(wr.getSourceTimeStamp().toString());
                     temp.add(s);
                     months.add(temp);
-                    virusvalues.add(val);
+                    virusValues.add(val);
 
                 }
             }
@@ -220,7 +220,7 @@ public class AppController {
                     }
                 });
                 bp.setTop(backButton2);
-                int locindex = list.getSelectionModel().getSelectedIndex();
+                int localIndex = list.getSelectionModel().getSelectedIndex();
                 //show graph for all reports at this loc
                 //graph code
                 CategoryAxis month = new CategoryAxis();
@@ -229,10 +229,10 @@ public class AppController {
                         new BarChart<>(month, ppm);
                 XYChart.Series series1 = new XYChart.Series<>();
                 //XYChart.Series series2 = new XYChart.Series<>();
-                for (int i = 0; i < months.get(locindex).size(); i++) {
+                for (int i = 0; i < months.get(localIndex).size(); i++) {
                     series1.getData().addAll(
-                            new XYChart.Data(months.get(locindex).get(i),
-                                    virusvalues.get(locindex).get(i)));
+                            new XYChart.Data(months.get(localIndex).get(i),
+                                    virusValues.get(localIndex).get(i)));
                 }
                 graph.getData().addAll(series1);
                 bp.setCenter(graph);

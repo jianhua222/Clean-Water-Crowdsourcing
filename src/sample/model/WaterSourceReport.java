@@ -16,10 +16,10 @@ public class WaterSourceReport implements Serializable {
 
 
     // Report Variables
-    private double latitudeCoord;
-    private double longitutdeCoord;
+    private double latitudeCoordinate;
+    private double longitudeCoordinate;
     private double virusPPM;
-    private double comtaminantPPM;
+    private double contaminantPPM;
     private final User userWhoCreated;
     private String consumableCondition;
     private String waterCondition;
@@ -29,19 +29,20 @@ public class WaterSourceReport implements Serializable {
      * Constructor for water source report.
      * @param timestamp the timestamp
      * @param user the user
-     * @param longitutdeCoord the longitude
-     * @param latitudeCoord the latitude
+     * @param longitudeCoordinate the longitude
+     * @param latitudeCoordinate the latitude
      */
     private WaterSourceReport(Timestamp timestamp,
                              User user,
-                             Double longitutdeCoord, Double latitudeCoord) {
-        //Water Report Data Initilized
+                             Double longitudeCoordinate,
+                              Double latitudeCoordinate) {
+        //Water Report Data Initialized
         this.sourceTimeStamp = timestamp;
         this.userWhoCreated = user;
-        this.longitutdeCoord = longitutdeCoord;
-        this.latitudeCoord = latitudeCoord;
+        this.longitudeCoordinate = longitudeCoordinate;
+        this.latitudeCoordinate = latitudeCoordinate;
 
-        //Water Report Security Data Initilized
+        //Water Report Security Data Initialized
         this.reportNumber =
                 WaterReportManagement.getReportList().getBackingArray().size();
     }
@@ -126,32 +127,32 @@ public class WaterSourceReport implements Serializable {
      * getter for latitude
      * @return the latitude
      */
-    public double getLatitudeCoord() {
-        return latitudeCoord;
+    public double getLatitudeCoordinate() {
+        return latitudeCoordinate;
     }
 
     /**
      * setter for condition
-     * @param latitudeCoord the latitude
+     * @param latitudeCoordinate the latitude
      */
-    public void setLatitudeCoord(double latitudeCoord) {
-        this.latitudeCoord = latitudeCoord;
+    public void setLatitudeCoordinate(double latitudeCoordinate) {
+        this.latitudeCoordinate = latitudeCoordinate;
     }
 
     /**
      * getter for longitude
      * @return the longitude
      */
-    public double getLongitutdeCoord() {
-        return longitutdeCoord;
+    public double getLongitudeCoordinate() {
+        return longitudeCoordinate;
     }
 
     /**
      * setter for longitude
-     * @param longitutdeCoord the longitude
+     * @param longitudeCoordinate the longitude
      */
-    public void setLongitutdeCoord(double longitutdeCoord) {
-        this.longitutdeCoord = longitutdeCoord;
+    public void setLongitudeCoordinate(double longitudeCoordinate) {
+        this.longitudeCoordinate = longitudeCoordinate;
     }
 
     /**
@@ -174,16 +175,16 @@ public class WaterSourceReport implements Serializable {
      * getter for contaminant PPM
      * @return the contaminant PPM
      */
-    public double getComtaminantPPM() {
-        return comtaminantPPM;
+    public double getContaminantPPM() {
+        return contaminantPPM;
     }
 
     /**
      * setter for Contaminant PPM
-     * @param comtaminantPPM the containment PPM
+     * @param contaminantPPM the containment PPM
      */
-    public void setComtaminantPPM(double comtaminantPPM) {
-        this.comtaminantPPM = comtaminantPPM;
+    public void setContaminantPPM(double contaminantPPM) {
+        this.contaminantPPM = contaminantPPM;
     }
 
     /**
@@ -202,13 +203,13 @@ public class WaterSourceReport implements Serializable {
 
         return "<p>Report Number: " + reportNumber + "</br>"
                 + "Report Time: " + sourceTimeStamp + "</br>"
-                + "Location: " + latitudeCoord
-                + ", " + longitutdeCoord + "</br>"
+                + "Location: " + latitudeCoordinate
+                + ", " + longitudeCoordinate + "</br>"
                 + "Consumable condition: " + consumableCondition + "</br>"
                 + "Water Condition: " + waterCondition + "</br>"
                 + "Water Source: " + waterSource + "</br>"
                 + "Virus PPM: " + virusPPM + "</br>"
-                + "Contaminant PPM: " + comtaminantPPM + "</p>";
+                + "Contaminant PPM: " + contaminantPPM + "</p>";
     }
 
     /**

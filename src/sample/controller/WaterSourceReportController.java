@@ -13,7 +13,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.model.ConsumableCondition;
-import sample.model.Manager;
 import sample.model.User;
 import sample.model.UserManagement;
 import sample.model.WaterCondition;
@@ -30,7 +29,7 @@ import java.util.List;
 
 /**
  * Created by Payton on 10/13/16.
- * Interfacer
+ *
  */
 public class WaterSourceReportController {
 
@@ -114,9 +113,9 @@ public class WaterSourceReportController {
         //Augment this to pull current location
         this.locationOfReport.setText("33.7756, 84.3963");
 
-        //Initilize ComboBoxes
+        //Initialize ComboBoxes
         ObservableList<String> consumableConditionStuff =
-                comboBoxConsumableConditionIteams();
+                comboBoxConsumableConditionItems();
         this.consumableConditionComboBox.setItems(consumableConditionStuff);
         consumableConditionComboBox.setPromptText("Select Consumability");
 
@@ -125,12 +124,12 @@ public class WaterSourceReportController {
         sourceTypeComboBox.setPromptText("Select Source");
 
         ObservableList<String> waterConditionStuff =
-                comboBoxWaterConditionIteams();
+                comboBoxWaterConditionItems();
         this.h20SourceConditionComboBox.setItems(waterConditionStuff);
         h20SourceConditionComboBox.setPromptText("Select Condition");
 
         User currentUser = UserManagement.getUser();
-        if (currentUser instanceof Worker || currentUser instanceof Manager) {
+        if (currentUser instanceof Worker) {
             virusPPM.setText("00.00");
             contaminantPPM.setText("00.00");
         } else {
@@ -145,9 +144,9 @@ public class WaterSourceReportController {
     }
     /**
      * called automatically after load
-     * @return _comboBox as an obseravable list
+     * @return _comboBox as an observable list
      */
-    private static ObservableList<String> comboBoxWaterConditionIteams() {
+    private static ObservableList<String> comboBoxWaterConditionItems() {
         WaterCondition[] tempStrings = WaterCondition.values();
         List<String> tempList = new ArrayList<>();
 
@@ -162,7 +161,7 @@ public class WaterSourceReportController {
 
     /**
      * called automatically after load
-     * @return _comboBox as an obseravable list
+     * @return _comboBox as an observable list
      */
     private static ObservableList<String> comboBoxSourceTypeIteams() {
         WaterSource[] tempStrings = WaterSource.values();
@@ -178,9 +177,9 @@ public class WaterSourceReportController {
 
     /**
      * called automatically after load
-     * @return _comboBox as an obseravable list
+     * @return _comboBox as an observable list
      */
-    private static ObservableList<String> comboBoxConsumableConditionIteams() {
+    private static ObservableList<String> comboBoxConsumableConditionItems() {
         ConsumableCondition[] tempStrings = ConsumableCondition.values();
         List<String> tempList = new ArrayList<>();
 
@@ -219,17 +218,17 @@ public class WaterSourceReportController {
         WaterSourceReport newReport;
         //Save the data submitted by user
         if (inputValid()) {
-            String consumableConditon;
+            String consumableCondition;
             if (consumableConditionComboBox.getValue() != null) {
-                consumableConditon = consumableConditionComboBox
+                consumableCondition = consumableConditionComboBox
                         .getValue().toString();
             } else {
                 //Implement a UI error for future iteration
-                consumableConditon = ConsumableCondition.NA.toString();
+                consumableCondition = ConsumableCondition.NA.toString();
             }
             newReport = new WaterSourceReport(
                     this.otherCreationDate, UserManagement.getUser());
-            newReport.setConsumableCondition(consumableConditon);
+            newReport.setConsumableCondition(consumableCondition);
 
             String h20SourceCondition;
             if (h20SourceConditionComboBox.getValue() != null) {
@@ -255,14 +254,16 @@ public class WaterSourceReportController {
 
             double contaminantPPMDouble =
                     Double.parseDouble(contaminantPPM.getText());
-            newReport.setComtaminantPPM(contaminantPPMDouble);
+            newReport.setContaminantPPM(contaminantPPMDouble);
 
             if (locationOfReport.getText() != null) {
                 String location = locationOfReport.getText();
                 if (location.contains(", ")) {
-                    String[] locs = location.split(", ");
-                    newReport.setLatitudeCoord(Double.parseDouble(locs[0]));
-                    newReport.setLongitutdeCoord(Double.parseDouble(locs[1]));
+                    String[] locationArray = location.split(", ");
+                    newReport.setLatitudeCoordinate(
+                            Double.parseDouble(locationArray[0]));
+                    newReport.setLongitudeCoordinate(
+                            Double.parseDouble(locationArray[1]));
                 }
             }
 
@@ -277,7 +278,7 @@ public class WaterSourceReportController {
 
     /**
      *  Test the input for contaminants
-     * @return ture is the input is valid and false if otherwise
+     * @return true if the input is valid and false if otherwise
      */
     private boolean inputValid() {
         if (virusPPM.getText() != null && contaminantPPM.getText() != null) {

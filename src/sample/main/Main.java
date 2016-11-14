@@ -40,7 +40,7 @@ public class Main extends Application {
             controller.setMainApp(this);
 
             // Set the Main App title
-            mainScreen.setTitle("Clean Water Crowdsourcing");
+            mainScreen.setTitle("Clean Water Crowd sourcing");
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);

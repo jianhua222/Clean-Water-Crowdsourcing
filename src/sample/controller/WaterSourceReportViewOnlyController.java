@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import sample.model.Manager;
 import sample.model.User;
 import sample.model.WaterReportManagement;
 import sample.model.WaterSourceReport;
@@ -75,18 +74,18 @@ public class WaterSourceReportViewOnlyController {
         Integer pulledReportNumber = pulledReport.getReportNumber();
         this.reportNumber.setText(pulledReportNumber.toString());
         this.locationLabel.setText(
-                pulledReport.getLatitudeCoord()
-                        + "ºN, " + pulledReport.getLongitutdeCoord() + "ºW");
+                pulledReport.getLatitudeCoordinate()
+                        + "ºN, "
+                        + pulledReport.getLongitudeCoordinate() + "ºW");
         this.sourceTypeLabel.setText(pulledReport.getWaterSource());
         this.conditionTypeLabel.setText(pulledReport.getWaterCondition());
         this.consumableTypeLabel.setText(pulledReport.getConsumableCondition());
         // if user then hard code to zero
         User author = pulledReport.getUserWhoCreated();
-        if (author instanceof Worker
-                || author instanceof Manager) { // Add or manager
+        if (author instanceof Worker) { // Add or manager
             Double otherVirusValue = pulledReport.getVirusPPM();
             this.otherVirusValue.setText(otherVirusValue.toString());
-            Double soContaminantValue = pulledReport.getComtaminantPPM();
+            Double soContaminantValue = pulledReport.getContaminantPPM();
             this.soContaminantValue.setText(soContaminantValue.toString());
         } else {
             otherVirusLabel.setVisible(false);

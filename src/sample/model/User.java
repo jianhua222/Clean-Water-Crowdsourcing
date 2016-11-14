@@ -41,7 +41,7 @@ public class User implements Serializable {
      * @param password input password
      * @param type     input type
      * @param email    input email
-     * @param address  inupt address
+     * @param address  input address
      * @param title    input title
      */
     /*public User(String userName, String password, String type,
@@ -82,7 +82,7 @@ public class User implements Serializable {
     }
 
     /**
-     * email getert
+     * email getter
      *
      * @return email value
      */

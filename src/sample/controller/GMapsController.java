@@ -131,8 +131,8 @@ public class GMapsController implements MapComponentInitializedListener {
         double latTotal = 0;
         double lngTotal = 0;
         for (WaterSourceReport report : reports) {
-            latTotal = latTotal + report.getLatitudeCoord();
-            lngTotal = lngTotal + report.getLongitutdeCoord();
+            latTotal = latTotal + report.getLatitudeCoordinate();
+            lngTotal = lngTotal + report.getLongitudeCoordinate();
         }
         latCenter = latTotal / reports.size();
         lngCenter = lngTotal / reports.size();
@@ -152,7 +152,8 @@ public class GMapsController implements MapComponentInitializedListener {
      */
     private void addMarker(WaterSourceReport report) {
         LatLong location = new LatLong(
-                report.getLatitudeCoord(), report.getLongitutdeCoord());
+                report.getLatitudeCoordinate(),
+                report.getLongitudeCoordinate());
 
         //Add markers to the map
         MarkerOptions markerOptions = new MarkerOptions();

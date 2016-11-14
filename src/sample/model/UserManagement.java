@@ -25,32 +25,31 @@ public class UserManagement {
      * @param type     input type
      */
     public static void register(String userName, String password, String type) {
-        User newuser;
+        User newUser;
         if (type.equals("User")) {
-            newuser = new User(userName, password, type);
+            newUser = new User(userName, password, type);
         } else if (type.equals("Worker")) {
-            newuser = new Worker(userName, password, type);
+            newUser = new Worker(userName, password, type);
         } else if (type.equals("Manager")) {
-            newuser = new Manager(userName, password, type);
+            newUser = new Manager(userName, password, type);
         } else if (type.equals("Admin")) {
             //Change to ADMIN if needed
-            newuser = new User(userName, password, type);
+            newUser = new User(userName, password, type);
         } else {
             throw new IllegalArgumentException(
                     "The given user type was not correct");
         }
         try {
             FileOutputStream fileOut =
-                    new FileOutputStream(newuser.getUserName() + ".ser");
+                    new FileOutputStream(newUser.getUserName() + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(newuser);
+            out.writeObject(newUser);
             //out.writeObject(b);
             out.close();
             fileOut.close();
         } catch (IOException i) {
             i.printStackTrace();
         }
-        //users.add(newuser);
     }
 
     /**

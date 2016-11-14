@@ -1,6 +1,6 @@
 package sample.test.java;
 
-import org.junit.Before;
+
 import org.junit.Test;
 import sample.model.User;
 import sample.model.UserManagement;
@@ -21,6 +21,9 @@ public class UserManagementVerifyTest {
     private User temp1 = new User();
     private User temp2 = new User();
 
+    /**
+     * Doest the setUp for every test
+     */
     private void setUp() {
         UserManagement.register("UN1", "P1", "User");
         UserManagement.register("UN2", "P2", "Admin");
@@ -44,9 +47,10 @@ public class UserManagementVerifyTest {
     public void testCorrectCredentials() {
         setUp();
 
-        assertEquals(true, UserManagement.verify(temp1.getUserName(), temp1.getPassword()));
-        assertEquals(true, UserManagement.verify(temp2.getUserName(), temp2.getPassword()));
-
+        assertEquals(true, UserManagement.verify(temp1.getUserName(),
+                temp1.getPassword()));
+        assertEquals(true, UserManagement.verify(temp2.getUserName(),
+                temp2.getPassword()));
         cleanUp();
     }
 
@@ -54,10 +58,12 @@ public class UserManagementVerifyTest {
     public void testWrongPassword() {
         setUp();
 
-        assertEquals(false, UserManagement.verify(temp1.getUserName(), temp2.getPassword()));
+        assertEquals(false, UserManagement.verify(temp1.getUserName(),
+                temp2.getPassword()));
         assertEquals(null, UserManagement.getUser());
 
-        assertEquals(false, UserManagement.verify(temp2.getUserName(), temp1.getPassword()));
+        assertEquals(false, UserManagement.verify(temp2.getUserName(),
+                temp1.getPassword()));
         assertEquals(null, UserManagement.getUser());
 
         cleanUp();
@@ -67,19 +73,28 @@ public class UserManagementVerifyTest {
     public void testCurrentUserCorrectCredentials() {
         setUp();
 
-        assertEquals(true, UserManagement.verify(temp1.getUserName(), temp1.getPassword()));
-        assertEquals(temp1.getUserName(), UserManagement.getUser().getUserName());
-        assertEquals(temp1.getPassword(), UserManagement.getUser().getPassword());
-        assertEquals(temp1.getType(), UserManagement.getUser().getType());
+        assertEquals(true, UserManagement.verify(temp1.getUserName(),
+                temp1.getPassword()));
+        assertEquals(temp1.getUserName(),
+                UserManagement.getUser().getUserName());
+        assertEquals(temp1.getPassword(),
+                UserManagement.getUser().getPassword());
+        assertEquals(temp1.getType(),
+                UserManagement.getUser().getType());
 
-        assertEquals(true, UserManagement.verify(temp2.getUserName(), temp2.getPassword()));
-        assertEquals(temp2.getUserName(), UserManagement.getUser().getUserName());
-        assertEquals(temp2.getPassword(), UserManagement.getUser().getPassword());
-        assertEquals(temp2.getType(), UserManagement.getUser().getType());
-
+        assertEquals(true, UserManagement.verify(temp2.getUserName(),
+                temp2.getPassword()));
+        assertEquals(temp2.getUserName(),
+                UserManagement.getUser().getUserName());
+        assertEquals(temp2.getPassword(),
+                UserManagement.getUser().getPassword());
+        assertEquals(temp2.getType(),
+                UserManagement.getUser().getType());
         cleanUp();
     }
-
+    /**
+     * Doest the cleanUp for every test
+     */
     private void cleanUp() {
 
         try {

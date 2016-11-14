@@ -61,8 +61,8 @@ public class LoginController {
     private void cancelHit() {
         try {
             Stage primaryStage = (Stage) closeButton.getScene().getWindow();
-            Main mainclass = new Main();
-            mainclass.start(primaryStage);
+            Main mainClass = new Main();
+            mainClass.start(primaryStage);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

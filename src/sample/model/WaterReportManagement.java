@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Payton on 10/13/16.
- * Structurer
+ *
  */
 public class WaterReportManagement {
     private static WaterSourceReport currentReport;

@@ -14,7 +14,7 @@ public enum ConsumableCondition implements Serializable {
     private final String consumableCondition;
 
     /**
-     * This constructor sets the consumablecondition to input
+     * This constructor sets the consumable condition to input
      * @param input is the string which describes consumable condition
      */
     ConsumableCondition(String input) {
@@ -22,7 +22,7 @@ public enum ConsumableCondition implements Serializable {
     }
 
     /**
-     * This method returns the consumablecondition
+     * This method returns the consumable condition
      * @return the string consumable condition
      */
     public String toString() {
