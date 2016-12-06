@@ -31,6 +31,7 @@ import java.util.ArrayList;
 /**
  * Created by David on 10/22/16.
  */
+
 public class GMapsController implements MapComponentInitializedListener {
 
     @FXML
