@@ -127,15 +127,20 @@ public class GMapsController implements MapComponentInitializedListener {
      *@param reports the array list of reports.
      */
     public void setWaterReports(ArrayList<WaterSourceReport> reports) {
-        waterReports = reports;
-        double latTotal = 0;
-        double lngTotal = 0;
-        for (WaterSourceReport report : reports) {
-            latTotal = latTotal + report.getLatitudeCoordinate();
-            lngTotal = lngTotal + report.getLongitudeCoordinate();
+        if (reports == null) {
+            latCenter = 33.7756;
+            lngCenter = 84.3963;
+        } else {
+            waterReports = reports;
+            double latTotal = 0;
+            double lngTotal = 0;
+            for (WaterSourceReport report : reports) {
+                latTotal = latTotal + report.getLatitudeCoordinate();
+                lngTotal = lngTotal + report.getLongitudeCoordinate();
+            }
+            latCenter = latTotal / reports.size();
+            lngCenter = lngTotal / reports.size();
         }
-        latCenter = latTotal / reports.size();
-        lngCenter = lngTotal / reports.size();
     }
 
     /**

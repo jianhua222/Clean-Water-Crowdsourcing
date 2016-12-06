@@ -13,6 +13,7 @@ jar {
 sourceSets.main.java.srcDirs=['src']
 sourceSets.main.resources.srcDir 'src/sample/view'
 dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
     compile group: 'com.lynden', name: 'GMapsFX', version: '2.0.9'
     compile 'junit:junit:4.12'
     testCompile 'junit:junit:4.12'

@@ -70,6 +70,19 @@ public class UserManagementVerifyTest {
     }
 
     @Test
+    public void testWrongUser() {
+        setUp();
+
+        assertEquals(false, UserManagement.verify("", temp2.getPassword()));
+        assertEquals(null, UserManagement.getUser());
+
+        assertEquals(false, UserManagement.verify("", temp1.getPassword()));
+        assertEquals(null, UserManagement.getUser());
+
+        cleanUp();
+    }
+
+    @Test
     public void testCurrentUserCorrectCredentials() {
         setUp();
 

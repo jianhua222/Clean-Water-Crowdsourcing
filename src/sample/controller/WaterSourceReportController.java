@@ -78,10 +78,10 @@ public class WaterSourceReportController {
     private TextField locationOfReport;
 
     @FXML
-    private Label newVirusLabel;
+    private Label VirusLabel;
 
     @FXML
-    private Label newContaminantLabel;
+    private Label ContaminantLabel;
 
     /**
      * initializes the water source report
@@ -129,15 +129,15 @@ public class WaterSourceReportController {
         h20SourceConditionComboBox.setPromptText("Select Condition");
 
         User currentUser = UserManagement.getUser();
-        if (currentUser instanceof Worker) {
+        if (currentUser.getType().equals("Worker") || currentUser.getType().equals("Manager")) {
             virusPPM.setText("00.00");
             contaminantPPM.setText("00.00");
         } else {
             //Users can not submit virus/contaminant information
             virusPPM.setText("00.00");
             contaminantPPM.setText("00.00");
-            newVirusLabel.setVisible(false);
-            newContaminantLabel.setVisible(false);
+            VirusLabel.setVisible(false);
+            ContaminantLabel.setVisible(false);
             virusPPM.setVisible(false);
             contaminantPPM.setVisible(false);
         }

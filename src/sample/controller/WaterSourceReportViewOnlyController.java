@@ -46,16 +46,16 @@ public class WaterSourceReportViewOnlyController {
     private Label consumableTypeLabel;
 
     @FXML
-    private Label otherVirusLabel;
+    private Label VirusValue;
 
     @FXML
-    private Label otherContaminantLabel;
+    private Label ContaminantValue;
 
     @FXML
-    private Label otherVirusValue;
+    private Label VirusLabel;
 
     @FXML
-    private Label soContaminantValue;
+    private Label ContaminantLabel;
 
     @FXML
     private Label locationLabel;
@@ -82,16 +82,16 @@ public class WaterSourceReportViewOnlyController {
         this.consumableTypeLabel.setText(pulledReport.getConsumableCondition());
         // if user then hard code to zero
         User author = pulledReport.getUserWhoCreated();
-        if (author instanceof Worker) { // Add or manager
+        if (author.getType().equals("Worker") || author.getType().equals("Manager")) { // Add or manager
             Double otherVirusValue = pulledReport.getVirusPPM();
-            this.otherVirusValue.setText(otherVirusValue.toString());
+            this.VirusValue.setText(otherVirusValue.toString());
             Double soContaminantValue = pulledReport.getContaminantPPM();
-            this.soContaminantValue.setText(soContaminantValue.toString());
+            this.ContaminantValue.setText(soContaminantValue.toString());
         } else {
-            otherVirusLabel.setVisible(false);
-            otherContaminantLabel.setVisible(false);
-            otherVirusValue.setVisible(false);
-            soContaminantValue.setVisible(false);
+            VirusLabel.setVisible(false);
+            ContaminantLabel.setVisible(false);
+            VirusValue.setVisible(false);
+            ContaminantValue.setVisible(false);
         }
     }
 
