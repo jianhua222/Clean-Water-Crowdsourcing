@@ -58,6 +58,7 @@ public class Main extends Application {
      * @param args the array string passed into this method
      */
     public static void main(String[] args) {
+        System.out.print(System.getProperties());
         //
         //WaterSourceReportList tem = new WaterSourceReportList();
         //try {
